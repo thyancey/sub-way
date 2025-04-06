@@ -20,6 +20,8 @@ extends CharacterBody2D
 @export var surface_horizontal_damp: float = 2.0
 
 @onready var surface_detector = %Detector  # Reference to the SurfaceDetector Area2D
+@onready var bubble_particles = %BubbleParticles  # Reference to the BubbleParticles node
+@onready var bubble_particles2 = %BubbleParticles2  # Reference to the BubbleParticles node
 
 enum SubmarineState {SUBMERGED, SURFACED} # Enum for state management
 var current_state: SubmarineState = SubmarineState.SUBMERGED # Default state is submerged
@@ -30,6 +32,8 @@ var actively_submerging := false
 func _ready() -> void:
 	# Connect the signal to detect when the SurfaceDetector collides with something in the "Surface" layer
 	surface_detector.area_entered.connect(_on_surface_reached)
+	bubble_particles.emitting = false
+	bubble_particles2.emitting = false
 
 func _physics_process(delta: float) -> void:
 	if current_state == SubmarineState.SUBMERGED:
@@ -50,8 +54,14 @@ func handle_submerged(delta: float) -> void:
 		input_dir.y -= 1
 	if Input.is_action_pressed("DOWN"):
 		input_dir.y += 1
+
+		actively_submerging = true
+		bubble_particles.emitting = true
+		bubble_particles2.emitting = true
 	else:
 		actively_submerging = false
+		bubble_particles.emitting = false
+		bubble_particles2.emitting = false
 
 	# Horizontal movement
 	if input_dir.x != 0:
@@ -115,6 +125,10 @@ func handle_surfaced(delta: float) -> void:
 	idle_timer += delta
 	var bob = sin(idle_timer * surface_bob_speed) * surface_bob_strength * delta
 	position.y += bob
+
+
+	rotation = lerp(rotation, velocity.y * 0.002, 5 * delta)
+	rotation = clamp(rotation, deg_to_rad(-10), deg_to_rad(10))
 
 	# We don't move, and we just need to display the idle or surface behavior here
 	move_and_slide()
