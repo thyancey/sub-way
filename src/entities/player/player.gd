@@ -24,11 +24,16 @@ extends CharacterBody2D
 @onready var bubble_particles2 = %BubbleParticles2 # Reference to the BubbleParticles node
 @onready var light: PointLight2D = %Light
 
+@onready var MainSprite: AnimatedSprite2D = %MainSprite
+
 enum SubmarineState {SUBMERGED, SURFACED} # Enum for state management
 var current_state: SubmarineState = SubmarineState.SUBMERGED # Default state is submerged
 
 var idle_timer := 0.0
 var actively_submerging := false
+
+enum SubmarineStatus {DESCENDING, ASCENDING, IDLE}
+var sub_status: SubmarineStatus = SubmarineStatus.IDLE
 
 func _ready() -> void:
 	# Connect the signal to detect when the SurfaceDetector collides with something in the "Surface" layer
@@ -48,11 +53,36 @@ func _physics_process(delta: float) -> void:
 	elif current_state == SubmarineState.SURFACED:
 		handle_surfaced(delta)
 
-	Global.depth = position.y
+	Global.depth = int(position.y)
+
+	match (sub_status):
+		SubmarineStatus.IDLE:
+			if abs(velocity.x) < 5:
+				MainSprite.play('idle')
+			elif velocity.x < 0:
+				MainSprite.play('ascending_left')
+			else:
+				MainSprite.play('ascending_right')
+		SubmarineStatus.ASCENDING:
+			if abs(velocity.x) < 5:
+				MainSprite.play('ascending')
+			elif velocity.x < 0:
+				MainSprite.play('ascending_left')
+			else:
+				MainSprite.play('ascending_right')
+
+		SubmarineStatus.DESCENDING:
+			if abs(velocity.x) < 5:
+				MainSprite.play('descending')
+			elif velocity.x < 0:
+				MainSprite.play('descending_left')
+			else:
+				MainSprite.play('descending_right')
 
 # Handle submerged behavior
 func handle_submerged(delta: float) -> void:
 	var input_dir = Vector2.ZERO
+	sub_status = SubmarineStatus.IDLE
 
 	# Input for movement
 	if Input.is_action_pressed("RIGHT"):
@@ -60,11 +90,13 @@ func handle_submerged(delta: float) -> void:
 	if Input.is_action_pressed("LEFT"):
 		input_dir.x -= 1
 	if Input.is_action_pressed("UP"):
+		sub_status = SubmarineStatus.ASCENDING
 		input_dir.y -= 1
 	if Input.is_action_pressed("DOWN"):
 		input_dir.y += 1
 
 		actively_submerging = true
+		sub_status = SubmarineStatus.DESCENDING
 		bubble_particles.emitting = true
 		bubble_particles2.emitting = true
 	else:
@@ -111,6 +143,7 @@ func handle_submerged(delta: float) -> void:
 # Handle surfaced behavior (no movement allowed)
 func handle_surfaced(delta: float) -> void:
 	var input_dir = Vector2.ZERO
+	sub_status = SubmarineStatus.IDLE
 
 	# Input for movement
 	if Input.is_action_pressed("RIGHT"):
@@ -118,6 +151,7 @@ func handle_surfaced(delta: float) -> void:
 	if Input.is_action_pressed("LEFT"):
 		input_dir.x -= 1
 	if Input.is_action_pressed("DOWN"):
+		sub_status = SubmarineStatus.DESCENDING
 		actively_submerging = true
 		set_submerged()
 		return

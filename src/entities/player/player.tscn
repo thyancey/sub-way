@@ -43,9 +43,11 @@ gravity = Vector2(0, -20)
 initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1)
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = ExtResource("1_4m8ck")
+animation = &"descending"
+offset = Vector2(0, -2)
 
 [node name="BubbleParticles2" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
