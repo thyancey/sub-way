@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bubble.aseprite-0034e5d03a401db90e076dc9c747f
 [params]
 
 layer/exclude_layers_pattern=""
-layer/only_visible_layers=false
+layer/only_visible_layers=true
 sheet/sheet_type="packed"
 sheet/sheet_columns=12
 animation/round_fps=true

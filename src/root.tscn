@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://drait3irlg484"]
+[gd_scene load_steps=14 format=4 uid="uid://drait3irlg484"]
 
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="1_dop5u"]
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/root.gd" id="1_ri26b"]
 [ext_resource type="PackedScene" uid="uid://8dseg4ubdv3y" path="res://src/entities/player/player.tscn" id="2_pribe"]
 [ext_resource type="Texture2D" uid="uid://bscvtvpqj80b7" path="res://src/tilemap/tilemap_1.png" id="3_4l2ve"]
+[ext_resource type="Material" uid="uid://c5k2whulyxkyu" path="res://src/tilemap/water_fx.tres" id="3_yxa4x"]
 [ext_resource type="PackedScene" uid="uid://j1m3y4fxeg4n" path="res://src/entities/surface.tscn" id="5_ipfp8"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="5_oe21g"]
 [ext_resource type="PackedScene" uid="uid://cf1osjkkrt82j" path="res://src/entities/enemy/fish.tscn" id="7_gafuw"]
@@ -30,19 +31,26 @@ physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_ri26b")
 
+[sub_resource type="Gradient" id="Gradient_gafuw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yxa4x"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_57iuh"]
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_gafuw")
+noise = SubResource("FastNoiseLite_yxa4x")
+
 [node name="Root" type="Node2D"]
 script = ExtResource("1_ri26b")
 
 [node name="bg" type="ColorRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="bg"]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -450.0
+offset_top = -234.0
+offset_right = 862.0
+offset_bottom = 575.0
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="bg"]
 visible = false
@@ -57,11 +65,47 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="test" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+material = ExtResource("3_yxa4x")
+centered = false
+
+[node name="BlurEffect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = ExtResource("3_yxa4x")
+offset_right = 320.0
+offset_bottom = 180.0
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, 24)
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAAAAAIAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAGAAIAAQAAAAEAAAAHAAIAAQAAAAEAAAAIAAIAAQAAAAEAAAAJAAIAAQAAAAEAAAAKAAIAAQAAAAEAAAAAAAMAAQAAAAIAAAABAAMAAQAAAAIAAAACAAMAAQAAAAIAAAADAAMAAQAAAAIAAAAEAAMAAQAAAAIAAAAFAAMAAQAAAAIAAAAGAAMAAQAAAAIAAAAHAAMAAQAAAAIAAAAIAAMAAQAAAAIAAAAJAAMAAQAAAAIAAAAKAAMAAQAAAAIAAAAAAAQAAQAAAAIAAAABAAQAAQAAAAIAAAACAAQAAQAAAAIAAAADAAQAAQAAAAIAAAAEAAQAAQAAAAIAAAAFAAQAAQAAAAIAAAAGAAQAAQAAAAIAAAAHAAQAAQAAAAIAAAAIAAQAAQAAAAIAAAAJAAQAAQAAAAIAAAAKAAQAAQAAAAIAAAAAAAUAAQAAAAIAAAABAAUAAQAAAAIAAAACAAUAAQAAAAIAAAADAAUAAQAAAAIAAAAEAAUAAQAAAAIAAAAFAAUAAQAAAAIAAAAGAAUAAQAAAAIAAAAHAAUAAQAAAAIAAAAIAAUAAQAAAAIAAAAJAAUAAQAAAAIAAAAKAAUAAQAAAAIAAAAAAAYAAQAAAAMAAAABAAYAAQAAAAMAAAACAAYAAQAAAAMAAAADAAYAAQAAAAMAAAAEAAYAAQAAAAMAAAAFAAYAAQAAAAMAAAAGAAYAAQAAAAMAAAAHAAYAAQAAAAMAAAAIAAYAAQAAAAMAAAAJAAYAAQAAAAMAAAAKAAYAAQAAAAMAAAAAAP//AQABAAEAAAABAP//AQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAAEAP//AQABAAEAAAAFAP//AQABAAEAAAAGAP//AQABAAEAAAAHAP//AQABAAEAAAAIAP//AQABAAEAAAAJAP//AQABAAEAAAAKAP//AQABAAEAAAD/////AQABAAEAAAD+////AQABAAEAAAD9////AQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD///7/AQABAAAAAAAAAP7/AQABAAAAAAABAP7/AQABAAAAAAACAP7/AQABAAAAAAADAP7/AQABAAAAAAAEAP7/AQABAAAAAAAFAP7/AQABAAAAAAAGAP7/AQABAAAAAAAHAP7/AQABAAAAAAAIAP7/AQABAAAAAAAJAP7/AQABAAAAAAAKAP7/AQABAAAAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD8/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD//wIAAQAAAAEAAAD+/wIAAQAAAAEAAAD9/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD8/wMAAQAAAAIAAAD9/wMAAQAAAAIAAAD+/wMAAQAAAAIAAAD//wMAAQAAAAIAAAD//wQAAQAAAAIAAAD//wUAAQAAAAIAAAD+/wUAAQAAAAIAAAD9/wUAAQAAAAIAAAD8/wUAAQAAAAIAAAD8/wQAAQAAAAIAAAD9/wQAAQAAAAIAAAD+/wQAAQAAAAIAAAD//wYAAQAAAAMAAAD+/wYAAQAAAAMAAAD9/wYAAQAAAAMAAAD8/wYAAQAAAAMAAAD8/wcAAQABAAMAAAD9/wcAAQACAAMAAAD+/wcAAQABAAMAAAD//wcAAQABAAMAAAAAAAcAAQACAAMAAAABAAcAAQABAAMAAAACAAcAAQABAAMAAAADAAcAAQABAAMAAAAEAAcAAQACAAMAAAAFAAcAAQABAAMAAAAGAAcAAQACAAMAAAAHAAcAAQACAAMAAAAIAAcAAQABAAMAAAAJAAcAAQABAAMAAAAKAAcAAQACAAMAAAA=")
 tile_set = SubResource("TileSet_ipfp8")
+
+[node name="noise" type="Node2D" parent="."]
+visible = false
+texture_repeat = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(512, 0)
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="noise"]
+visible = false
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(512, 512)
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(0, 512)
+texture = SubResource("NoiseTexture2D_57iuh")
 
 [node name="comp2" type="Sprite2D" parent="."]
 visible = false
@@ -75,7 +119,6 @@ position = Vector2(0, 20)
 
 [node name="Darkness" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
-color = Color(0, 0, 0, 1)
 
 [node name="Stuff" type="Node2D" parent="."]
 
