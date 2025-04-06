@@ -21,7 +21,7 @@ func set_next_turn() -> void:
 
 func _ready() -> void:
 	base_y = position.y
-	wave_offset = randf() * TAU # random phase for unique swim
+	wave_offset = randf() * TAU  # random phase for unique swim
 	# Pick random initial direction
 	direction = Vector2.LEFT if randf() > 0.5 else Vector2.RIGHT
 	look_at(position + direction)
