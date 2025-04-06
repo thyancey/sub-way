@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://j1m3y4fxeg4n"]
+
+[ext_resource type="Script" uid="uid://yldx3f8lqy0e" path="res://src/entities/surface.gd" id="1_im4m6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1od2v"]
+size = Vector2(1283, 152)
+
+[node name="Surface" type="Area2D" groups=["Surface"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_im4m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(244.5, -101)
+shape = SubResource("RectangleShape2D_1od2v")

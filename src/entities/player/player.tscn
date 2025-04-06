@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=5 format=3 uid="uid://8dseg4ubdv3y"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
@@ -7,7 +7,11 @@
 radius = 4.0
 height = 52.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muk8e"]
+radius = 4.0
+height = 52.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 8
 motion_mode = 1
@@ -22,3 +26,12 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vt6n5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Detector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_muk8e")
