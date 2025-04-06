@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 import/import_plugin/default_automatic_importer="SpriteFrames"
 
+[autoload]
+
+Global="*res://src/scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=320

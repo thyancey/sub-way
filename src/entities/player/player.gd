@@ -19,9 +19,10 @@ extends CharacterBody2D
 @export var surface_horizontal_max: float = 20.0
 @export var surface_horizontal_damp: float = 2.0
 
-@onready var surface_detector = %Detector  # Reference to the SurfaceDetector Area2D
-@onready var bubble_particles = %BubbleParticles  # Reference to the BubbleParticles node
-@onready var bubble_particles2 = %BubbleParticles2  # Reference to the BubbleParticles node
+@onready var surface_detector = %Detector # Reference to the SurfaceDetector Area2D
+@onready var bubble_particles = %BubbleParticles # Reference to the BubbleParticles node
+@onready var bubble_particles2 = %BubbleParticles2 # Reference to the BubbleParticles node
+@onready var light: PointLight2D = %Light
 
 enum SubmarineState {SUBMERGED, SURFACED} # Enum for state management
 var current_state: SubmarineState = SubmarineState.SUBMERGED # Default state is submerged
@@ -34,12 +35,20 @@ func _ready() -> void:
 	surface_detector.area_entered.connect(_on_surface_reached)
 	bubble_particles.emitting = false
 	bubble_particles2.emitting = false
+	
+	Global.connect('updated_darkness', on_updated_darkness)
+	on_updated_darkness(Global.calc_darkness(Global.depth))
+
+func on_updated_darkness(darkness_percent: float) -> void:
+	light.energy = lerp(0.0, 1.6, darkness_percent)
 
 func _physics_process(delta: float) -> void:
 	if current_state == SubmarineState.SUBMERGED:
 		handle_submerged(delta)
 	elif current_state == SubmarineState.SURFACED:
 		handle_surfaced(delta)
+
+	Global.depth = position.y
 
 # Handle submerged behavior
 func handle_submerged(delta: float) -> void:

@@ -69,7 +69,8 @@ shape = SubResource("CapsuleShape2D_vt6n5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="Light" type="PointLight2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(3.71875, 2.85757)
 color = Color(0.62, 0.2976, 0.2976, 1)
 energy = 1.6
