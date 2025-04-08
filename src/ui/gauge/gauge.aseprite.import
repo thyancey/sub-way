@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ciaf2rkqjlgx"
+path="res://.godot/imported/gauge.aseprite-97273a4170b0fc89a2fa74641eff8c2c.res"
+
+[deps]
+
+source_file="res://src/ui/gauge/gauge.aseprite"
+dest_files=["res://.godot/imported/gauge.aseprite-97273a4170b0fc89a2fa74641eff8c2c.res"]
+
+[params]
+

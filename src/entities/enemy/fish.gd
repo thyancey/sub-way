@@ -51,3 +51,7 @@ func _physics_process(delta: float) -> void:
 		MainSprite.flip_v = true
 	else:
 		MainSprite.flip_v = false
+
+func hit() -> void:
+	print("HIT")
+	queue_free()

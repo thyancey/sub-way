@@ -25,6 +25,8 @@ extends CharacterBody2D
 @onready var light: PointLight2D = %Light
 
 @onready var oxygen_recharge := 0.5
+var lamp_scale := Vector2(0.0, 1.8)
+
 # max depth, idle deplation, descending depletion
 var decay_table = [
 	[05, .01, .1],
@@ -74,7 +76,7 @@ func _ready() -> void:
 	on_updated_darkness(Global.calc_darkness(Global.depth))
 
 func on_updated_darkness(darkness_percent: float) -> void:
-	light.energy = lerp(0.0, 1.6, darkness_percent)
+	light.energy = lerp(lamp_scale.x, lamp_scale.y, darkness_percent)
 
 func _physics_process(delta: float) -> void:
 	if current_state == SubmarineState.SUBMERGED:

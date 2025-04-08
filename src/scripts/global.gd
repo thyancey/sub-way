@@ -6,7 +6,7 @@ signal updated_darkness(val: float)
 signal updated_oxygen(val: float)
 
 # min/max depth for applying the darkness effect
-var darkness_depth := Vector2(20.0, 150.0)
+var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
 
 var depth := 0:
@@ -42,3 +42,7 @@ func calc_darkness(_depth) -> float:
 		darkness_percent = (depth - darkness_depth.x) / (darkness_depth.y - darkness_depth.x)
 
 	return darkness_percent
+
+func round_to_decimals(value: float, decimals: int) -> float:
+	var multiplier = pow(10.0, decimals)
+	return round(value * multiplier) / multiplier

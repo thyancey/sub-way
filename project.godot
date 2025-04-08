@@ -42,6 +42,11 @@ Player=""
 Surface=""
 Enemy=""
 
+[gui]
+
+theme/custom="uid://dhifbs3f6kb1u"
+theme/custom_font="uid://dwxgddwry6cd4"
+
 [input]
 
 UP={
@@ -82,6 +87,7 @@ TOGGLE_STATE={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Wall"
 2d_physics/layer_5="Surface"
+2d_physics/layer_6="Projectile"
 
 [rendering]
 

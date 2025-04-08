@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=9 format=3 uid="uid://8dseg4ubdv3y"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
+[ext_resource type="PackedScene" uid="uid://lv2g1jenodao" path="res://src/entities/player/weapon.tscn" id="4_wrxq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
@@ -33,6 +34,7 @@ position = Vector2(-8, 5)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -1)
 sprite_frames = ExtResource("1_4m8ck")
 animation = &"descending"
 offset = Vector2(0, -2)
@@ -62,3 +64,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_muk8e")
+
+[node name="Weapon" parent="." instance=ExtResource("4_wrxq6")]
+muzzle_distance = 35.0

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://lv2g1jenodao"]
+
+[ext_resource type="Script" uid="uid://b7hoiduidcd8n" path="res://src/entities/player/weapon.gd" id="1_rjla4"]
+[ext_resource type="PackedScene" uid="uid://cf3byig2yww5w" path="res://src/entities/projectiles/projectile.tscn" id="2_85sjh"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="2_pxmg0"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_rjla4")
+charge_time = 1.0
+projectile_scene = ExtResource("2_85sjh")
+charge_curve = ExtResource("2_pxmg0")
