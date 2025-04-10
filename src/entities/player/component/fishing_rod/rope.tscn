@@ -11,10 +11,9 @@ linear_damp = 0.5
 angular_damp = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, 2)
 sprite_frames = ExtResource("1_xkhif")
-offset = Vector2(0, -2)
+offset = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_xkhif")

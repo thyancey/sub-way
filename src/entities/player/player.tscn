@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
 [ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://0o1hyu7ntwxs" path="res://src/entities/player/component/dredge.tscn" id="5_0mfjg"]
-[ext_resource type="PackedScene" uid="uid://dxikiqhi5gfcu" path="res://src/entities/player/component/fishing_rod/fishing_rod.tscn" id="6_0mfjg"]
+[ext_resource type="PackedScene" uid="uid://bg6y0jd3cdlfl" path="res://src/entities/player/component/simple_fishing/simple_fishing.tscn" id="6_0mfjg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
@@ -89,4 +89,4 @@ is_active = true
 muzzle_distance = 17.0
 
 [node name="FishingRod" parent="." instance=ExtResource("6_0mfjg")]
-position = Vector2(-22, -5)
+position = Vector2(-24, -4)

@@ -12,10 +12,10 @@ var rope_constraint : DampedSpringJoint2D
 
 func _ready():
 	# Collect rope segments from the scene
-	rope_segments.append(rope_head)
-	for segment in get_children():
-		if segment != rope_head and segment is RigidBody2D:
-			rope_segments.append(segment)
+	# rope_segments.append(rope_head)
+	# for segment in get_children():
+	# 	if segment != rope_head and segment is RigidBody2D:
+	# 		rope_segments.append(segment)
 
 	# Create the hook and attach it to the last segment using the scene's joint
 	# hook = hook_scene.instantiate()
@@ -38,6 +38,7 @@ func handle_input(delta):
 	elif Input.is_action_pressed("reel_up"):
 		current_rope_length = max(current_rope_length - reel_speed * delta, 0)
 		$RopeConstraint.rest_length = current_rope_length  # Update rope length in the constraint
+	print("rope_legnth", current_rope_length)
 
 # Update the visual representation of the rope with Line2D
 func update_rope_visual():
@@ -47,10 +48,10 @@ func update_rope_visual():
 
 	# Add positions for each rope segment (the physics-controlled ones)
 	points.append(to_local(rope_head.global_position))  # Starting from rope_head (first segment)
-	for i in range(1, rope_segments.size()):
-		var segment = rope_segments[i]
-		var segment_position = segment.global_position
-		points.append(to_local(segment_position))
+	# for i in range(1, rope_segments.size()):
+	# 	var segment = rope_segments[i]
+	# 	var segment_position = segment.global_position
+	# 	points.append(to_local(segment_position))
 
 	# Add the hook position at the end of the rope
 	points.append(to_local(hook.global_position))
