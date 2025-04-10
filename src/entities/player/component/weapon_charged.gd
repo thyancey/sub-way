@@ -1,14 +1,15 @@
 extends Node2D
 
+@export var is_active := false
+@export var display_name := "???"
 @export var muzzle_distance: float = 35.0
 @export var muzzle_ellipse_radius_x: float = 1.0
 @export var muzzle_ellipse_radius_y: float = 0.5
 
-
-
 @export var charge_time: float = 2.0
 @export var projectile_scene: PackedScene
 @export var charge_curve: Curve
+@export var launch_point: Marker2D
 
 var charging: bool = false
 var charge_timer: float = 0.0
@@ -16,11 +17,15 @@ var held_projectile: RigidBody2D = null
 var initial_direction := Vector2.ZERO  # Store the initial rotation when charging starts
 
 func _process(delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if not charging:
-			_start_charge()
+	if is_active:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if not charging:
+				_start_charge()
+			else:
+				charge_timer += delta
 		else:
-			charge_timer += delta
+			if charging:
+				_release_charge()
 	else:
 		if charging:
 			_release_charge()

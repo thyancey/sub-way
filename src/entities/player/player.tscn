@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=10 format=3 uid="uid://8dseg4ubdv3y"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
-[ext_resource type="PackedScene" uid="uid://lv2g1jenodao" path="res://src/entities/player/weapon.tscn" id="4_wrxq6"]
+[ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
+[ext_resource type="PackedScene" uid="uid://0o1hyu7ntwxs" path="res://src/entities/player/component/dredge.tscn" id="5_0mfjg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
-height = 52.0
+height = 50.0
 
 [sub_resource type="Gradient" id="Gradient_muk8e"]
 offsets = PackedFloat32Array(0, 0.435065)
@@ -19,8 +20,8 @@ fill = 1
 fill_from = Vector2(0.486239, 0.477064)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muk8e"]
-radius = 4.0
-height = 52.0
+radius = 6.0
+height = 54.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -34,23 +35,23 @@ position = Vector2(-8, 5)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -1)
 sprite_frames = ExtResource("1_4m8ck")
 animation = &"descending"
-offset = Vector2(0, -2)
-
-[node name="BubbleParticles2" parent="." instance=ExtResource("2_muk8e")]
-unique_name_in_owner = true
-position = Vector2(8, 5)
+offset = Vector2(-1, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vt6n5")
 
+[node name="BubbleParticles2" parent="." instance=ExtResource("2_muk8e")]
+unique_name_in_owner = true
+position = Vector2(8, 5)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(-51, -16)
 scale = Vector2(3.71875, 2.85757)
 color = Color(0.62, 0.2976, 0.2976, 1)
 energy = 1.6
@@ -65,5 +66,23 @@ collision_mask = 16
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_muk8e")
 
-[node name="Weapon" parent="." instance=ExtResource("4_wrxq6")]
-muzzle_distance = 35.0
+[node name="C_TorpedoBay" parent="." instance=ExtResource("4_ketdh")]
+position = Vector2(13, 2)
+
+[node name="C_TorpedoBay2" parent="." instance=ExtResource("4_ketdh")]
+position = Vector2(-6, -5)
+display_name = "Torpedo2"
+
+[node name="C_TorpedoBay3" parent="." instance=ExtResource("4_ketdh")]
+position = Vector2(18, -8)
+display_name = "Torpedo3"
+
+[node name="C_Dredge" parent="." instance=ExtResource("5_0mfjg")]
+position = Vector2(-8, 5)
+is_active = true
+muzzle_distance = 17.0
+
+[node name="C_Dredge2" parent="." instance=ExtResource("5_0mfjg")]
+position = Vector2(-18, 5)
+is_active = true
+muzzle_distance = 17.0

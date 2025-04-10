@@ -4,10 +4,19 @@ extends Node
 signal updated_depth(val: int)
 signal updated_darkness(val: float)
 signal updated_oxygen(val: float)
+signal updated_active_component_name(val: String)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
+
+var active_component_name := "???":
+	get:
+		return active_component_name
+	set(value):
+		if active_component_name != value:
+			active_component_name = value
+			updated_active_component_name.emit(active_component_name)
 
 var depth := 0:
 	get:

@@ -27,6 +27,9 @@ extends CharacterBody2D
 @onready var oxygen_recharge := 0.5
 var lamp_scale := Vector2(0.0, 1.8)
 
+var active_component_idx := 0
+var components: Array[Node2D] = []
+
 # max depth, idle deplation, descending depletion
 var decay_table = [
 	[05, .01, .1],
@@ -74,6 +77,11 @@ func _ready() -> void:
 	
 	Global.connect('updated_darkness', on_updated_darkness)
 	on_updated_darkness(Global.calc_darkness(Global.depth))
+
+	for child in get_children():
+		if child.is_in_group("Component"):
+			components.append(child)
+	swap_component(active_component_idx)
 
 func on_updated_darkness(darkness_percent: float) -> void:
 	light.energy = lerp(lamp_scale.x, lamp_scale.y, darkness_percent)
@@ -240,3 +248,19 @@ func set_surfaced() -> void:
 
 func trigger_splash() -> void:
 	print('splash')
+
+func _input(_delta) -> void:
+	if Input.is_action_just_pressed("SWAP_COMPONENT"):
+		swap_component()
+
+func swap_component(_force_idx := -1):
+	if _force_idx > -1:
+		active_component_idx = _force_idx
+		for i in components.size():
+			components[i].is_active = true if i == _force_idx else false
+	else:
+		components[active_component_idx].is_active = false
+		active_component_idx = (active_component_idx + 1) % components.size()
+		components[active_component_idx].is_active = true
+
+	Global.active_component_name = components[active_component_idx].display_name
