@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0qdx5t102i03"]
+
+[ext_resource type="SpriteFrames" uid="uid://bkqwjsmk1elq1" path="res://src/entities/player/component/anchor.aseprite" id="1_vg7c2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_itdk8"]
+radius = 3.0
+height = 6.0
+
+[node name="FishingHook" type="RigidBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = ExtResource("1_vg7c2")
+animation = &"charge"
+offset = Vector2(0, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_itdk8")

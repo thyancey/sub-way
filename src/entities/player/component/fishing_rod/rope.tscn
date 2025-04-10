@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://drkpsumqy5ptw"]
+
+[ext_resource type="SpriteFrames" uid="uid://ct1ubhpqgylrv" path="res://src/entities/player/component/fishing_rod/rope.aseprite" id="1_xkhif"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xkhif"]
+radius = 1.0
+height = 4.0
+
+[node name="RopeHead" type="RigidBody2D"]
+linear_damp = 0.5
+angular_damp = 1.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+sprite_frames = ExtResource("1_xkhif")
+offset = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xkhif")

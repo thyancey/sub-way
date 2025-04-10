@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://drait3irlg484"]
+[gd_scene load_steps=15 format=4 uid="uid://drait3irlg484"]
 
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="1_dop5u"]
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/root.gd" id="1_ri26b"]
@@ -42,6 +42,9 @@ invert = true
 seamless = true
 color_ramp = SubResource("Gradient_gafuw")
 noise = SubResource("FastNoiseLite_yxa4x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxa4x"]
+size = Vector2(136.5, 12)
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_ri26b")
@@ -218,3 +221,17 @@ position = Vector2(211, 232)
 
 [node name="Fish30" parent="Stuff" instance=ExtResource("7_gafuw")]
 position = Vector2(190, 349)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(39, 59)
+rotation = 0.127409
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_yxa4x")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -68.0
+offset_top = -6.0
+offset_right = 68.0
+offset_bottom = 6.0
+color = Color(1, 0, 0, 1)
