@@ -3,12 +3,12 @@
 [ext_resource type="SpriteFrames" uid="uid://bkqwjsmk1elq1" path="res://src/entities/player/component/anchor.aseprite" id="2_s3t3w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7g6g"]
-radius = 3.0
-height = 6.0
+radius = 5.0
+height = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3g1ya"]
-radius = 4.0
-height = 8.0
+radius = 6.0
+height = 14.0
 
 [node name="Anchor" type="RigidBody2D"]
 linear_damp_mode = 1
@@ -18,13 +18,13 @@ angular_damp = 1.0
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0.0661702, 0.00871849)
+scale = Vector2(2, 2)
 sprite_frames = ExtResource("2_s3t3w")
 animation = &"charge"
 offset = Vector2(0.00871819, 6.93383)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_f7g6g")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -32,7 +32,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 3)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_3g1ya")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

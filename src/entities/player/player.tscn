@@ -49,11 +49,10 @@ unique_name_in_owner = true
 position = Vector2(8, 5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-51, -16)
+position = Vector2(-3.8147e-06, 0)
 scale = Vector2(3.71875, 2.85757)
 color = Color(0.62, 0.2976, 0.2976, 1)
 energy = 1.6

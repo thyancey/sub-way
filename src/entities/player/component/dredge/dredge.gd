@@ -30,10 +30,13 @@ func handle_input(delta):
 		target_rope_length = max(target_rope_length - reel_speed * delta, min_rope_length)
 		print("reel_in", target_rope_length)
 
+# Attach proxy's position should remain fixed relative to the submarine.
+# It doesn't change based on rope length, but instead follows the submarine's movement.
 func move_attach_proxy():
-	# Force the dummy RigidBody2D to follow the submarine exactly
-	var global_attach_point = global_position + Vector2.DOWN * target_rope_length
-	attach_proxy.global_position = global_attach_point
+	# The attach proxy should be fixed in the submarine, not changing based on rope length directly.
+	attach_proxy.global_position = global_position  # It's fixed relative to the submarine
+
+	# Ensure no unintended movement
 	attach_proxy.linear_velocity = Vector2.ZERO
 	attach_proxy.angular_velocity = 0
 
@@ -52,9 +55,7 @@ func apply_tension():
 		var force = direction * slack * 400.0  # tweak this scalar to feel right
 		anchor.apply_force(force)
 
-	#uncomment if you want to snap length instead of being springy
-	# enforce_length
-
+# If you want the rope to snap to the target length instead of being springy:
 func enforce_length():
 	var anchor_pos = anchor.global_position
 	var attach_pos = attach_proxy.global_position
@@ -63,15 +64,11 @@ func enforce_length():
 		var correction = (anchor_pos - attach_pos).normalized() * (dist - target_rope_length)
 		anchor.global_position = anchor.global_position - correction * 0.5
 
-
+# Drawing the rope line
 func _process(_delta):
 	queue_redraw()
 
 func _draw():
 	var a = attach_proxy.global_position
 	var b = anchor.global_position
-
-	# var tension = clamp(anchor.global_position.distance_to(attach_proxy.global_position) - target_rope_length, 0, 100)
-	# var color = Color(1, 1 - tension / 100.0, 1 - tension / 100.0)  # reddish as it gets tight
-	# draw_line(to_local(a), to_local(b), color, 2.0 + tension / 20.0)
-	draw_line(to_local(a), to_local(b), Color.WHITE, 2.0)
+	draw_line(to_local(a), to_local(b), Color.WHITE, 1.0)

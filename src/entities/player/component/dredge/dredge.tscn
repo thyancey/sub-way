@@ -13,6 +13,11 @@ sprite_frames = ExtResource("4_q4him")
 [node name="AttachProxy" type="RigidBody2D" parent="."]
 position = Vector2(0, 3)
 
+[node name="ColorRect" type="ColorRect" parent="AttachProxy"]
+offset_right = 2.0
+offset_bottom = 2.0
+color = Color(1, 0, 0, 1)
+
 [node name="Joint" type="PinJoint2D" parent="."]
 position = Vector2(0, 3)
 node_a = NodePath("../AttachProxy")
