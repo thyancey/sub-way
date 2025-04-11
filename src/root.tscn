@@ -223,7 +223,7 @@ position = Vector2(211, 232)
 position = Vector2(190, 349)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(39, 59)
+position = Vector2(39, 155)
 rotation = 0.127409
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -231,7 +231,7 @@ shape = SubResource("RectangleShape2D_yxa4x")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
 offset_left = -68.0
-offset_top = -6.0
+offset_top = -5.99999
 offset_right = 68.0
-offset_bottom = 6.0
+offset_bottom = 6.00001
 color = Color(1, 0, 0, 1)

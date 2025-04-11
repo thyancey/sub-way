@@ -11,10 +11,10 @@ mass = 0.1
 gravity_scale = 0.1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
 sprite_frames = ExtResource("1_vg7c2")
 animation = &"charge"
 offset = Vector2(0, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_itdk8")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
 [ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://0o1hyu7ntwxs" path="res://src/entities/player/component/dredge.tscn" id="5_0mfjg"]
-[ext_resource type="PackedScene" uid="uid://bg6y0jd3cdlfl" path="res://src/entities/player/component/simple_fishing/simple_fishing.tscn" id="6_0mfjg"]
+[ext_resource type="PackedScene" uid="uid://b6qt6atp6da8x" path="res://src/entities/player/component/dredge/dredge.tscn" id="6_0mfjg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
@@ -49,6 +49,7 @@ unique_name_in_owner = true
 position = Vector2(8, 5)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
@@ -83,10 +84,5 @@ position = Vector2(-8, 5)
 is_active = true
 muzzle_distance = 17.0
 
-[node name="C_Dredge2" parent="." instance=ExtResource("5_0mfjg")]
-position = Vector2(-18, 5)
-is_active = true
-muzzle_distance = 17.0
-
-[node name="FishingRod" parent="." instance=ExtResource("6_0mfjg")]
-position = Vector2(-24, -4)
+[node name="Simple_Dredge" parent="." instance=ExtResource("6_0mfjg")]
+position = Vector2(-20, 7)
