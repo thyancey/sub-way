@@ -5,6 +5,7 @@ signal updated_depth(val: int)
 signal updated_darkness(val: float)
 signal updated_oxygen(val: float)
 signal updated_active_component_name(val: String)
+signal updated_rope_length(val: float)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
@@ -37,6 +38,14 @@ var oxygen := max_oxygen:
 		if oxygen != new_value:
 			oxygen = new_value
 			updated_oxygen.emit(new_value)
+			
+var rope_length := max_oxygen:
+	get:
+		return rope_length
+	set(value):
+		if rope_length != value:
+			rope_length = value
+			updated_rope_length.emit(value)
 
 func _ready() -> void:
 	print("ready")

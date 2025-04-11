@@ -223,8 +223,10 @@ position = Vector2(211, 232)
 position = Vector2(190, 349)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(39, 155)
+position = Vector2(59, 121)
 rotation = 0.127409
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_yxa4x")

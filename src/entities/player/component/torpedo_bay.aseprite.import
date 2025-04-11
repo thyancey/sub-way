@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/torpedo_bay.aseprite-91dbb1e4985ca01185ac7acd
 [params]
 
 layer/exclude_layers_pattern=""
-layer/only_visible_layers=false
+layer/only_visible_layers=true
 sheet/sheet_type="packed"
 sheet/sheet_columns=12
 animation/round_fps=true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=11 format=3 uid="uid://8dseg4ubdv3y"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
 [ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://b6qt6atp6da8x" path="res://src/entities/player/component/dredge/dredge.tscn" id="6_0mfjg"]
+[ext_resource type="PackedScene" uid="uid://bw76lqhs8clih" path="res://src/entities/player/component/missile_bay.tscn" id="6_oih67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
@@ -66,12 +67,12 @@ collision_mask = 16
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_muk8e")
 
-[node name="C_TorpedoBay" parent="." instance=ExtResource("4_ketdh")]
-position = Vector2(4, 3)
-
 [node name="C_TorpedoBay3" parent="." instance=ExtResource("4_ketdh")]
 position = Vector2(-4, -4)
-display_name = "Torpedo3"
+display_name = "Torpedo L"
 
-[node name="Simple_Dredge" parent="." instance=ExtResource("6_0mfjg")]
+[node name="C_Dredge" parent="." instance=ExtResource("6_0mfjg")]
 position = Vector2(-14, 5)
+
+[node name="C_MissileBay" parent="." instance=ExtResource("6_oih67")]
+position = Vector2(12, 6)

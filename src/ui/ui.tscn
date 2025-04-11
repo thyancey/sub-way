@@ -15,6 +15,14 @@ offset_bottom = 200.0
 decimals = 1
 rotation_min = -120.0
 
+[node name="RopeGauge" parent="." instance=ExtResource("2_jlntk")]
+unique_name_in_owner = true
+offset_left = 47.0
+offset_top = 144.0
+offset_right = 103.0
+offset_bottom = 200.0
+decimals = 1
+
 [node name="DepthGauge" parent="." instance=ExtResource("2_jlntk")]
 unique_name_in_owner = true
 offset_left = 273.0

@@ -1,15 +1,16 @@
-extends Node2D
+extends Ship_Component
 
-@export var is_active := false
-@export var display_name := "???"
 @export var muzzle_distance: float = 35.0
 @export var muzzle_ellipse_radius_x: float = 1.0
 @export var muzzle_ellipse_radius_y: float = 0.5
 
 @export var charge_time: float = 2.0
+@export var charge_auto_fire := 0.0
 @export var projectile_scene: PackedScene
 @export var charge_curve: Curve
 @export var launch_point: Marker2D
+@export var mouse_aim := false
+@onready var graphic := %Graphic
 
 var charging: bool = false
 var charge_timer: float = 0.0
@@ -18,11 +19,17 @@ var initial_direction := Vector2.ZERO  # Store the initial rotation when chargin
 
 func _process(delta: float) -> void:
 	if is_active:
+		if mouse_aim:
+			initial_direction = (get_global_mouse_position() - global_position).normalized()
+			graphic.rotation = initial_direction.angle()
+
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if not charging:
 				_start_charge()
 			else:
 				charge_timer += delta
+				if charge_auto_fire > 0.0 && charge_timer > charge_auto_fire:
+					_release_charge()
 		else:
 			if charging:
 				_release_charge()
@@ -41,7 +48,11 @@ func _start_charge() -> void:
 	held_projectile.linear_velocity = Vector2.ZERO
 
 	# align projectile (position and direction)
-	initial_direction = (get_global_mouse_position() - global_position).normalized()
+	if mouse_aim:
+		initial_direction = (get_global_mouse_position() - global_position).normalized()
+		graphic.rotation = initial_direction.angle()
+	else:
+		initial_direction = Vector2.RIGHT
 	# var muzzle_offset = initial_direction * muzzle_distance
 	var muzzle_offset = Vector2(
 		initial_direction.x * muzzle_distance * muzzle_ellipse_radius_x,  # Apply ellipse X factor

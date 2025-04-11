@@ -7,16 +7,20 @@
 
 [node name="C_TorpedoBay" type="Node2D" groups=["Component"]]
 script = ExtResource("1_2iwvw")
-display_name = "Torpedo"
 muzzle_distance = 5.0
 projectile_scene = ExtResource("2_o5rdg")
 charge_curve = ExtResource("3_lpew4")
+display_name = "Torpedo"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Graphic"]
 sprite_frames = ExtResource("4_o5rdg")
 animation = &"bottom"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
 z_index = 1
 sprite_frames = ExtResource("4_o5rdg")
 animation = &"top"

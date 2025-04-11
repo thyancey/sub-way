@@ -4,14 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://biqd5nwxh7vi2" path="res://src/entities/player/component/dredge/anchor.tscn" id="3_5yvdd"]
 [ext_resource type="SpriteFrames" uid="uid://cbpkkqs15d1g3" path="res://src/entities/player/component/dredge/dredge.aseprite" id="4_q4him"]
 
-[node name="Simple_Dredge" type="Node2D"]
+[node name="C_Dredge" type="Node2D" groups=["Component"]]
 script = ExtResource("1_5cx2p")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("4_q4him")
+display_name = "Dredge"
 
 [node name="AttachProxy" type="RigidBody2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, -2)
 
 [node name="ColorRect" type="ColorRect" parent="AttachProxy"]
 offset_right = 2.0
@@ -19,9 +17,13 @@ offset_bottom = 2.0
 color = Color(1, 0, 0, 1)
 
 [node name="Joint" type="PinJoint2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, -2)
 node_a = NodePath("../AttachProxy")
 node_b = NodePath("../Anchor")
 
 [node name="Anchor" parent="." instance=ExtResource("3_5yvdd")]
-position = Vector2(0, 3)
+position = Vector2(0, -2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = ExtResource("4_q4him")
