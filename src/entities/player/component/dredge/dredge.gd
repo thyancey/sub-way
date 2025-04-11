@@ -28,20 +28,18 @@ func handle_input(delta):
 		target_rope_length = min(target_rope_length + reel_speed * delta, max_rope_length)
 	elif Input.is_action_pressed("reel_in"):
 		target_rope_length = max(target_rope_length - reel_speed * delta, min_rope_length)
-		print("reel_in", target_rope_length)
 
 # Attach proxy's position should remain fixed relative to the submarine.
 # It doesn't change based on rope length, but instead follows the submarine's movement.
 func move_attach_proxy():
 	# The attach proxy should be fixed in the submarine, not changing based on rope length directly.
-	attach_proxy.global_position = global_position  # It's fixed relative to the submarine
+	attach_proxy.global_position = global_position
 
 	# Ensure no unintended movement
 	attach_proxy.linear_velocity = Vector2.ZERO
 	attach_proxy.angular_velocity = 0
 
 func update_joint_position():
-	# Reposition joint to match current rope length
 	joint.position = attach_proxy.global_position
 
 func apply_tension():
@@ -64,11 +62,11 @@ func enforce_length():
 		var correction = (anchor_pos - attach_pos).normalized() * (dist - target_rope_length)
 		anchor.global_position = anchor.global_position - correction * 0.5
 
-# Drawing the rope line
+# draw the rope
 func _process(_delta):
 	queue_redraw()
 
 func _draw():
 	var a = attach_proxy.global_position
 	var b = anchor.global_position
-	draw_line(to_local(a), to_local(b), Color.WHITE, 1.0)
+	draw_line(to_local(a), to_local(b), Color.WHITE, 0.5)

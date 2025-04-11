@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://bkqwjsmk1elq1"
-path="res://.godot/imported/anchor.aseprite-70b74f0cfdbe103bdcf493c7fd64511f.res"
+path="res://.godot/imported/anchor.aseprite-71f192adada74d9271f27b3757fcc6d6.res"
 
 [deps]
 
-source_file="res://src/entities/player/component/anchor.aseprite"
-dest_files=["res://.godot/imported/anchor.aseprite-70b74f0cfdbe103bdcf493c7fd64511f.res"]
+source_file="res://src/entities/player/component/dredge/anchor.aseprite"
+dest_files=["res://.godot/imported/anchor.aseprite-71f192adada74d9271f27b3757fcc6d6.res"]
 
 [params]
 
