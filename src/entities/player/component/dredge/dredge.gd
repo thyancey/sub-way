@@ -3,6 +3,7 @@ extends Ship_Component
 @onready var attach_proxy: RigidBody2D = $AttachProxy
 @onready var anchor: RigidBody2D = $Anchor
 @onready var joint: PinJoint2D = $Joint
+@onready var reel_strength := 800 # heavier anchor needs bigger number to keep it up
 
 var target_rope_length: float = 5.0
 var reel_speed: float = 60.0
@@ -12,7 +13,7 @@ var max_rope_length: float = 200.0
 
 func _ready():
 	super._ready()
-	anchor.mass = 5.0
+	anchor.mass = 20.0
 	anchor.gravity_scale = 0.8
 	anchor.linear_damp = 1.2
 	anchor.angular_damp = 1.0
@@ -61,11 +62,11 @@ func apply_tension():
 	var anchor_pos = anchor.global_position
 	var attach_pos = attach_proxy.global_position
 	var dist = anchor_pos.distance_to(attach_pos)
-	var slack = dist - 5.0 - target_rope_length  # give it a bit of wiggle room
+	var slack = dist - 5.0 - target_rope_length # give it a bit of wiggle room
 
 	if slack > 0:
 		var direction = (attach_pos - anchor_pos).normalized()
-		var force = direction * slack * 400.0  # tweak this scalar to feel right
+		var force = direction * slack * reel_strength
 		anchor.apply_force(force)
 
 # If you want the rope to snap to the target length instead of being springy:

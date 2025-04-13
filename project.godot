@@ -42,6 +42,7 @@ Player=""
 Surface=""
 Enemy=""
 Component=""
+Treasure=""
 
 [gui]
 

@@ -10,6 +10,8 @@ display_name = "Dredge"
 
 [node name="AttachProxy" type="RigidBody2D" parent="."]
 position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 0
 
 [node name="ColorRect" type="ColorRect" parent="AttachProxy"]
 offset_right = 2.0

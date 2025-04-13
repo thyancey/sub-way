@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://drait3irlg484"]
+[gd_scene load_steps=16 format=4 uid="uid://drait3irlg484"]
 
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="1_dop5u"]
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/root.gd" id="1_ri26b"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://j1m3y4fxeg4n" path="res://src/entities/surface.tscn" id="5_ipfp8"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="5_oe21g"]
 [ext_resource type="PackedScene" uid="uid://cf1osjkkrt82j" path="res://src/entities/enemy/fish.tscn" id="7_gafuw"]
+[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/treasure/treasure_gemstone.tscn" id="10_ik3te"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ri26b"]
 texture = ExtResource("3_4l2ve")
@@ -222,18 +223,24 @@ position = Vector2(211, 232)
 [node name="Fish30" parent="Stuff" instance=ExtResource("7_gafuw")]
 position = Vector2(190, 349)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(59, 121)
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(59, 75)
 rotation = 0.127409
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 shape = SubResource("RectangleShape2D_yxa4x")
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+[node name="ColorRect" type="ColorRect" parent="Wall"]
 offset_left = -68.0
 offset_top = -5.99999
 offset_right = 68.0
 offset_bottom = 6.00001
 color = Color(1, 0, 0, 1)
+
+[node name="Treasure_Gemstone" parent="." instance=ExtResource("10_ik3te")]
+position = Vector2(50, 50)
+
+[node name="Treasure_Gemstone2" parent="." instance=ExtResource("10_ik3te")]
+position = Vector2(89, 23)
