@@ -17,6 +17,8 @@ var is_grabbing := false
 
 func _ready():
 	super._ready()
+	anchor.connect("object_grabbed", _on_object_grabbed)
+	anchor.connect("object_released", _on_object_released)
 	anchor.mass = anchor_mass
 	anchor.gravity_scale = 0.2
 	anchor.linear_damp = 4.0
@@ -101,3 +103,9 @@ func _draw():
 	var a = attach_proxy.global_position
 	var b = anchor.global_position
 	draw_line(to_local(a), to_local(b), Color.WHITE, 0.5)
+
+func _on_object_grabbed(_object: Node2D) -> void:
+	Global.notify("GRAB", _object)
+
+func _on_object_released() -> void:
+	Global.notify("GRAB", null)

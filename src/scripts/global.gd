@@ -2,6 +2,7 @@
 extends Node
 
 signal updated_darkness(val: float)
+signal notified(_type: String, _payload: Variant)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
@@ -28,3 +29,6 @@ func calc_darkness(_depth) -> float:
 func round_to_decimals(value: float, decimals: int) -> float:
 	var multiplier = pow(10.0, decimals)
 	return round(value * multiplier) / multiplier
+
+func notify(_type: String, _payload: Variant) -> void:
+	notified.emit(_type, _payload)

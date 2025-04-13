@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal object_grabbed(object: Node2D)
+signal object_released()
 signal updated_is_grabbing(is_grabbing: bool)
 
 @export var is_grabbing := false:
@@ -13,7 +14,6 @@ signal updated_is_grabbing(is_grabbing: bool)
 
 var current_joint: PinJoint2D = null
 var grabbed_object: Node2D = null
-var grab_delay := 1000.0
 
 func toggle_grabbing() -> void:
 	if (!is_grabbing):
@@ -54,10 +54,10 @@ func _get_closest_junk() -> Node2D:
 func grab_object(_body: Node2D) -> void:
 	create_joint(_body)
 	grabbed_object = _body
-	emit_signal("object_grabbed", _body)
+	object_grabbed.emit(_body)
 	%MainSprite.play("grabbed")
 
-func release_object(_body: Node2D):
+func release_object(_grabbed_body: Node2D):
 	if current_joint:
 		current_joint.queue_free()  # Remove the joint from the scene
 		current_joint = null
@@ -66,7 +66,7 @@ func release_object(_body: Node2D):
 		%MainSprite.play("grabbing")
 	else:
 		%MainSprite.play("idle")
-
+	object_released.emit()
 
 func create_joint(_body):
 	var joint := PinJoint2D.new()

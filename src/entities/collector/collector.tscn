@@ -1,38 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxf1mcbusqe8n"]
+[gd_scene load_steps=6 format=3 uid="uid://dxf1mcbusqe8n"]
 
 [ext_resource type="Script" uid="uid://brsp3vosex72o" path="res://src/entities/collector/collector.gd" id="1_dqn2n"]
-[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/junk/junk_amethyst.tscn" id="1_ngyfb"]
+[ext_resource type="SpriteFrames" uid="uid://fo1ndoyku6bb" path="res://src/entities/collector/collector.aseprite" id="3_k5r2b"]
+[ext_resource type="Script" uid="uid://c3dacsfxfqyb1" path="res://src/scripts/wake_area.gd" id="3_shrw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqn2n"]
-size = Vector2(19, 6)
+size = Vector2(30, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fy6y"]
+size = Vector2(66, 72)
 
 [node name="Collector" type="Node2D" groups=["Collector"]]
 script = ExtResource("1_dqn2n")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(0, 24)
+sprite_frames = ExtResource("3_k5r2b")
+animation = &"idle"
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
-[node name="Polygon2D" type="Polygon2D" parent="Walls"]
-color = Color(1, 1, 0, 1)
-polygon = PackedVector2Array(-24, -3, -20, -3, -13, 7, -9, 39, 8, 39, 12, 7, 20, -3, 23, -3, 16, 51, -16, 51)
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 position = Vector2(-5, 0)
-polygon = PackedVector2Array(-15, -3, -8, 7, -4, 39, 13, 39, 17, 7, 25, -3, 28, -3, 21, 51, -11, 51, -19, -3)
+polygon = PackedVector2Array(-9, 16, -9, 35, 21, 35, 21, 16, 31, -4, 33, -4, 33, 49, -22, 49, -22, -4, -20, -4)
 
-[node name="Treasure_Gemstone" parent="." instance=ExtResource("1_ngyfb")]
-visible = false
-position = Vector2(0, -10)
-
-[node name="Zone" type="Area2D" parent="."]
+[node name="ShredZone" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 36)
+position = Vector2(1, 32)
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
-position = Vector2(-0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShredZone"]
 shape = SubResource("RectangleShape2D_dqn2n")
 
-[connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
+[node name="WakeZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("3_shrw6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeZone"]
+shape = SubResource("RectangleShape2D_2fy6y")
+
+[connection signal="body_entered" from="ShredZone" to="." method="_on_zone_body_entered"]

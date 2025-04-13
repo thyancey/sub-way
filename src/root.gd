@@ -48,3 +48,4 @@ func _calc_blur(_oxygen: float) -> float:
 
 func _on_junk_salvaged(_junk_data: JunkData) -> void:
 	print("SALVAGED: %s: $%d" % [_junk_data.name, _junk_data.value])
+	Global.notify("SALVAGE", _junk_data)

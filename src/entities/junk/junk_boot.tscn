@@ -7,8 +7,8 @@
 [sub_resource type="Resource" id="Resource_lj5xs"]
 script = ExtResource("2_lj5xs")
 name = "Boot"
-value = 0
-weight = 100.0
+value = 1
+weight = 5.0
 metadata/_custom_type_script = "uid://58j8ybh3417h"
 
 [node name="Junk_Boot" type="RigidBody2D" groups=["Junk"]]

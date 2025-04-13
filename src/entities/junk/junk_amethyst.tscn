@@ -9,6 +9,7 @@ script = ExtResource("2_yf1vo")
 name = "Amethyst"
 value = 1000
 weight = 100.0
+hp = 3.0
 metadata/_custom_type_script = "uid://58j8ybh3417h"
 
 [node name="Junk_Amethyst" type="RigidBody2D" groups=["Junk"]]

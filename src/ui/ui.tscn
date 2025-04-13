@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxqh6ub2bdvs"]
+[gd_scene load_steps=5 format=3 uid="uid://dxqh6ub2bdvs"]
 
 [ext_resource type="Script" uid="uid://c2nukb8y0jaq8" path="res://src/ui/ui.gd" id="1_sp1ie"]
 [ext_resource type="PackedScene" uid="uid://bvmepulwpxta1" path="res://src/ui/gauge/gauge.tscn" id="2_jlntk"]
+[ext_resource type="PackedScene" uid="uid://c3v1hw5tg5y5q" path="res://src/ui/label_widget.tscn" id="3_qemve"]
+[ext_resource type="PackedScene" uid="uid://r065y6euwjxh" path="res://src/ui/notification_widget.tscn" id="4_8wxmc"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_sp1ie")
@@ -31,16 +33,37 @@ offset_right = 329.0
 offset_bottom = 200.0
 rotation_max = -90.0
 
-[node name="ComponentLabel" type="Label" parent="."]
+[node name="JunkWidget" parent="." instance=ExtResource("3_qemve")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_bottom = -48.0
+grow_vertical = 0
+label_name = "Carrying"
+label_value = "Old Boot"
+
+[node name="ComponentWidget" parent="." instance=ExtResource("3_qemve")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+offset_bottom = -58.0
+grow_vertical = 0
+label_name = "Component"
+label_value = "Dredge"
+
+[node name="NotificationWidget" parent="." instance=ExtResource("4_8wxmc")]
 unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -16.0
-offset_right = 20.0
+offset_top = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "?????"
