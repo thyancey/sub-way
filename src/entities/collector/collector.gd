@@ -10,60 +10,62 @@ signal junk_salvaged(junk_data: JunkData)
 # reason the thing youre shredding aint there
 # var shred_duration := 2.0
 
-var shredding_body: Node2D = null
+var salvage_bodies: Array[Node2D] = []
 var start_pos := Vector2.ZERO
 var jiggle_pos := 0.5
 
 func _ready() -> void:
 	start_pos = self.position
+	salvage_bodies = []
 
 func _process(_delta: float) -> void:
-	if shredding_body && shredding_body.hp > 0.0:
-		shredding_body.salvage(_delta)
+	if salvage_bodies.size() > 0:
 		_jiggle()
+		for _junk in salvage_bodies:
+			if _junk && _junk.hp > 0.0:
+				_junk.salvage(_delta)
 
 func _on_zone_body_entered(_body:Node2D) -> void:
-	if shredding_body == null && _body.is_in_group("Junk"):
-		_shred_this_junk(_body)
+	_try_to_shred_this(_body)
 
-func _shred_this_junk(_junk_body: Node2D) -> void:
-	shredding_body = _junk_body
-	shredding_body.connect("salvaged", _on_salvaged)
-	main_sprite.play("shred")
+func _try_to_shred_this(_body: Node2D) -> void:
+	if _body.is_in_group("Junk") && !salvage_bodies.has(_body):
+		salvage_bodies.append(_body)
+		_body.connect("salvaged", _on_salvaged)
+		main_sprite.play("shred")
 
-func _get_next_junk() -> Node2D:
-	var bodies = shred_zone.get_overlapping_bodies()
-	var nearest_body: Node2D = null
-	var nearest_distance := INF
+# gotta jiggle any rested bodies in the chute after others are deleted
+func _get_frozen_junk() -> Array[Node2D]:
+	wake_zone.wake_overlapping_bodies()
+	var _bodies = shred_zone.get_overlapping_bodies()
+	var _frozen_junk: Array[Node2D] = []
 
-	for body in bodies:
-		if body.is_in_group("Junk") && body.hp > 0.0:
-			var dist = global_position.distance_to(body.global_position)
-			if dist < nearest_distance:
-				nearest_distance = dist
-				nearest_body = body
-
-	return nearest_body
+	for _body in _bodies:
+		if _body.is_in_group("Junk") && _body.hp > 0.0 && !salvage_bodies.has(_body):
+			_frozen_junk.append(_body)
+	return _frozen_junk
 
 func _on_salvaged(_salvaged_body: Node2D) -> void:
 	_salvage_complete(_salvaged_body)
 
 func _salvage_complete(_salvaged_body: Node2D) -> void:
 	print("_salvage_complete")
-	if (shredding_body):
-		if (shredding_body != _salvaged_body):
-			push_error("salvaged junk doesnt match what we thought it was?")
-		# score it, make it go away for real
-		print("salvaged: ", shredding_body.junk_data.name)
-		junk_salvaged.emit(shredding_body.junk_data)
-		shredding_body.destroy()
-		# gotta jiggle any rested bodies in the chute
-		wake_zone.wake_overlapping_bodies()
-
-	var _more_junk = _get_next_junk()
-	if _more_junk != null:
-		_shred_this_junk(_more_junk)
+	if !salvage_bodies.has(_salvaged_body):
+		push_error("salvage_bodies doesnt contain the junk that was salvaged!")
 	else:
+		# score it, make it go away for real
+		print("salvaged: ", _salvaged_body.junk_data.name)
+		junk_salvaged.emit(_salvaged_body.junk_data)
+		salvage_bodies.erase(_salvaged_body)
+		_salvaged_body.destroy()
+
+	var _frozen_junk = _get_frozen_junk()
+	if _frozen_junk.size() > 0:
+		for _junk in _frozen_junk:
+			_try_to_shred_this(_junk)
+
+	print(">> COMPLETE, should I keep shreddin? ", salvage_bodies.size())
+	if salvage_bodies.size() == 0:
 		main_sprite.play("idle")
 
 func _jiggle() -> void:

@@ -170,7 +170,52 @@ position = Vector2(184, 5)
 position = Vector2(174, 15)
 
 [node name="Junk_Boot" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(147, -1)
+position = Vector2(163, -7)
+
+[node name="Junk_Amethyst3" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(173, -25)
+
+[node name="Junk_Ruby3" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(168, -43)
+
+[node name="Junk_Ruby4" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(199, -51)
+
+[node name="Junk_Amethyst4" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(189, -41)
+
+[node name="Junk_Boot2" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(178, -63)
+
+[node name="Junk_Amethyst5" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(165, -93)
+
+[node name="Junk_Ruby5" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(160, -111)
+
+[node name="Junk_Ruby6" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(191, -119)
+
+[node name="Junk_Amethyst6" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(181, -109)
+
+[node name="Junk_Boot3" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(170, -131)
+
+[node name="Junk_Amethyst7" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(20, 45)
+
+[node name="Junk_Ruby7" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(15, 27)
+
+[node name="Junk_Ruby8" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(46, 19)
+
+[node name="Junk_Amethyst8" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(36, 29)
+
+[node name="Junk_Boot4" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(25, 7)
 
 [node name="Group_Fish" type="Node2D" parent="Stuff"]
 
