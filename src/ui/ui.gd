@@ -6,21 +6,21 @@ extends CanvasLayer
 @onready var component_label: Label = %ComponentLabel
 
 func _ready() -> void:
-	Global.connect('updated_depth', on_updated_depth)
-	on_updated_depth(Global.depth)
+	Global.player_data.connect('updated_depth', on_updated_depth)
+	on_updated_depth(Global.player_data.depth)
 
-	Global.connect('updated_oxygen', on_updated_oxygen)
-	on_updated_oxygen(Global.oxygen)
+	Global.player_data.connect('updated_oxygen', on_updated_oxygen)
+	on_updated_oxygen(Global.player_data.oxygen)
 
-	Global.connect('updated_rope_length', on_updated_rope_length)
-	on_updated_rope_length(Global.rope_length)
+	Global.player_data.connect('updated_rope_length', on_updated_rope_length)
+	on_updated_rope_length(Global.player_data.rope_length)
 
-	Global.connect('updated_active_component_name', on_updated_active_component_name)
-	on_updated_active_component_name(Global.active_component_name)
+	Global.player_data.connect('updated_active_component_name', on_updated_active_component_name)
+	on_updated_active_component_name(Global.player_data.active_component_name)
 
-	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.max_oxygen), Global.oxygen, true)
-	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.depth)
-	rope_length_gauge.setData("rope length", Vector2(0.0, 400.0), Global.rope_length)
+	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.player_data.max_oxygen), Global.player_data.oxygen, true)
+	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.player_data.depth)
+	rope_length_gauge.setData("rope length", Vector2(0.0, 400.0), Global.player_data.rope_length)
 
 func on_updated_depth(value: int) -> void:
 	depth_gauge.value = value

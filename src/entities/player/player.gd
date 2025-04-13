@@ -76,7 +76,7 @@ func _ready() -> void:
 	bubble_particles2.emitting = false
 	
 	Global.connect('updated_darkness', on_updated_darkness)
-	on_updated_darkness(Global.calc_darkness(Global.depth))
+	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
 
 	for child in get_children():
 		if child.is_in_group("Component"):
@@ -92,21 +92,21 @@ func _physics_process(delta: float) -> void:
 	elif current_state == SubmarineState.SURFACED:
 		handle_surfaced(delta)
 
-	Global.depth = int(position.y)
+	Global.player_data.depth = int(position.y)
 
 
 	if sub_status == SubmarineStatus.DESCENDING:
-		var decay_rate = get_decay_rate(Global.depth, false)
-		Global.oxygen -= decay_rate
+		var decay_rate = get_decay_rate(Global.player_data.depth, false)
+		Global.player_data.oxygen -= decay_rate
 	elif sub_status == SubmarineStatus.ASCENDING:
-		var decay_rate = get_decay_rate(Global.depth, true)
-		Global.oxygen -= decay_rate
+		var decay_rate = get_decay_rate(Global.player_data.depth, true)
+		Global.player_data.oxygen -= decay_rate
 	else:
 		if current_state == SubmarineState.SURFACED:
-			Global.oxygen += oxygen_recharge
+			Global.player_data.oxygen += oxygen_recharge
 		else:
-			var decay_rate = get_decay_rate(Global.depth, true)
-			Global.oxygen -= decay_rate
+			var decay_rate = get_decay_rate(Global.player_data.depth, true)
+			Global.player_data.oxygen -= decay_rate
 
 	match (sub_status):
 		SubmarineStatus.IDLE:
@@ -263,4 +263,4 @@ func swap_component(_force_idx := -1):
 		active_component_idx = (active_component_idx + 1) % components.size()
 		components[active_component_idx].is_active = true
 
-	Global.active_component_name = components[active_component_idx].display_name
+	Global.player_data.active_component_name = components[active_component_idx].display_name

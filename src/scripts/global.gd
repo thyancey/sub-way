@@ -1,63 +1,27 @@
 @tool
 extends Node
 
-signal updated_depth(val: int)
 signal updated_darkness(val: float)
-signal updated_oxygen(val: float)
-signal updated_active_component_name(val: String)
-signal updated_rope_length(val: float)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
-var max_oxygen := 100.0
+var player_data: PlayerData = null
 
-var active_component_name := "???":
-	get:
-		return active_component_name
-	set(value):
-		if active_component_name != value:
-			active_component_name = value
-			updated_active_component_name.emit(active_component_name)
+func _init() -> void:
+	player_data = PlayerData.new()
+	player_data.connect('updated_depth', _on_updated_depth)
 
-var depth := 0:
-	get:
-		return depth
-	set(value):
-		if depth != value:
-			depth = value
-			updated_depth.emit(depth)
-			updated_darkness.emit(calc_darkness(depth))
-
-var oxygen := max_oxygen:
-	get:
-		return oxygen
-	set(value):
-		# var new_value: float = round_to_decimals(clamp(value, 0.0, 1.0), 2)
-		# print("new_value: ", new_value)
-		var new_value: float = clamp(value, 0.0, max_oxygen)
-		if oxygen != new_value:
-			oxygen = new_value
-			updated_oxygen.emit(new_value)
-			
-var rope_length := max_oxygen:
-	get:
-		return rope_length
-	set(value):
-		if rope_length != value:
-			rope_length = value
-			updated_rope_length.emit(value)
-
-func _ready() -> void:
-	print("ready")
+func _on_updated_depth(_depth) -> void:
+	updated_darkness.emit(calc_darkness(_depth))
 
 func calc_darkness(_depth) -> float:
-	var darkness_percent: float = clamp(depth, darkness_depth.x, darkness_depth.y)
-	if depth < darkness_depth.x:
+	var darkness_percent: float = clamp(_depth, darkness_depth.x, darkness_depth.y)
+	if _depth < darkness_depth.x:
 		darkness_percent = 0.0
-	elif depth > darkness_depth.y:
+	elif _depth > darkness_depth.y:
 		darkness_percent = 1.0
 	else:
-		darkness_percent = (depth - darkness_depth.x) / (darkness_depth.y - darkness_depth.x)
+		darkness_percent = (_depth - darkness_depth.x) / (darkness_depth.y - darkness_depth.x)
 
 	return darkness_percent
 

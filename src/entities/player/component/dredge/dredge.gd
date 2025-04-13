@@ -28,9 +28,9 @@ func _physics_process(delta):
 	apply_tension()
 	update_joint_position()
 	enforce_length()
-	Global.rope_length = calc_real_length()
-	# if Global.rope_length > target_rope_length + 5:
-	# 	target_rope_length = Global.rope_length
+	Global.player_data.rope_length = calc_real_length()
+	# if Global.player_data.rope_length > target_rope_length + 5:
+	# 	target_rope_length = Global.player_data.rope_length
 
 func set_rope_length(value: float) -> void:
 	var clamped = clamp(value, min_rope_length, max_rope_length)
