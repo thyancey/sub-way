@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw76lqhs8clih"]
+
+[ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_tmmod"]
+[ext_resource type="PackedScene" uid="uid://bwxf3q0yhfldu" path="res://src/entities/projectiles/torpedo_snub.tscn" id="2_tmmod"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_y56bg"]
+[ext_resource type="SpriteFrames" uid="uid://b8e4wuyyy6gf0" path="res://src/entities/player/component/missile_bay.aseprite" id="4_tmmod"]
+
+[node name="C_MissileBay" type="Node2D" groups=["Component"]]
+script = ExtResource("1_tmmod")
+muzzle_distance = 5.0
+charge_auto_fire = 0.3
+projectile_scene = ExtResource("2_tmmod")
+charge_curve = ExtResource("3_y56bg")
+mouse_aim = true
+display_name = "Missile Bay"
+
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Graphic"]
+sprite_frames = ExtResource("4_tmmod")
+animation = &"idle"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
+z_index = 1
+sprite_frames = ExtResource("4_tmmod")
+animation = &"top"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf1osjkkrt82j"]
+
+[ext_resource type="SpriteFrames" uid="uid://g5nt6ip8d03f" path="res://src/entities/enemy/fish.aseprite" id="1_h1j2g"]
+[ext_resource type="Script" uid="uid://blixjf2fkndul" path="res://src/entities/enemy/fish.gd" id="1_pyrh0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pyrh0"]
+radius = 5.0
+height = 22.0
+
+[node name="Fish" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_pyrh0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pyrh0")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = ExtResource("1_h1j2g")
+animation = &"idle"
+offset = Vector2(0, -2)

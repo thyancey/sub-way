@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw52b4cbfjtwh"]
+
+[ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_2iwvw"]
+[ext_resource type="PackedScene" uid="uid://cf3byig2yww5w" path="res://src/entities/projectiles/torpedo.tscn" id="2_o5rdg"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_lpew4"]
+[ext_resource type="SpriteFrames" uid="uid://dfenw6nk5vdu6" path="res://src/entities/player/component/torpedo_bay.aseprite" id="4_o5rdg"]
+
+[node name="C_TorpedoBay" type="Node2D" groups=["Component"]]
+script = ExtResource("1_2iwvw")
+muzzle_distance = 5.0
+projectile_scene = ExtResource("2_o5rdg")
+charge_curve = ExtResource("3_lpew4")
+display_name = "Torpedo"
+
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Graphic"]
+sprite_frames = ExtResource("4_o5rdg")
+animation = &"bottom"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
+z_index = 1
+sprite_frames = ExtResource("4_o5rdg")
+animation = &"top"

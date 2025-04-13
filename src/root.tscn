@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://drait3irlg484"]
+[gd_scene load_steps=15 format=4 uid="uid://drait3irlg484"]
 
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="1_dop5u"]
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/root.gd" id="1_ri26b"]
 [ext_resource type="PackedScene" uid="uid://8dseg4ubdv3y" path="res://src/entities/player/player.tscn" id="2_pribe"]
 [ext_resource type="Texture2D" uid="uid://bscvtvpqj80b7" path="res://src/tilemap/tilemap_1.png" id="3_4l2ve"]
+[ext_resource type="Material" uid="uid://c5k2whulyxkyu" path="res://src/tilemap/water_fx.tres" id="3_yxa4x"]
 [ext_resource type="PackedScene" uid="uid://j1m3y4fxeg4n" path="res://src/entities/surface.tscn" id="5_ipfp8"]
+[ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="5_oe21g"]
+[ext_resource type="PackedScene" uid="uid://cf1osjkkrt82j" path="res://src/entities/enemy/fish.tscn" id="7_gafuw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ri26b"]
 texture = ExtResource("3_4l2ve")
@@ -19,6 +22,10 @@ texture_region_size = Vector2i(60, 60)
 1:1/animation_frame_1/duration = 1.0
 1:1/animation_frame_2/duration = 1.0
 1:1/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+2:0/0 = 0
+3:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ipfp8"]
 tile_size = Vector2i(60, 60)
@@ -26,19 +33,29 @@ physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_ri26b")
 
+[sub_resource type="Gradient" id="Gradient_gafuw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yxa4x"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_57iuh"]
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_gafuw")
+noise = SubResource("FastNoiseLite_yxa4x")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxa4x"]
+size = Vector2(136.5, 12)
+
 [node name="Root" type="Node2D"]
 script = ExtResource("1_ri26b")
 
 [node name="bg" type="ColorRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect" type="ColorRect" parent="bg"]
 visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -450.0
+offset_top = -234.0
+offset_right = 862.0
+offset_bottom = 575.0
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="bg"]
 visible = false
@@ -53,24 +70,170 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="test" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+material = ExtResource("3_yxa4x")
+centered = false
+
+[node name="BlurEffect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = ExtResource("3_yxa4x")
+offset_right = 320.0
+offset_bottom = 180.0
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAAAAAIAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAGAAIAAQAAAAEAAAAHAAIAAQAAAAEAAAAIAAIAAQAAAAEAAAAJAAIAAQAAAAEAAAAKAAIAAQAAAAEAAAAAAAMAAQAAAAIAAAABAAMAAQAAAAIAAAACAAMAAQAAAAIAAAADAAMAAQAAAAIAAAAEAAMAAQAAAAIAAAAFAAMAAQAAAAIAAAAGAAMAAQAAAAIAAAAHAAMAAQAAAAIAAAAIAAMAAQAAAAIAAAAJAAMAAQAAAAIAAAAKAAMAAQAAAAIAAAAAAAQAAQAAAAIAAAABAAQAAQAAAAIAAAACAAQAAQAAAAIAAAADAAQAAQAAAAIAAAAEAAQAAQAAAAIAAAAFAAQAAQAAAAIAAAAGAAQAAQAAAAIAAAAHAAQAAQAAAAIAAAAIAAQAAQAAAAIAAAAJAAQAAQAAAAIAAAAKAAQAAQAAAAIAAAAAAAUAAQAAAAIAAAABAAUAAQAAAAIAAAACAAUAAQAAAAIAAAADAAUAAQAAAAIAAAAEAAUAAQAAAAIAAAAFAAUAAQAAAAIAAAAGAAUAAQAAAAIAAAAHAAUAAQAAAAIAAAAIAAUAAQAAAAIAAAAJAAUAAQAAAAIAAAAKAAUAAQAAAAIAAAAAAAYAAQAAAAMAAAABAAYAAQAAAAMAAAACAAYAAQAAAAMAAAADAAYAAQAAAAMAAAAEAAYAAQAAAAMAAAAFAAYAAQAAAAMAAAAGAAYAAQAAAAMAAAAHAAYAAQAAAAMAAAAIAAYAAQAAAAMAAAAJAAYAAQAAAAMAAAAKAAYAAQAAAAMAAAAAAP//AQABAAEAAAABAP//AQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAAEAP//AQABAAEAAAAFAP//AQABAAEAAAAGAP//AQABAAEAAAAHAP//AQABAAEAAAAIAP//AQABAAEAAAAJAP//AQABAAEAAAAKAP//AQABAAEAAAD/////AQABAAEAAAD+////AQABAAEAAAD9////AQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAAAAAD9//7/AQABAAAAAAD+//7/AQABAAAAAAD///7/AQABAAAAAAAAAP7/AQABAAAAAAABAP7/AQABAAAAAAACAP7/AQABAAAAAAADAP7/AQABAAAAAAAEAP7/AQABAAAAAAAFAP7/AQABAAAAAAAGAP7/AQABAAAAAAAHAP7/AQABAAAAAAAIAP7/AQABAAAAAAAJAP7/AQABAAAAAAAKAP7/AQABAAAAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD8/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD//wIAAQAAAAEAAAD+/wIAAQAAAAEAAAD9/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD8/wMAAQAAAAIAAAD9/wMAAQAAAAIAAAD+/wMAAQAAAAIAAAD//wMAAQAAAAIAAAD//wQAAQAAAAIAAAD//wUAAQAAAAIAAAD+/wUAAQAAAAIAAAD9/wUAAQAAAAIAAAD8/wUAAQAAAAIAAAD8/wQAAQAAAAIAAAD9/wQAAQAAAAIAAAD+/wQAAQAAAAIAAAD//wYAAQAAAAMAAAD+/wYAAQAAAAMAAAD9/wYAAQAAAAMAAAD8/wYAAQAAAAMAAAA=")
+position = Vector2(0, 24)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAAAAAIAAQAAAAEAAAABAAIAAQAAAAEAAAACAAIAAQAAAAEAAAADAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAAFAAIAAQAAAAEAAAAGAAIAAQAAAAEAAAAHAAIAAQAAAAEAAAAIAAIAAQAAAAEAAAAJAAIAAQAAAAEAAAAKAAIAAQAAAAEAAAAAAAMAAQAAAAIAAAABAAMAAQAAAAIAAAACAAMAAQAAAAIAAAADAAMAAQAAAAIAAAAEAAMAAQAAAAIAAAAFAAMAAQAAAAIAAAAGAAMAAQAAAAIAAAAHAAMAAQAAAAIAAAAIAAMAAQAAAAIAAAAJAAMAAQAAAAIAAAAKAAMAAQAAAAIAAAAAAAQAAQAAAAIAAAABAAQAAQAAAAIAAAACAAQAAQAAAAIAAAADAAQAAQAAAAIAAAAEAAQAAQAAAAIAAAAFAAQAAQAAAAIAAAAGAAQAAQAAAAIAAAAHAAQAAQAAAAIAAAAIAAQAAQAAAAIAAAAJAAQAAQAAAAIAAAAKAAQAAQAAAAIAAAAAAAUAAQAAAAIAAAABAAUAAQAAAAIAAAACAAUAAQAAAAIAAAADAAUAAQAAAAIAAAAEAAUAAQAAAAIAAAAFAAUAAQAAAAIAAAAGAAUAAQAAAAIAAAAHAAUAAQAAAAIAAAAIAAUAAQAAAAIAAAAJAAUAAQAAAAIAAAAKAAUAAQAAAAIAAAAAAAYAAQAAAAMAAAABAAYAAQAAAAMAAAACAAYAAQAAAAMAAAADAAYAAQAAAAMAAAAEAAYAAQAAAAMAAAAFAAYAAQAAAAMAAAAGAAYAAQAAAAMAAAAHAAYAAQAAAAMAAAAIAAYAAQAAAAMAAAAJAAYAAQAAAAMAAAAKAAYAAQAAAAMAAAAAAP//AQABAAEAAAABAP//AQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAAEAP//AQABAAEAAAAFAP//AQABAAEAAAAGAP//AQABAAEAAAAHAP//AQABAAEAAAAIAP//AQABAAEAAAAJAP//AQABAAEAAAAKAP//AQABAAEAAAD/////AQABAAEAAAD+////AQABAAEAAAD9////AQABAAEAAAD8////AQABAAEAAAD8//7/AQABAAAAAAD9//7/AQADAAAAAAD+//7/AQACAAAAAAD///7/AQACAAAAAAAAAP7/AQADAAAAAAABAP7/AQABAAAAAAACAP7/AQACAAAAAAADAP7/AQABAAAAAAAEAP7/AQADAAAAAAAFAP7/AQABAAAAAAAGAP7/AQADAAAAAAAHAP7/AQADAAAAAAAIAP7/AQADAAAAAAAJAP7/AQABAAAAAAAKAP7/AQACAAAAAAD8//3/AQABAAAAAAD9//3/AQACAAAAAAD+//3/AQADAAAAAAD///3/AQADAAAAAAAAAP3/AQACAAAAAAABAP3/AQACAAAAAAACAP3/AQABAAAAAAADAP3/AQADAAAAAAAEAP3/AQACAAAAAAAFAP3/AQABAAAAAAAGAP3/AQADAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQACAAAAAAAKAP3/AQADAAAAAAD//wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD8/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD//wIAAQAAAAEAAAD+/wIAAQAAAAEAAAD9/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD8/wMAAQAAAAIAAAD9/wMAAQAAAAIAAAD+/wMAAQAAAAIAAAD//wMAAQAAAAIAAAD//wQAAQAAAAIAAAD//wUAAQAAAAIAAAD+/wUAAQAAAAIAAAD9/wUAAQAAAAIAAAD8/wUAAQAAAAIAAAD8/wQAAQAAAAIAAAD9/wQAAQAAAAIAAAD+/wQAAQAAAAIAAAD//wYAAQAAAAMAAAD+/wYAAQAAAAMAAAD9/wYAAQAAAAMAAAD8/wYAAQAAAAMAAAD8/wcAAQABAAMAAAD9/wcAAQACAAMAAAD+/wcAAQABAAMAAAD//wcAAQABAAMAAAAAAAcAAQACAAMAAAABAAcAAQABAAMAAAACAAcAAQABAAMAAAADAAcAAQABAAMAAAAEAAcAAQACAAMAAAAFAAcAAQABAAMAAAAGAAcAAQACAAMAAAAHAAcAAQACAAMAAAAIAAcAAQABAAMAAAAJAAcAAQABAAMAAAAKAAcAAQACAAMAAAA=")
 tile_set = SubResource("TileSet_ipfp8")
+
+[node name="noise" type="Node2D" parent="."]
+visible = false
+texture_repeat = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(512, 0)
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="noise"]
+visible = false
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(512, 512)
+texture = SubResource("NoiseTexture2D_57iuh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="noise"]
+visible = false
+position = Vector2(0, 512)
+texture = SubResource("NoiseTexture2D_57iuh")
 
 [node name="comp2" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(160, 90)
 texture = ExtResource("1_dop5u")
 
-[node name="Player" parent="." instance=ExtResource("2_pribe")]
-unique_name_in_owner = true
-position = Vector2(69, 53)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" parent="." instance=ExtResource("5_oe21g")]
 
 [node name="Surface" parent="." instance=ExtResource("5_ipfp8")]
-position = Vector2(0, -5)
+visible = false
+position = Vector2(0, 20)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+[node name="Darkness" type="CanvasModulate" parent="."]
+unique_name_in_owner = true
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
+unique_name_in_owner = true
+position = Vector2(69, 0)
+
+[node name="Fish" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(15, 102)
+
+[node name="Fish2" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(17, 150)
+
+[node name="Fish9" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(68, 170)
+
+[node name="Fish10" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(45, 216)
+
+[node name="Fish11" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(55, 183)
+
+[node name="Fish12" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(39, 150)
+
+[node name="Fish13" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(63, 241)
+
+[node name="Fish14" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(44, 73)
+
+[node name="Fish15" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(57, 144)
+
+[node name="Fish3" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(43, 132)
+
+[node name="Fish4" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(28, 195)
+
+[node name="Fish5" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(86, 298)
+
+[node name="Fish6" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(15, 266)
+
+[node name="Fish7" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(67, 230)
+
+[node name="Fish8" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(46, 347)
+
+[node name="Fish16" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(159, 104)
+
+[node name="Fish17" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(161, 152)
+
+[node name="Fish18" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(212, 172)
+
+[node name="Fish19" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(189, 218)
+
+[node name="Fish20" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(199, 185)
+
+[node name="Fish21" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(183, 152)
+
+[node name="Fish22" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(207, 243)
+
+[node name="Fish23" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(188, 75)
+
+[node name="Fish24" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(201, 146)
+
+[node name="Fish25" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(187, 134)
+
+[node name="Fish26" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(172, 197)
+
+[node name="Fish27" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(230, 300)
+
+[node name="Fish28" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(159, 268)
+
+[node name="Fish29" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(211, 232)
+
+[node name="Fish30" parent="Stuff" instance=ExtResource("7_gafuw")]
+position = Vector2(190, 349)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(59, 121)
+rotation = 0.127409
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_yxa4x")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = -68.0
+offset_top = -5.99999
+offset_right = 68.0
+offset_bottom = 6.00001
+color = Color(1, 0, 0, 1)

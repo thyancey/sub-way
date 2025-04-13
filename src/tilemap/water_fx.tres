@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c5k2whulyxkyu"]
+
+[ext_resource type="Shader" uid="uid://wb1gvbdy4dkp" path="res://src/tilemap/water_fx.gdshader" id="1_anopb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_anopb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rrxr0"]
+seamless = true
+noise = SubResource("FastNoiseLite_anopb")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bhrey"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7cl7a"]
+seamless = true
+noise = SubResource("FastNoiseLite_bhrey")
+
+[resource]
+shader = ExtResource("1_anopb")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_7cl7a")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_rrxr0")
+shader_parameter/waterColor = Color(0.031, 0.1, 0.077, 0)
+shader_parameter/colorCorrection = 0.35
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.0
+shader_parameter/WDFreq = 0.5
+shader_parameter/WDSize = 0.8
+shader_parameter/WDSpeed = 4.2
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.01, 0.05)
+shader_parameter/backGroundDirX = 0.02
+shader_parameter/backGroundDirY = 0.02

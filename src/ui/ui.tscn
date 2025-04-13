@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqh6ub2bdvs"]
+
+[ext_resource type="Script" uid="uid://c2nukb8y0jaq8" path="res://src/ui/ui.gd" id="1_sp1ie"]
+[ext_resource type="PackedScene" uid="uid://bvmepulwpxta1" path="res://src/ui/gauge/gauge.tscn" id="2_jlntk"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_sp1ie")
+
+[node name="OxygenGauge" parent="." instance=ExtResource("2_jlntk")]
+unique_name_in_owner = true
+offset_left = -9.0
+offset_top = 144.0
+offset_right = 47.0
+offset_bottom = 200.0
+decimals = 1
+rotation_min = -120.0
+
+[node name="RopeGauge" parent="." instance=ExtResource("2_jlntk")]
+unique_name_in_owner = true
+offset_left = 47.0
+offset_top = 144.0
+offset_right = 103.0
+offset_bottom = 200.0
+decimals = 1
+
+[node name="DepthGauge" parent="." instance=ExtResource("2_jlntk")]
+unique_name_in_owner = true
+offset_left = 273.0
+offset_top = 144.0
+offset_right = 329.0
+offset_bottom = 200.0
+rotation_max = -90.0
+
+[node name="ComponentLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "?????"

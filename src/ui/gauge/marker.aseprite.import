@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ct6dovy5chb73"
+path="res://.godot/imported/marker.aseprite-d45e99240af8e60c3d8c2c06dcb5ee0f.res"
+
+[deps]
+
+source_file="res://src/ui/gauge/marker.aseprite"
+dest_files=["res://.godot/imported/marker.aseprite-d45e99240af8e60c3d8c2c06dcb5ee0f.res"]
+
+[params]
+
