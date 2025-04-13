@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckptftv7ukabe"]
+
+[ext_resource type="Script" uid="uid://dfle48mj38hrp" path="res://src/entities/junk/junk.gd" id="1_u886n"]
+[ext_resource type="Script" uid="uid://58j8ybh3417h" path="res://src/resources/junk_data.gd" id="2_w3fbl"]
+[ext_resource type="SpriteFrames" uid="uid://bdy60d4dtlae7" path="res://src/entities/junk/junk_ruby.aseprite" id="3_u886n"]
+
+[sub_resource type="Resource" id="Resource_w3fbl"]
+script = ExtResource("2_w3fbl")
+name = "Ruby"
+value = 500
+weight = 50.0
+metadata/_custom_type_script = "uid://58j8ybh3417h"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u886n"]
+radius = 5.0
+
+[node name="Junk_Ruby" type="RigidBody2D" groups=["Junk"]]
+collision_layer = 64
+collision_mask = 104
+mass = 60.0
+gravity_scale = 0.2
+linear_damp_mode = 1
+linear_damp = 4.0
+angular_damp_mode = 1
+angular_damp = 5.0
+script = ExtResource("1_u886n")
+junk_data = SubResource("Resource_w3fbl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_u886n")
+animation = &"shine"
+autoplay = "shine"
+offset = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u886n")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://drait3irlg484"]
+[gd_scene load_steps=19 format=4 uid="uid://drait3irlg484"]
 
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="1_dop5u"]
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/root.gd" id="1_ri26b"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://j1m3y4fxeg4n" path="res://src/entities/surface.tscn" id="5_ipfp8"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="5_oe21g"]
 [ext_resource type="PackedScene" uid="uid://cf1osjkkrt82j" path="res://src/entities/enemy/fish.tscn" id="7_gafuw"]
-[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/treasure/treasure_gemstone.tscn" id="10_ik3te"]
+[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/junk/junk_amethyst.tscn" id="10_ik3te"]
 [ext_resource type="PackedScene" uid="uid://dxf1mcbusqe8n" path="res://src/entities/collector/collector.tscn" id="10_x66tw"]
+[ext_resource type="PackedScene" uid="uid://ckptftv7ukabe" path="res://src/entities/junk/junk_ruby.tscn" id="10_xy117"]
+[ext_resource type="PackedScene" uid="uid://dqw7un0ah7jgg" path="res://src/entities/junk/junk_boot.tscn" id="12_txdvm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ri26b"]
 texture = ExtResource("3_4l2ve")
@@ -130,121 +132,135 @@ unique_name_in_owner = true
 
 [node name="Stuff" type="Node2D" parent="."]
 
-[node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
-unique_name_in_owner = true
-position = Vector2(69, 0)
-
-[node name="Fish" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(15, 102)
-
-[node name="Fish2" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(17, 150)
-
-[node name="Fish9" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(68, 170)
-
-[node name="Fish10" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(45, 216)
-
-[node name="Fish11" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(55, 183)
-
-[node name="Fish12" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(39, 150)
-
-[node name="Fish13" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(63, 241)
-
-[node name="Fish14" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(44, 73)
-
-[node name="Fish15" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(57, 144)
-
-[node name="Fish3" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(43, 132)
-
-[node name="Fish4" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(28, 195)
-
-[node name="Fish5" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(86, 298)
-
-[node name="Fish6" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(15, 266)
-
-[node name="Fish7" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(67, 230)
-
-[node name="Fish8" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(46, 347)
-
-[node name="Fish16" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(159, 104)
-
-[node name="Fish17" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(161, 152)
-
-[node name="Fish18" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(212, 172)
-
-[node name="Fish19" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(189, 218)
-
-[node name="Fish20" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(199, 185)
-
-[node name="Fish21" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(183, 152)
-
-[node name="Fish22" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(207, 243)
-
-[node name="Fish23" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(188, 75)
-
-[node name="Fish24" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(201, 146)
-
-[node name="Fish25" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(187, 134)
-
-[node name="Fish26" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(172, 197)
-
-[node name="Fish27" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(230, 300)
-
-[node name="Fish28" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(159, 268)
-
-[node name="Fish29" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(211, 232)
-
-[node name="Fish30" parent="Stuff" instance=ExtResource("7_gafuw")]
-position = Vector2(190, 349)
-
-[node name="Wall" type="StaticBody2D" parent="."]
+[node name="Wall" type="StaticBody2D" parent="Stuff"]
 position = Vector2(59, 75)
 rotation = 0.127409
+scale = Vector2(1, 1)
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stuff/Wall"]
 shape = SubResource("RectangleShape2D_yxa4x")
 
-[node name="ColorRect" type="ColorRect" parent="Wall"]
+[node name="ColorRect" type="ColorRect" parent="Stuff/Wall"]
 offset_left = -68.0
 offset_top = -5.99999
 offset_right = 68.0
 offset_bottom = 6.00001
 color = Color(1, 0, 0, 1)
 
-[node name="Treasure_Gemstone" parent="." instance=ExtResource("10_ik3te")]
+[node name="SalvageBin" parent="Stuff" instance=ExtResource("10_x66tw")]
+position = Vector2(175, 60)
+
+[node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
+unique_name_in_owner = true
+position = Vector2(69, 0)
+
+[node name="Group_Junk" type="Node2D" parent="Stuff"]
+
+[node name="Junk_Amethyst" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
 position = Vector2(50, 50)
 
-[node name="Treasure_Gemstone2" parent="." instance=ExtResource("10_ik3te")]
-position = Vector2(89, 23)
+[node name="Junk_Ruby" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(45, 32)
 
-[node name="SalvageBin" parent="." instance=ExtResource("10_x66tw")]
-position = Vector2(175, 60)
+[node name="Junk_Ruby2" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(76, 24)
+
+[node name="Junk_Amethyst2" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(66, 34)
+
+[node name="Junk_Boot" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(39, 18)
+
+[node name="Group_Fish" type="Node2D" parent="Stuff"]
+
+[node name="Fish" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(15, 102)
+
+[node name="Fish2" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(17, 150)
+
+[node name="Fish9" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(68, 170)
+
+[node name="Fish10" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(45, 216)
+
+[node name="Fish11" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(55, 183)
+
+[node name="Fish12" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(39, 150)
+
+[node name="Fish13" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(63, 241)
+
+[node name="Fish14" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(44, 73)
+
+[node name="Fish15" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(57, 144)
+
+[node name="Fish3" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(43, 132)
+
+[node name="Fish4" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(28, 195)
+
+[node name="Fish5" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(86, 298)
+
+[node name="Fish6" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(15, 266)
+
+[node name="Fish7" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(67, 230)
+
+[node name="Fish8" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(46, 347)
+
+[node name="Fish16" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(159, 104)
+
+[node name="Fish17" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(161, 152)
+
+[node name="Fish18" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(212, 172)
+
+[node name="Fish19" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(189, 218)
+
+[node name="Fish20" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(199, 185)
+
+[node name="Fish21" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(183, 152)
+
+[node name="Fish22" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(207, 243)
+
+[node name="Fish23" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(188, 75)
+
+[node name="Fish24" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(201, 146)
+
+[node name="Fish25" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(187, 134)
+
+[node name="Fish26" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(172, 197)
+
+[node name="Fish27" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(230, 300)
+
+[node name="Fish28" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(159, 268)
+
+[node name="Fish29" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(211, 232)
+
+[node name="Fish30" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
+position = Vector2(190, 349)

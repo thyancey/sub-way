@@ -46,5 +46,5 @@ func _calc_blur(_oxygen: float) -> float:
 	blur_percent = clamp(1.0 - blur_percent, 0.0, 1.0)
 	return blur_percent
 
-func _on_junk_salvaged(_name: String, _value: int) -> void:
-	print("SALVAGED: %s: $%d" % [_name, _value])
+func _on_junk_salvaged(_junk_data: JunkData) -> void:
+	print("SALVAGED: %s: $%d" % [_junk_data.name, _junk_data.value])

@@ -106,6 +106,7 @@ reel_in={
 2d_physics/layer_4="Wall"
 2d_physics/layer_5="Surface"
 2d_physics/layer_6="Projectile"
+2d_physics/layer_7="Junk"
 
 [rendering]
 

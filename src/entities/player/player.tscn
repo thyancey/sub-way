@@ -29,6 +29,9 @@ collision_layer = 2
 collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_vt6n5")
+submerged_horizontal_max = 40.0
+surface_horizontal_acceleration = 30.0
+surface_horizontal_max = 60.0
 
 [node name="BubbleParticles" parent="." instance=ExtResource("2_muk8e")]
 unique_name_in_owner = true
@@ -75,4 +78,4 @@ position = Vector2(-4, -4)
 display_name = "Torpedo L"
 
 [node name="C_MissileBay" parent="." instance=ExtResource("6_oih67")]
-position = Vector2(12, 6)
+position = Vector2(20, -9)

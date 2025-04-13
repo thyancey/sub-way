@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dxf1mcbusqe8n"]
 
 [ext_resource type="Script" uid="uid://brsp3vosex72o" path="res://src/entities/collector/collector.gd" id="1_dqn2n"]
-[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/treasure/treasure_gemstone.tscn" id="1_ngyfb"]
+[ext_resource type="PackedScene" uid="uid://dfs06fkp53bvm" path="res://src/entities/junk/junk_amethyst.tscn" id="1_ngyfb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqn2n"]
 size = Vector2(19, 6)
@@ -28,6 +28,8 @@ position = Vector2(0, -10)
 [node name="Zone" type="Area2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, 36)
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
 position = Vector2(-0.5, 0)
