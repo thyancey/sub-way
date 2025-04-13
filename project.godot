@@ -42,7 +42,8 @@ Player=""
 Surface=""
 Enemy=""
 Component=""
-Treasure=""
+Collector=""
+Junk=""
 
 [gui]
 

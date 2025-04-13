@@ -1,13 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfs06fkp53bvm"]
+[gd_scene load_steps=3 format=3 uid="uid://dfs06fkp53bvm"]
 
+[ext_resource type="Script" uid="uid://dfle48mj38hrp" path="res://src/entities/treasure/junk.gd" id="1_d8eh2"]
 [ext_resource type="SpriteFrames" uid="uid://djsqmv55wql7y" path="res://src/entities/treasure/gem.aseprite" id="1_qkb02"]
 
-[node name="Treasure_Gemstone" type="RigidBody2D" groups=["Treasure"]]
+[node name="Treasure_Gemstone" type="RigidBody2D" groups=["Junk"]]
 collision_mask = 40
 mass = 60.0
 gravity_scale = 0.2
 linear_damp_mode = 1
-linear_damp = 1.0
+linear_damp = 4.0
+angular_damp_mode = 1
+angular_damp = 5.0
+script = ExtResource("1_d8eh2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_qkb02")

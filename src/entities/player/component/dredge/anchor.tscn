@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://biqd5nwxh7vi2"]
+[gd_scene load_steps=4 format=3 uid="uid://biqd5nwxh7vi2"]
 
 [ext_resource type="Script" uid="uid://dnk2lmu36prtd" path="res://src/entities/player/component/dredge/anchor.gd" id="1_dptfr"]
 [ext_resource type="SpriteFrames" uid="uid://bkqwjsmk1elq1" path="res://src/entities/player/component/dredge/anchor.aseprite" id="2_s3t3w"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7g6g"]
-radius = 4.0
-height = 10.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3g1ya"]
-radius = 5.0
-height = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_dptfr"]
+radius = 2.0
 
 [node name="Anchor" type="RigidBody2D"]
 collision_layer = 32
@@ -28,24 +23,21 @@ script = ExtResource("1_dptfr")
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = ExtResource("2_s3t3w")
-animation = &"drop"
+animation = &"grabbing"
 offset = Vector2(0.00871819, 4.93383)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_f7g6g")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, 5, -3, 8, 0, 6, 3, 8, 6, 5, 2, 5, 0, 0, -2, 5)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="GrabArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 2)
 collision_layer = 0
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
 position = Vector2(0, 4)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_3g1ya")
+shape = SubResource("CircleShape2D_dptfr")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="GrabArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="GrabArea" to="." method="_on_area_2d_body_exited"]

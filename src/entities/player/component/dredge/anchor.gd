@@ -13,11 +13,15 @@ signal updated_is_grabbing(is_grabbing: bool)
 
 var current_joint: PinJoint2D = null
 var grabbed_object: Node2D = null
+var grab_delay := 1000.0
 
 func toggle_grabbing() -> void:
 	if (!is_grabbing):
 		is_grabbing = true
 		%MainSprite.play("grabbing")
+		var _closest_junk = _get_closest_junk()
+		if _closest_junk != null:
+			grab_object(_closest_junk)
 	else:
 		is_grabbing = false
 		%MainSprite.play("idle")
@@ -25,13 +29,27 @@ func toggle_grabbing() -> void:
 			release_object(grabbed_object)
 
 func _on_area_2d_body_entered(_body:Node2D) -> void:
-	if is_grabbing && grabbed_object == null && _body.is_in_group("Treasure"):
+	if is_grabbing && grabbed_object == null && _body.is_in_group("Junk"):
 		grab_object(_body)
 
 func _on_area_2d_body_exited(_body:Node2D) -> void:
-	if _body.is_in_group("Treasure"):
+	if _body.is_in_group("Junk"):
 		if !is_grabbing && _body == grabbed_object:
 			release_object(_body)
+
+func _get_closest_junk() -> Node2D:
+	var bodies = $GrabArea.get_overlapping_bodies()
+	var nearest_body: Node2D = null
+	var nearest_distance := INF
+
+	for body in bodies:
+		if body.is_in_group("Junk"):
+			var dist = global_position.distance_to(body.global_position)
+			if dist < nearest_distance:
+				nearest_distance = dist
+				nearest_body = body
+
+	return nearest_body
 
 func grab_object(_body: Node2D) -> void:
 	create_joint(_body)

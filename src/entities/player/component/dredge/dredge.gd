@@ -1,9 +1,11 @@
 extends Ship_Component
 
+@export var reel_strength := 800 # heavier anchor needs bigger number to keep it up
+@export var anchor_mass := 20.0
+
 @onready var attach_proxy: RigidBody2D = $AttachProxy
 @onready var anchor: RigidBody2D = $Anchor
 @onready var joint: PinJoint2D = $Joint
-@onready var reel_strength := 800 # heavier anchor needs bigger number to keep it up
 
 var target_rope_length: float = 5.0
 var reel_speed: float = 60.0
@@ -15,10 +17,10 @@ var is_grabbing := false
 
 func _ready():
 	super._ready()
-	anchor.mass = 20.0
-	anchor.gravity_scale = 0.8
-	anchor.linear_damp = 1.2
-	anchor.angular_damp = 1.0
+	anchor.mass = anchor_mass
+	anchor.gravity_scale = 0.2
+	anchor.linear_damp = 4.0
+	anchor.angular_damp = 5.0
 
 	update_joint_position()
 
@@ -42,14 +44,16 @@ func calc_real_length():
 	return dist
 
 func handle_input(delta):
-	if Input.is_action_pressed("reel_out"):
-		set_rope_length(target_rope_length + reel_speed * delta)
-	elif Input.is_action_pressed("reel_in"):
-		set_rope_length(target_rope_length - reel_speed * delta)
-	elif Input.is_action_pressed("reel_in"):
-		set_rope_length(target_rope_length - reel_speed * delta)
-	elif Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
-		anchor.toggle_grabbing()
+	if is_active:
+		if Input.is_action_pressed("reel_out"):
+			set_rope_length(target_rope_length + reel_speed * delta)
+		elif Input.is_action_pressed("reel_in"):
+			set_rope_length(target_rope_length - reel_speed * delta)
+		elif Input.is_action_pressed("reel_in"):
+			set_rope_length(target_rope_length - reel_speed * delta)
+
+		if Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
+			anchor.toggle_grabbing()
 
 
 # Attach proxy's position should remain fixed relative to the submarine.

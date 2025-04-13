@@ -14,6 +14,9 @@ func _ready() -> void:
 	Global.connect('updated_darkness', on_updated_darkness)
 	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
 
+	for collector in get_tree().get_nodes_in_group("Collector"):
+		collector.junk_salvaged.connect(_on_junk_salvaged)
+
 	# for now, blur works fine with depth
 	# Global.player_data.connect('updated_oxygen', on_updated_oxygen)
 	# on_updated_oxygen(Global.player_data.oxygen)
@@ -42,3 +45,6 @@ func _calc_blur(_oxygen: float) -> float:
 	#invert it, since less oxygen = more blurry
 	blur_percent = clamp(1.0 - blur_percent, 0.0, 1.0)
 	return blur_percent
+
+func _on_junk_salvaged(_name: String, _value: int) -> void:
+	print("SALVAGED: %s: $%d" % [_name, _value])
