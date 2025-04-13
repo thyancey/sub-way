@@ -1,0 +1,72 @@
+extends RigidBody2D
+
+signal object_grabbed(object: Node2D)
+signal updated_is_grabbing(is_grabbing: bool)
+
+@export var is_grabbing := false:
+	get:
+		return is_grabbing
+	set(value):
+		if is_grabbing != value:
+			is_grabbing = value
+			updated_is_grabbing.emit(is_grabbing)
+
+var current_joint: PinJoint2D = null
+var grabbed_object: Node2D = null
+
+func toggle_grabbing() -> void:
+	if (!is_grabbing):
+		is_grabbing = true
+		%MainSprite.play("grabbing")
+	else:
+		is_grabbing = false
+		%MainSprite.play("idle")
+		if (grabbed_object != null):
+			release_object(grabbed_object)
+
+func _on_area_2d_body_entered(_body:Node2D) -> void:
+	if is_grabbing && grabbed_object == null && _body.is_in_group("Treasure"):
+		grab_object(_body)
+
+func _on_area_2d_body_exited(_body:Node2D) -> void:
+	if _body.is_in_group("Treasure"):
+		if !is_grabbing && _body == grabbed_object:
+			release_object(_body)
+
+func grab_object(_body: Node2D) -> void:
+	create_joint(_body)
+	grabbed_object = _body
+	emit_signal("object_grabbed", _body)
+	%MainSprite.play("grabbed")
+
+func release_object(_body: Node2D):
+	if current_joint:
+		current_joint.queue_free()  # Remove the joint from the scene
+		current_joint = null
+		grabbed_object = null
+	if is_grabbing:
+		%MainSprite.play("grabbing")
+	else:
+		%MainSprite.play("idle")
+
+
+func create_joint(_body):
+	var joint := PinJoint2D.new()
+	joint.position = _body.global_position
+
+	# this is fuckin weird - but the joint needs to be made higher up
+	# in an ancestor node that holds both bodies. It also requires
+	# node paths instead of direct object references
+	var common_parent = get_tree().get_root()
+	common_parent.add_child(joint)
+	joint.node_a = joint.get_path_to(_body)
+	joint.node_b = joint.get_path_to(self)
+
+	joint.bias = 1.0  # max out to make a sticky connection
+	joint.softness = 0.0 # no springyness
+
+	# print("joint created: ", joint)
+	# print(joint.get_node(joint.node_a))
+	# print(joint.get_node(joint.node_b))
+
+	current_joint = joint

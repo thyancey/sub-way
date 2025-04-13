@@ -10,6 +10,8 @@ var reel_speed: float = 60.0
 var min_rope_length: float = 1.0
 var max_rope_length: float = 200.0
 
+var is_grabbing := false
+
 
 func _ready():
 	super._ready()
@@ -44,6 +46,11 @@ func handle_input(delta):
 		set_rope_length(target_rope_length + reel_speed * delta)
 	elif Input.is_action_pressed("reel_in"):
 		set_rope_length(target_rope_length - reel_speed * delta)
+	elif Input.is_action_pressed("reel_in"):
+		set_rope_length(target_rope_length - reel_speed * delta)
+	elif Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
+		anchor.toggle_grabbing()
+
 
 # Attach proxy's position should remain fixed relative to the submarine.
 # It doesn't change based on rope length, but instead follows the submarine's movement.

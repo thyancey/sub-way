@@ -2,9 +2,9 @@
 
 [ext_resource type="SpriteFrames" uid="uid://djsqmv55wql7y" path="res://src/entities/treasure/gem.aseprite" id="1_qkb02"]
 
-[node name="Treasure_Gemstone" type="RigidBody2D"]
+[node name="Treasure_Gemstone" type="RigidBody2D" groups=["Treasure"]]
 collision_mask = 40
-mass = 20.0
+mass = 60.0
 gravity_scale = 0.2
 linear_damp_mode = 1
 linear_damp = 1.0
