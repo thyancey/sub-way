@@ -13,7 +13,7 @@ var jiggle_rot := 6
 func _ready() -> void:
 	self.mass = junk_data.weight
 	self.hp = junk_data.hp
-	initial_pos = self.position
+	initial_pos = self.global_position
 
 func destroy() -> void:
 	hp = 0.0

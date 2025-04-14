@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://biqd5nwxh7vi2"]
+[gd_scene load_steps=5 format=3 uid="uid://biqd5nwxh7vi2"]
 
 [ext_resource type="Script" uid="uid://dnk2lmu36prtd" path="res://src/entities/player/component/dredge/anchor.gd" id="1_dptfr"]
 [ext_resource type="SpriteFrames" uid="uid://bkqwjsmk1elq1" path="res://src/entities/player/component/dredge/anchor.aseprite" id="2_s3t3w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dptfr"]
+radius = 2.0
+height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dptfr"]
 radius = 2.0
@@ -23,11 +27,12 @@ script = ExtResource("1_dptfr")
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = ExtResource("2_s3t3w")
-animation = &"grabbing"
+animation = &"idle"
 offset = Vector2(0.00871819, 4.93383)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-6, 5, -3, 8, 0, 6, 3, 8, 6, 5, 2, 5, 0, 0, -2, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_dptfr")
 
 [node name="GrabArea" type="Area2D" parent="."]
 unique_name_in_owner = true

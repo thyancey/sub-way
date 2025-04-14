@@ -1,41 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxqh6ub2bdvs"]
+[gd_scene load_steps=6 format=3 uid="uid://dxqh6ub2bdvs"]
 
 [ext_resource type="Script" uid="uid://c2nukb8y0jaq8" path="res://src/ui/ui.gd" id="1_sp1ie"]
 [ext_resource type="PackedScene" uid="uid://bvmepulwpxta1" path="res://src/ui/gauge/gauge.tscn" id="2_jlntk"]
 [ext_resource type="PackedScene" uid="uid://c3v1hw5tg5y5q" path="res://src/ui/label_widget.tscn" id="3_qemve"]
 [ext_resource type="PackedScene" uid="uid://r065y6euwjxh" path="res://src/ui/notification_widget.tscn" id="4_8wxmc"]
+[ext_resource type="PackedScene" uid="uid://cc4jmddx2vhpt" path="res://src/ui/gauge/gauge_vertical.tscn" id="5_sjdex"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_sp1ie")
 
 [node name="OxygenGauge" parent="." instance=ExtResource("2_jlntk")]
 unique_name_in_owner = true
-offset_left = -9.0
+offset_left = 276.0
 offset_top = 144.0
-offset_right = 47.0
+offset_right = 332.0
 offset_bottom = 200.0
 decimals = 1
-rotation_min = -120.0
+rotation_max = -90.0
 
 [node name="RopeGauge" parent="." instance=ExtResource("2_jlntk")]
 unique_name_in_owner = true
-offset_left = 47.0
+offset_left = -8.0
 offset_top = 144.0
-offset_right = 103.0
+offset_right = 48.0
 offset_bottom = 200.0
 decimals = 1
-
-[node name="DepthGauge" parent="." instance=ExtResource("2_jlntk")]
-unique_name_in_owner = true
-offset_left = 273.0
-offset_top = 144.0
-offset_right = 329.0
-offset_bottom = 200.0
-rotation_max = -90.0
+rotation_min = -90.0
 
 [node name="JunkWidget" parent="." instance=ExtResource("3_qemve")]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -50,11 +43,22 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -58.0
-offset_bottom = -58.0
+offset_top = -68.0
+offset_bottom = -68.0
 grow_vertical = 0
 label_name = "Component"
 label_value = "Dredge"
+
+[node name="MoneyWidget" parent="." instance=ExtResource("3_qemve")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+offset_bottom = -58.0
+grow_vertical = 0
+label_name = "Money"
+label_value = "0"
 
 [node name="NotificationWidget" parent="." instance=ExtResource("4_8wxmc")]
 unique_name_in_owner = true
@@ -68,13 +72,11 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MoneyWidget" parent="." instance=ExtResource("3_qemve")]
+[node name="Gauge_Vertical" parent="." instance=ExtResource("5_sjdex")]
 unique_name_in_owner = true
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -68.0
-offset_bottom = -68.0
-grow_vertical = 0
-label_name = "Money"
-label_value = "0"
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 8.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+height = 140

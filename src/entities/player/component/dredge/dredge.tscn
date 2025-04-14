@@ -6,6 +6,7 @@
 
 [node name="C_Dredge" type="Node2D" groups=["Component"]]
 script = ExtResource("1_5cx2p")
+reel_strength = 1600
 display_name = "Dredge"
 
 [node name="AttachProxy" type="RigidBody2D" parent="."]
@@ -14,6 +15,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="ColorRect" type="ColorRect" parent="AttachProxy"]
+visible = false
 offset_right = 2.0
 offset_bottom = 2.0
 color = Color(1, 0, 0, 1)

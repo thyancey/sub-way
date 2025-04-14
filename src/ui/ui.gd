@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 @onready var oxygen_gauge: Control = %OxygenGauge
-@onready var depth_gauge: Control = %DepthGauge
+# @onready var depth_gauge: Control = %DepthGauge
+@onready var depth_gauge: Control = %Gauge_Vertical
 @onready var rope_length_gauge: Control = %RopeGauge
 @onready var component_widget: Control = %ComponentWidget
 @onready var junk_widget: Control = %JunkWidget
@@ -9,6 +10,7 @@ extends CanvasLayer
 @onready var notification_widget: Control = %NotificationWidget
 
 func _ready() -> void:
+	junk_widget.hide()
 	Global.connect("notified", _on_global_notified)
 
 	Global.player_data.connect('updated_money', _on_updated_money)
@@ -28,7 +30,7 @@ func _ready() -> void:
 
 	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.player_data.max_oxygen), Global.player_data.oxygen, true)
 	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.player_data.depth)
-	rope_length_gauge.setData("rope length", Vector2(0.0, 400.0), Global.player_data.rope_length)
+	rope_length_gauge.setData("rope", Vector2(0.0, 400.0), Global.player_data.rope_length)
 
 func _on_updated_money(value: int) -> void:
 	money_widget.label_value = str("$", value)
@@ -55,3 +57,4 @@ func _on_global_notified(_type: String, _payload: Variant) -> void:
 			junk_widget.show()
 			junk_widget.label_name = (_payload.junk_data as JunkData).name
 			junk_widget.label_value = str((_payload.junk_data as JunkData).value)
+			junk_widget.color_name = _payload.junk_data.color

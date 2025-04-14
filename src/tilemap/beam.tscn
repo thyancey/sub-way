@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://r0cq07j8p3pb"]
+
+[ext_resource type="SpriteFrames" uid="uid://2mjhvkiel8po" path="res://src/tilemap/beam.aseprite" id="1_7vylu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dptmo"]
+size = Vector2(124, 12)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_7vylu")
+animation = &"shine"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dptmo")

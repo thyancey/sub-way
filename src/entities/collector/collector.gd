@@ -20,7 +20,6 @@ func _ready() -> void:
 	start_pos = self.position
 	salvage_bodies = []
 	main_sprite.play("idle")
-	# bubble_particles.emitting = false
 
 func _process(_delta: float) -> void:
 	if salvage_bodies.size() > 0:
@@ -37,7 +36,6 @@ func _try_to_shred_this(_body: Node2D) -> void:
 		salvage_bodies.append(_body)
 		_body.connect("salvaged", _on_salvaged)
 		main_sprite.play("shred")
-		# bubble_particles.emitting = true
 
 # gotta jiggle any rested bodies in the chute after others are deleted
 func _get_frozen_junk() -> Array[Node2D]:
@@ -60,7 +58,7 @@ func _salvage_complete(_salvaged_body: Node2D) -> void:
 	else:
 		# score it, make it go away for real
 		print("salvaged: ", _salvaged_body.junk_data.name)
-		junk_salvaged.emit(_salvaged_body.position, _salvaged_body.junk_data)
+		junk_salvaged.emit(_salvaged_body.global_position, _salvaged_body.junk_data)
 		salvage_bodies.erase(_salvaged_body)
 		_salvaged_body.destroy()
 
@@ -72,7 +70,6 @@ func _salvage_complete(_salvaged_body: Node2D) -> void:
 	print(">> COMPLETE, should I keep shreddin? ", salvage_bodies.size())
 	if salvage_bodies.size() == 0:
 		main_sprite.play("idle")
-		# bubble_particles.emitting = false
 
 func _jiggle() -> void:
 	self.position = start_pos + Vector2(randf_range(-jiggle_pos, jiggle_pos), randf_range(-jiggle_pos, jiggle_pos))
