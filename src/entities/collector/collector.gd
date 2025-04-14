@@ -5,6 +5,7 @@ signal junk_salvaged(_pos: Vector2, _junk_data: JunkData)
 @onready var main_sprite: AnimatedSprite2D = %MainSprite
 @onready var shred_zone: Area2D = %ShredZone
 @onready var wake_zone: Area2D = %WakeZone
+@onready var bubble_particles = %BubbleParticles
 
 
 # fallback duration to play the shred animation, if for some
@@ -18,6 +19,8 @@ var jiggle_pos := 0.5
 func _ready() -> void:
 	start_pos = self.position
 	salvage_bodies = []
+	main_sprite.play("idle")
+	# bubble_particles.emitting = false
 
 func _process(_delta: float) -> void:
 	if salvage_bodies.size() > 0:
@@ -34,6 +37,7 @@ func _try_to_shred_this(_body: Node2D) -> void:
 		salvage_bodies.append(_body)
 		_body.connect("salvaged", _on_salvaged)
 		main_sprite.play("shred")
+		# bubble_particles.emitting = true
 
 # gotta jiggle any rested bodies in the chute after others are deleted
 func _get_frozen_junk() -> Array[Node2D]:
@@ -68,6 +72,7 @@ func _salvage_complete(_salvaged_body: Node2D) -> void:
 	print(">> COMPLETE, should I keep shreddin? ", salvage_bodies.size())
 	if salvage_bodies.size() == 0:
 		main_sprite.play("idle")
+		# bubble_particles.emitting = false
 
 func _jiggle() -> void:
 	self.position = start_pos + Vector2(randf_range(-jiggle_pos, jiggle_pos), randf_range(-jiggle_pos, jiggle_pos))

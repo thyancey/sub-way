@@ -1,22 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxf1mcbusqe8n"]
+[gd_scene load_steps=7 format=3 uid="uid://dxf1mcbusqe8n"]
 
 [ext_resource type="Script" uid="uid://brsp3vosex72o" path="res://src/entities/collector/collector.gd" id="1_dqn2n"]
 [ext_resource type="SpriteFrames" uid="uid://fo1ndoyku6bb" path="res://src/entities/collector/collector.aseprite" id="3_k5r2b"]
 [ext_resource type="Script" uid="uid://c3dacsfxfqyb1" path="res://src/scripts/wake_area.gd" id="3_shrw6"]
+[ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="4_shrw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqn2n"]
 size = Vector2(30, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2fy6y"]
-size = Vector2(66, 72)
+size = Vector2(61, 60)
 
 [node name="Collector" type="Node2D" groups=["Collector"]]
+z_index = 1
 script = ExtResource("1_dqn2n")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(0, 24)
+position = Vector2(0, 22)
 sprite_frames = ExtResource("3_k5r2b")
 animation = &"idle"
 
@@ -26,7 +27,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 position = Vector2(-5, 0)
-polygon = PackedVector2Array(-9, 16, -9, 35, 21, 35, 21, 16, 31, -4, 33, -4, 33, 49, -22, 49, -22, -4, -20, -4)
+polygon = PackedVector2Array(-9, 16, -9, 29, 21, 29, 21, 16, 31, -4, 33, -4, 33, 39, -22, 39, -22, -4, -20, -4)
 
 [node name="ShredZone" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -35,6 +36,7 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShredZone"]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_dqn2n")
 
 [node name="WakeZone" type="Area2D" parent="."]
@@ -44,6 +46,14 @@ collision_mask = 64
 script = ExtResource("3_shrw6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WakeZone"]
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_2fy6y")
+
+[node name="BubbleParticles" parent="." instance=ExtResource("4_shrw6")]
+unique_name_in_owner = true
+position = Vector2(0, 40)
+amount = 8
+lifetime = 5.0
+emission_rect_extents = Vector2(15, 2)
 
 [connection signal="body_entered" from="ShredZone" to="." method="_on_zone_body_entered"]
