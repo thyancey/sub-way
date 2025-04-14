@@ -67,3 +67,14 @@ offset_top = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="MoneyWidget" parent="." instance=ExtResource("3_qemve")]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -68.0
+offset_bottom = -68.0
+grow_vertical = 0
+label_name = "Money"
+label_value = "0"

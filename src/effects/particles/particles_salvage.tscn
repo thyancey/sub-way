@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://l57frouftggt"]
+
+[ext_resource type="Script" uid="uid://cg8wlblkgd1ah" path="res://src/effects/particles/particles_autoclean.gd" id="1_obf1n"]
+
+[sub_resource type="Gradient" id="Gradient_obf1n"]
+offsets = PackedFloat32Array(0.864754, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+z_index = 1
+amount = 16
+lifetime = 6.0
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 10)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angle_min = -10.0
+angle_max = 10.0
+scale_amount_max = 1.5
+color = Color(1, 0, 1, 1)
+color_ramp = SubResource("Gradient_obf1n")
+script = ExtResource("1_obf1n")

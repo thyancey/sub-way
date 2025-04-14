@@ -1,6 +1,7 @@
 extends Object
 class_name PlayerData
 
+signal updated_money(val: int)
 signal updated_depth(val: int)
 signal updated_oxygen(val: float)
 signal updated_active_component_name(val: String)
@@ -17,6 +18,14 @@ var active_component_name := "???":
 		if active_component_name != value:
 			active_component_name = value
 			updated_active_component_name.emit(active_component_name)
+
+var money := 0:
+	get:
+		return money
+	set(value):
+		if money != value:
+			money = value
+			updated_money.emit(money)
 
 var depth := 0:
 	get:

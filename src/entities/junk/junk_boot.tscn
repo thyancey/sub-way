@@ -9,6 +9,8 @@ script = ExtResource("2_lj5xs")
 name = "Boot"
 value = 1
 weight = 5.0
+hp = 1.0
+color = Color(0.576471, 0.176471, 0.176471, 1)
 metadata/_custom_type_script = "uid://58j8ybh3417h"
 
 [node name="Junk_Boot" type="RigidBody2D" groups=["Junk"]]

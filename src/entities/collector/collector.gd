@@ -1,10 +1,11 @@
 extends Node2D
 
-signal junk_salvaged(junk_data: JunkData)
+signal junk_salvaged(_pos: Vector2, _junk_data: JunkData)
 
 @onready var main_sprite: AnimatedSprite2D = %MainSprite
 @onready var shred_zone: Area2D = %ShredZone
 @onready var wake_zone: Area2D = %WakeZone
+
 
 # fallback duration to play the shred animation, if for some
 # reason the thing youre shredding aint there
@@ -55,7 +56,7 @@ func _salvage_complete(_salvaged_body: Node2D) -> void:
 	else:
 		# score it, make it go away for real
 		print("salvaged: ", _salvaged_body.junk_data.name)
-		junk_salvaged.emit(_salvaged_body.junk_data)
+		junk_salvaged.emit(_salvaged_body.position, _salvaged_body.junk_data)
 		salvage_bodies.erase(_salvaged_body)
 		_salvaged_body.destroy()
 

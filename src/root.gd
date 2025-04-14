@@ -46,6 +46,8 @@ func _calc_blur(_oxygen: float) -> float:
 	blur_percent = clamp(1.0 - blur_percent, 0.0, 1.0)
 	return blur_percent
 
-func _on_junk_salvaged(_junk_data: JunkData) -> void:
+func _on_junk_salvaged(_pos: Vector2, _junk_data: JunkData) -> void:
 	print("SALVAGED: %s: $%d" % [_junk_data.name, _junk_data.value])
 	Global.notify("SALVAGE", _junk_data)
+	Global.spawn_particle("salvage", _pos, { "color": _junk_data.color })
+	Global.player_data.money += _junk_data.value

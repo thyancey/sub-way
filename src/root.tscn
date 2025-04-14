@@ -132,91 +132,6 @@ unique_name_in_owner = true
 
 [node name="Stuff" type="Node2D" parent="."]
 
-[node name="Wall" type="StaticBody2D" parent="Stuff"]
-position = Vector2(59, 75)
-rotation = 0.127409
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stuff/Wall"]
-shape = SubResource("RectangleShape2D_yxa4x")
-
-[node name="ColorRect" type="ColorRect" parent="Stuff/Wall"]
-offset_left = -68.0
-offset_top = -5.99999
-offset_right = 68.0
-offset_bottom = 6.00001
-color = Color(1, 0, 0, 1)
-
-[node name="SalvageBin" parent="Stuff" instance=ExtResource("10_x66tw")]
-position = Vector2(175, 52)
-
-[node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
-unique_name_in_owner = true
-position = Vector2(100, 37)
-
-[node name="Group_Junk" type="Node2D" parent="Stuff"]
-
-[node name="Junk_Amethyst" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(158, 31)
-
-[node name="Junk_Ruby" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(153, 13)
-
-[node name="Junk_Ruby2" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(184, 5)
-
-[node name="Junk_Amethyst2" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(174, 15)
-
-[node name="Junk_Boot" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(163, -7)
-
-[node name="Junk_Amethyst3" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(173, -25)
-
-[node name="Junk_Ruby3" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(168, -43)
-
-[node name="Junk_Ruby4" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(199, -51)
-
-[node name="Junk_Amethyst4" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(189, -41)
-
-[node name="Junk_Boot2" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(178, -63)
-
-[node name="Junk_Amethyst5" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(165, -93)
-
-[node name="Junk_Ruby5" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(160, -111)
-
-[node name="Junk_Ruby6" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(191, -119)
-
-[node name="Junk_Amethyst6" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(181, -109)
-
-[node name="Junk_Boot3" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(170, -131)
-
-[node name="Junk_Amethyst7" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(20, 45)
-
-[node name="Junk_Ruby7" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(15, 27)
-
-[node name="Junk_Ruby8" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(46, 19)
-
-[node name="Junk_Amethyst8" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(36, 29)
-
-[node name="Junk_Boot4" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(25, 7)
-
 [node name="Group_Fish" type="Node2D" parent="Stuff"]
 
 [node name="Fish" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
@@ -308,3 +223,71 @@ position = Vector2(211, 232)
 
 [node name="Fish30" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
 position = Vector2(190, 349)
+
+[node name="Wall" type="StaticBody2D" parent="Stuff"]
+position = Vector2(59, 115)
+rotation = 0.127409
+scale = Vector2(1, 1)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stuff/Wall"]
+shape = SubResource("RectangleShape2D_yxa4x")
+
+[node name="ColorRect" type="ColorRect" parent="Stuff/Wall"]
+offset_left = -68.0
+offset_top = -5.99999
+offset_right = 68.0
+offset_bottom = 6.00001
+color = Color(1, 0, 0, 1)
+
+[node name="SalvageBin" parent="Stuff" instance=ExtResource("10_x66tw")]
+position = Vector2(175, 92)
+
+[node name="SalvageBin2" parent="Stuff" instance=ExtResource("10_x66tw")]
+position = Vector2(334, 274)
+
+[node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
+unique_name_in_owner = true
+position = Vector2(100, 77)
+
+[node name="Group_Junk" type="Node2D" parent="Stuff"]
+
+[node name="Junk_Amethyst" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(158, 71)
+
+[node name="Junk_Ruby" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(153, 53)
+
+[node name="Junk_Ruby2" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(184, 45)
+
+[node name="Junk_Amethyst2" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(174, 55)
+
+[node name="Junk_Boot" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(163, 33)
+
+[node name="Junk_Amethyst3" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(173, 15)
+
+[node name="Junk_Ruby3" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(168, -3)
+
+[node name="Junk_Ruby4" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(199, -11)
+
+[node name="Junk_Amethyst7" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(20, 85)
+
+[node name="Junk_Ruby7" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(15, 67)
+
+[node name="Junk_Ruby8" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
+position = Vector2(46, 59)
+
+[node name="Junk_Amethyst8" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(36, 69)
+
+[node name="Junk_Boot4" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
+position = Vector2(25, 47)
