@@ -13,7 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nr54q")
 decimals = 2
-height = null
 
 [node name="StartLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -53,9 +52,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 0
-offset_top = 40.0
 offset_right = 40.0
-offset_bottom = 80.0
+offset_bottom = 40.0
 
 [node name="ValueLabel" type="Label" parent="Marker"]
 unique_name_in_owner = true
@@ -65,7 +63,7 @@ offset_top = -7.0
 offset_right = 58.0
 offset_bottom = 9.0
 pivot_offset = Vector2(0, 7)
-text = "234 ft"
+text = "0.0"
 vertical_alignment = 1
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="Marker"]

@@ -1,6 +1,8 @@
 @tool
 extends Node
 
+var Scene_PingCircle := preload("res://src/entities/player/component/sonar/ping_circle.tscn")
+
 var particle_scenes := {
 	"salvage": preload("res://src/effects/particles/particles_salvage.tscn"),
 }
@@ -58,3 +60,10 @@ func spawn_particle(_type: String, _pos: Vector2, _overrides: Dictionary = {}):
 			push_warning("Property or method '%s' not found on %s" % [_key, _particle.name])
 
 	get_tree().current_scene.add_child(_particle)
+
+func spawn_ping_circle(_pos: Vector2, _color: Color):
+	var circle = Scene_PingCircle.instantiate()
+	circle.global_position = _pos
+	if _color:
+		circle.color = _color
+	get_tree().current_scene.add_child(circle)

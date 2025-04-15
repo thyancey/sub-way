@@ -240,27 +240,6 @@ position = Vector2(100, 101)
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
 
-[node name="Junk_Ruby" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(153, 53)
-
-[node name="Junk_Ruby2" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(184, 45)
-
-[node name="Junk_Amethyst2" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(174, 55)
-
-[node name="Junk_Boot" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
-position = Vector2(163, 33)
-
-[node name="Junk_Amethyst3" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(173, 15)
-
-[node name="Junk_Ruby3" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(168, -3)
-
-[node name="Junk_Ruby4" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
-position = Vector2(199, -11)
-
 [node name="Junk_Amethyst7" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
 position = Vector2(20, 85)
 
