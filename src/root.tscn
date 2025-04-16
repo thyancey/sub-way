@@ -135,6 +135,7 @@ unique_name_in_owner = true
 
 [node name="Fish" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
 position = Vector2(15, 102)
+scale = Vector2(2, 2)
 
 [node name="Fish2" parent="Stuff/Group_Fish" instance=ExtResource("7_gafuw")]
 position = Vector2(17, 150)

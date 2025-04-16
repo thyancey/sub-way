@@ -30,6 +30,5 @@ func salvage(_delta) -> void:
 	if hp < 0.0:
 		salvaged.emit(self)
 
-func on_ping(_distance: float) -> void:
-	print("you got me! ", name, " : ", _distance)
-	Global.spawn_ping_circle(global_position, Color(255, 255, 0, 100))
+func on_ping(_origin: Vector2) -> void:
+	print("you got me!: ", name, " from ", _origin)

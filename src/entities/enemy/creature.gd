@@ -1,9 +1,8 @@
 extends CharacterBody2D
 class_name Creature
 
-func on_ping(_distance: float) -> void:
-	print("you got me! ", name, " : ", _distance)
-	Global.spawn_ping_circle(global_position, Color(0, 221, 255, 45))
+func on_ping(_origin: Vector2) -> void:
+	print("you got me!: ", name, " from ", _origin)
 
 func hit() -> void:
 	pass

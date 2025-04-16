@@ -1,10 +1,8 @@
 extends Ship_Component
 
-@export var ping_range := 100.0
-
 func _input(_delta) -> void:
 	if is_active && Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
-		perform_sonar_ping(ping_range)
+		perform_sonar_ping(Global.player_data.ping_range)
 
 
 # The bitwise value for the ray query confuses the hell out of me
@@ -17,7 +15,7 @@ func make_bitwise(layers: Array) -> int:
 	return bitmask
 
 func perform_sonar_ping(max_radius: float):
-	var origin = global_position
+	var _origin_pos = global_position
 	var space_state = get_world_2d().direct_space_state
 
 	var groups_to_check = ["Enemy", "Junk"]
@@ -28,11 +26,11 @@ func perform_sonar_ping(max_radius: float):
 			if not node.is_inside_tree() or not node.has_method("get_global_position"):
 				continue
 
-			var target_pos = node.global_position
-			var _distance := origin.distance_to(target_pos)
+			var _target_pos = node.global_position
+			var _distance := _origin_pos.distance_to(_target_pos)
 			if _distance <= max_radius:
 				# Check line of sight using a ray
-				var query = PhysicsRayQueryParameters2D.create(origin, target_pos)
+				var query = PhysicsRayQueryParameters2D.create(_origin_pos, _target_pos)
 				query.exclude = [self]
 
 				# choose walls, floor, etc to not pass through
@@ -47,5 +45,6 @@ func perform_sonar_ping(max_radius: float):
 					continue
 
 				# Successfully pinged target
-				print("Pinged: ", node.name, " in group: ", group)
-				node.on_ping(_distance)
+				# print("Pinged: ", node.name, " in group: ", group)
+				node.on_ping(_origin_pos)
+				Global.ping(_target_pos, _origin_pos, group)

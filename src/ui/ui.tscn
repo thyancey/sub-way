@@ -79,10 +79,10 @@ scale = Vector2(0.5, 0.5)
 height = 180
 
 [node name="Radar" parent="." instance=ExtResource("6_7abqo")]
-offset_left = 101.0
-offset_top = 31.0
-offset_right = 161.0
-offset_bottom = 91.0
+offset_left = 287.0
+offset_top = 148.0
+offset_right = 347.0
+offset_bottom = 208.0
 
 [node name="Gauge_Vertical_R" parent="." instance=ExtResource("7_gucsq")]
 unique_name_in_owner = true
