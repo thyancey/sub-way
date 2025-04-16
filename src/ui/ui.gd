@@ -1,9 +1,8 @@
 extends CanvasLayer
 
 @onready var oxygen_gauge: Control = %OxygenGauge
-# @onready var depth_gauge: Control = %DepthGauge
-@onready var depth_gauge: Control = %Gauge_Vertical
-@onready var rope_length_gauge: Control = %RopeGauge
+@onready var rope_length_gauge: Control = %Gauge_Vertical_R
+@onready var depth_gauge: Control = %Gauge_Vertical_L
 @onready var component_widget: Control = %ComponentWidget
 @onready var junk_widget: Control = %JunkWidget
 @onready var money_widget: Control = %MoneyWidget
@@ -30,7 +29,7 @@ func _ready() -> void:
 
 	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.player_data.max_oxygen), Global.player_data.oxygen, true)
 	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.player_data.depth)
-	rope_length_gauge.setData("rope", Vector2(0.0, 400.0), Global.player_data.rope_length)
+	rope_length_gauge.setData("rope", Vector2(0.0, Global.player_data.max_rope_length), Global.player_data.rope_length)
 
 func _on_updated_money(value: int) -> void:
 	money_widget.label_value = str("$", value)

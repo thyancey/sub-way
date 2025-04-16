@@ -1,39 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxqh6ub2bdvs"]
+[gd_scene load_steps=8 format=3 uid="uid://dxqh6ub2bdvs"]
 
 [ext_resource type="Script" uid="uid://c2nukb8y0jaq8" path="res://src/ui/ui.gd" id="1_sp1ie"]
 [ext_resource type="PackedScene" uid="uid://bvmepulwpxta1" path="res://src/ui/gauge/gauge.tscn" id="2_jlntk"]
 [ext_resource type="PackedScene" uid="uid://c3v1hw5tg5y5q" path="res://src/ui/label_widget.tscn" id="3_qemve"]
 [ext_resource type="PackedScene" uid="uid://r065y6euwjxh" path="res://src/ui/notification_widget.tscn" id="4_8wxmc"]
 [ext_resource type="PackedScene" uid="uid://cc4jmddx2vhpt" path="res://src/ui/gauge/gauge_vertical.tscn" id="5_sjdex"]
+[ext_resource type="PackedScene" uid="uid://wyaggvb52mrq" path="res://src/ui/gauge/radar.tscn" id="6_7abqo"]
+[ext_resource type="PackedScene" uid="uid://b33b02fuw8nhl" path="res://src/ui/gauge/gauge_vertical_flipped.tscn" id="7_gucsq"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_sp1ie")
 
 [node name="OxygenGauge" parent="." instance=ExtResource("2_jlntk")]
 unique_name_in_owner = true
-offset_left = 276.0
-offset_top = 144.0
-offset_right = 332.0
-offset_bottom = 200.0
+offset_left = -10.0
+offset_top = 145.0
+offset_right = 46.0
+offset_bottom = 201.0
 decimals = 1
-rotation_max = -90.0
-
-[node name="RopeGauge" parent="." instance=ExtResource("2_jlntk")]
-unique_name_in_owner = true
-offset_left = -8.0
-offset_top = 144.0
-offset_right = 48.0
-offset_bottom = 200.0
-decimals = 1
-rotation_min = -90.0
+rotation_min = -110.0
 
 [node name="JunkWidget" parent="." instance=ExtResource("3_qemve")]
 unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -48.0
-offset_bottom = -48.0
+offset_left = 263.0
+offset_top = -170.0
+offset_right = 263.0
+offset_bottom = -170.0
 grow_vertical = 0
 label_name = "Carrying"
 label_value = "Old Boot"
@@ -43,8 +38,10 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -68.0
-offset_bottom = -68.0
+offset_left = 246.0
+offset_top = -180.0
+offset_right = 246.0
+offset_bottom = -180.0
 grow_vertical = 0
 label_name = "Component"
 label_value = "Dredge"
@@ -54,8 +51,8 @@ unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -58.0
-offset_bottom = -58.0
+offset_top = -180.0
+offset_bottom = -180.0
 grow_vertical = 0
 label_name = "Money"
 label_value = "0"
@@ -72,10 +69,25 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Gauge_Vertical" parent="." instance=ExtResource("5_sjdex")]
+[node name="Gauge_Vertical_L" parent="." instance=ExtResource("5_sjdex")]
 unique_name_in_owner = true
-offset_left = 8.0
-offset_top = 32.0
-offset_right = 8.0
-offset_bottom = 32.0
+offset_left = 11.0
+offset_top = 34.0
+offset_right = 11.0
+offset_bottom = 34.0
+scale = Vector2(0.5, 0.5)
+height = 180
+
+[node name="Radar" parent="." instance=ExtResource("6_7abqo")]
+offset_left = 101.0
+offset_top = 31.0
+offset_right = 161.0
+offset_bottom = 91.0
+
+[node name="Gauge_Vertical_R" parent="." instance=ExtResource("7_gucsq")]
+unique_name_in_owner = true
+offset_left = -11.0
+offset_top = 34.0
+offset_right = -11.0
+offset_bottom = 34.0
 scale = Vector2(0.5, 0.5)

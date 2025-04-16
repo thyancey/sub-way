@@ -14,6 +14,7 @@ extends Control
 @onready var line: ColorRect = %Line
 
 var marker_flip := 1
+var orig_label_pos := Vector2.ZERO
 
 var value := 0.0:
 	get:
@@ -25,6 +26,7 @@ var value := 0.0:
 
 func _ready() -> void:
 	renderData()
+	orig_label_pos = label.position
 
 func setData(_label: String, _value_range: Vector2, _value: float, _reverse_marker: bool = false) -> void:
 	reverse_marker = _reverse_marker
@@ -34,7 +36,8 @@ func setData(_label: String, _value_range: Vector2, _value: float, _reverse_mark
 	end_label.text = str(value_range.y)
 	value = _value
 	line.size.y = height
-	end_label.position.y = height
+	end_label.position.y = height + 5
+	label.position.y = orig_label_pos.y + (float(height) / 2)
 
 	renderData()
 

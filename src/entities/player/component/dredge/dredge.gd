@@ -10,7 +10,6 @@ extends Ship_Component
 var target_rope_length: float = 5.0
 var reel_speed: float = 60.0
 var min_rope_length: float = 1.0
-var max_rope_length: float = 200.0
 
 var is_grabbing := false
 
@@ -37,7 +36,7 @@ func _physics_process(delta):
 	# 	target_rope_length = Global.player_data.rope_length
 
 func set_rope_length(value: float) -> void:
-	var clamped = clamp(value, min_rope_length, max_rope_length)
+	var clamped = clamp(value, min_rope_length, Global.player_data.max_rope_length)
 	target_rope_length = clamped
 
 func calc_real_length():

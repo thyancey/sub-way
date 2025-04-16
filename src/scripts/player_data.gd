@@ -10,6 +10,7 @@ signal updated_rope_length(val: float)
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
+var max_rope_length := 200.0
 
 var active_component_name := "???":
 	get:
