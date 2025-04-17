@@ -51,6 +51,19 @@ shape = SubResource("CapsuleShape2D_vt6n5")
 unique_name_in_owner = true
 position = Vector2(8, 5)
 
+[node name="SurfaceParticles" parent="." instance=ExtResource("2_muk8e")]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+emitting = false
+amount = 128
+lifetime = 2.0
+emission_rect_extents = Vector2(25, 2)
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+linear_accel_min = 0.1
+linear_accel_max = 1.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Light" type="PointLight2D" parent="."]

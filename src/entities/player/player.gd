@@ -19,9 +19,10 @@ extends CharacterBody2D
 @export var surface_horizontal_max: float = 20.0
 @export var surface_horizontal_damp: float = 2.0
 
-@onready var surface_detector = %Detector # Reference to the SurfaceDetector Area2D
-@onready var bubble_particles = %BubbleParticles # Reference to the BubbleParticles node
-@onready var bubble_particles2 = %BubbleParticles2 # Reference to the BubbleParticles node
+@onready var surface_detector = %Detector
+@onready var bubble_particles = %BubbleParticles
+@onready var bubble_particles2 = %BubbleParticles2
+@onready var surface_particles = %SurfaceParticles
 @onready var light: PointLight2D = %Light
 
 @onready var oxygen_recharge := 0.5
@@ -93,7 +94,6 @@ func _physics_process(delta: float) -> void:
 		handle_surfaced(delta)
 
 	Global.player_data.depth = int(position.y)
-
 
 	if sub_status == SubmarineStatus.DESCENDING:
 		var decay_rate = get_decay_rate(Global.player_data.depth, false)
@@ -239,10 +239,12 @@ func _on_surface_reached(area: Area2D) -> void:
 
 func set_submerged() -> void:
 	current_state = SubmarineState.SUBMERGED
+	surface_particles.emitting = false
 	print("Switched to submerged")
 
 func set_surfaced() -> void:
 	current_state = SubmarineState.SURFACED
+	surface_particles.emitting = true
 	trigger_splash()
 	print("Switched to surfaced")
 
