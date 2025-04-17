@@ -68,9 +68,9 @@ func _spawn_ping_circle(_pos: Vector2, _group: String):
 
 	var _color := Color.WHITE
 	if _group == "Junk":
-		_color = Color(255, 255, 0, 100)
+		_color = Color(1, 0, 1, 1)
 	elif _group == "Enemy":
-		_color = Color(0, 221, 255, 45)
+		_color = Color(1, 0, 0, 1)
 	circle.color = _color
 	get_tree().current_scene.add_child(circle)
 

@@ -31,4 +31,5 @@ func salvage(_delta) -> void:
 		salvaged.emit(self)
 
 func on_ping(_origin: Vector2) -> void:
-	print("you got me!: ", name, " from ", _origin)
+	# print("you got me!: ", name, " from ", _origin)
+	pass

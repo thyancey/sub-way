@@ -13,12 +13,9 @@ func _on_ping_spawned(_pos: Vector2, _origin_pos: Vector2, _group: String) -> vo
 
 	var _color := Color.WHITE
 	if _group == "Junk":
-		# _color = Color(255, 255, 0, 100)
-		_color = Color.PINK
+		_color = Color(1, 0, 1, .9)
 	elif _group == "Enemy":
-		# _color = Color(0, 221, 255, 45)
-		_color = Color.RED
-	print("_color", _group, _color)
+		_color = Color(1, 0, 0, .9)
 	_b.modulate = _color
 	add_child(_b)
 
