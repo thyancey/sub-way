@@ -33,31 +33,30 @@ var components: Array[Node2D] = []
 
 # max depth, idle deplation, descending depletion
 var decay_table = [
-	[05, .01, .1],
-	[200, .02, .2],
-	[300, .04, .4]
+	[05, .1, 1.0],
+	[200, .4, 4.0],
+	[300, .8, 8.0]
 ]
 
-func get_decay_rate(depth: float, is_idle: bool) -> float:
-	if depth < decay_table[0][0]:
+func _get_last_greater_index(arr: Array, input: float) -> int:
+	for i in range(arr.size() - 1, -1, -1):
+		if input > arr[i]:
+			return i
+	return -1
+
+func _get_decay_data(input: float) -> Array:
+	for i in range(decay_table.size() - 1, -1, -1):
+		if input >= decay_table[i][0]:
+			return decay_table[i]
+	return []
+
+func _get_decay_rate(_depth: float, is_descending: bool) -> float:
+	if _depth < decay_table[0][0]:
 		# Below first threshold, decay is 0
 		return 0.0
-
-	var idle_offset = 0 if is_idle else 1
 	
-	for i in range(decay_table.size() - 1):
-		var d1 = decay_table[i][0]
-		var r1 = decay_table[i][1 + idle_offset]
-		var d2 = decay_table[i + 1][0]
-		var r2 = decay_table[i + 1][1 + idle_offset]
-		
-		if depth >= d1 and depth < d2:
-			# Interpolate between r1 and r2
-			var t = (depth - d1) / float(d2 - d1)
-			return lerp(r1, r2, t)
-
-	# If depth is beyond last threshold, return the last decay_rate
-	return decay_table[-1][1]
+	var _decay_data = _get_decay_data(_depth)
+	return _decay_data[2] if is_descending else _decay_data[1]
 
 @onready var MainSprite: AnimatedSprite2D = %MainSprite
 
@@ -96,17 +95,18 @@ func _physics_process(delta: float) -> void:
 	Global.player_data.depth = int(position.y)
 
 	if sub_status == SubmarineStatus.DESCENDING:
-		var decay_rate = get_decay_rate(Global.player_data.depth, false)
-		Global.player_data.oxygen -= decay_rate
+		var decay_rate = _get_decay_rate(Global.player_data.depth, true)
+		Global.player_data.oxygen -= decay_rate * delta
 	elif sub_status == SubmarineStatus.ASCENDING:
-		var decay_rate = get_decay_rate(Global.player_data.depth, true)
-		Global.player_data.oxygen -= decay_rate
+		var decay_rate = _get_decay_rate(Global.player_data.depth, false)
+		Global.player_data.oxygen -= decay_rate * delta
 	else:
 		if current_state == SubmarineState.SURFACED:
 			Global.player_data.oxygen += oxygen_recharge
 		else:
-			var decay_rate = get_decay_rate(Global.player_data.depth, true)
-			Global.player_data.oxygen -= decay_rate
+			# moving left and right?
+			var decay_rate = _get_decay_rate(Global.player_data.depth, false)
+			Global.player_data.oxygen -= decay_rate * delta
 
 	match (sub_status):
 		SubmarineStatus.IDLE:

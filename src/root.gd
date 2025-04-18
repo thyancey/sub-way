@@ -6,7 +6,7 @@ extends Node2D
 var blur_material: ShaderMaterial
 
 var blur_range := Vector2(0.0, Global.player_data.max_oxygen)
-var blur_scale := Vector2(1.0, 0.25)
+var blur_scale := Vector2(1.0, 0.35)
 
 func _ready() -> void:
 	blur_material = %BlurEffect.material
