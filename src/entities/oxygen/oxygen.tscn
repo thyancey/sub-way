@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8usgm"]
 size = Vector2(58, 18)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="Oxygen" type="StaticBody2D"]
 collision_layer = 8
 collision_mask = 0
 

@@ -12,7 +12,7 @@ signal notified(_type: String, _payload: Variant)
 signal ping_spawned(_pos: Vector2,_origin_pos: Vector2, _group: String)
 
 # min/max depth for applying the darkness effect
-var darkness_depth := Vector2(10.0, 100.0)
+var darkness_depth := Vector2(20.0, 200.0)
 var player_data: PlayerData = null
 
 func _init() -> void:
