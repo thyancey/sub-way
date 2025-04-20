@@ -11,7 +11,7 @@ muzzle_distance = 5.0
 charge_time = 1.0
 projectile_scene = ExtResource("2_lcagu")
 charge_curve = ExtResource("3_17or4")
-launch_velocity = 200.0
+launch_velocity = 150.0
 angle_degrees = 125.0
 display_name = "Torpedo"
 hide_on_disable = true
@@ -22,10 +22,10 @@ unique_name_in_owner = true
 [node name="bg" type="AnimatedSprite2D" parent="Graphic"]
 sprite_frames = ExtResource("5_iojp4")
 animation = &"back"
-offset = Vector2(-2, -9)
+offset = Vector2(-2, 18)
 
 [node name="fg" type="AnimatedSprite2D" parent="Graphic"]
 z_index = 1
 sprite_frames = ExtResource("5_iojp4")
 animation = &"front"
-offset = Vector2(-2, -9)
+offset = Vector2(-2, 18)

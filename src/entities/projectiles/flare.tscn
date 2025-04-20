@@ -1,7 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck8rcf8hiqc0"]
+[gd_scene load_steps=12 format=3 uid="uid://ck8rcf8hiqc0"]
 
 [ext_resource type="SpriteFrames" uid="uid://d1wqrgo6qw3ij" path="res://src/entities/projectiles/flare.aseprite" id="1_51mv6"]
 [ext_resource type="Script" uid="uid://7dnrw517oacx" path="res://src/entities/projectiles/charged.gd" id="1_238wo"]
+
+[sub_resource type="Gradient" id="Gradient_1f3g8"]
+offsets = PackedFloat32Array(0, 0.181395)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qtf68"]
+gradient = SubResource("Gradient_1f3g8")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_51mv6"]
 offsets = PackedFloat32Array(0.176744, 0.248837, 0.297674)
@@ -17,6 +28,33 @@ size = Vector2(8, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_238wo"]
 radius = 4.0
+
+[sub_resource type="Animation" id="Animation_q2tik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:texture_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
 
 [sub_resource type="Animation" id="Animation_238wo"]
 resource_name = "strobe"
@@ -48,33 +86,6 @@ tracks/1/keys = {
 "values": [6.0, 5.0, 6.0]
 }
 
-[sub_resource type="Animation" id="Animation_q2tik"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [10.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:texture_scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xx1v0"]
 _data = {
 &"RESET": SubResource("Animation_q2tik"),
@@ -92,14 +103,31 @@ angular_damp = 4.0
 script = ExtResource("1_238wo")
 age_when_charging = true
 
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0, 0, 0.215686)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(64, 64)
+texture = SubResource("GradientTexture2D_qtf68")
+
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.116667, 1, 0, 1)
+modulate = Color(1, 0, 0, 1)
 sprite_frames = ExtResource("1_51mv6")
 animation = &"charge"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.19, 1, 0.2575, 1)
+color = Color(1, 0.19, 0.19, 1)
 energy = 10.0
 texture = SubResource("GradientTexture2D_238wo")
 texture_scale = 4.0

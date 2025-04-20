@@ -5,8 +5,9 @@ extends Ship_Component
 @export var anchor_scene: PackedScene
 
 @onready var attach_proxy: RigidBody2D = $AttachProxy
-@onready var anchor: RigidBody2D = $Anchor
+# @onready var anchor: RigidBody2D = $Anchor
 @onready var joint: PinJoint2D = $Joint
+var anchor: RigidBody2D = null
 
 var INITIAL_ROPE_LENGTH := 5.0
 var target_rope_length := INITIAL_ROPE_LENGTH
@@ -15,49 +16,43 @@ var min_rope_length: float = 1.0
 var col_mask: Array
 
 var is_grabbing := false
+var is_anchor_extended := false
+
 
 
 func _ready():
 	super._ready()
-	# col_mask = _get_collision_mask_array(self)
+
+func _create_anchor() -> void:
+	anchor = anchor_scene.instantiate()
 	anchor.connect("object_grabbed", _on_object_grabbed)
 	anchor.connect("object_released", _on_object_released)
 	anchor.mass = anchor_mass
 	anchor.gravity_scale = 0.2
 	anchor.linear_damp = 4.0
 	anchor.angular_damp = 5.0
-
-	_create_anchor()
-
-# func _get_collision_mask_array(node: Node2D) -> Array:
-# 	var mask_array: Array = []
-# 	for i in range(32):
-# 		mask_array.append(node.get_collision_mask_value(i))
-# 	return mask_array
-
-# func _set_collision_mask_from_array(node: Node2D, mask_array: Array) -> void:
-# 	for i in range(min(mask_array.size(), 32)):
-# 		node.set_collision_mask_value(i, mask_array[i])
-
-func _create_anchor() -> void:
+	add_child(anchor)
+	joint.node_b = joint.get_path_to(anchor)
 	target_rope_length = INITIAL_ROPE_LENGTH
-	# _set_collision_mask_from_array(self, col_mask)
+
 	update_joint_position()
+	is_anchor_extended = true
 
 func _destroy_anchor() -> void:
-	# anchor.collison_mask = 0
-	pass
+	if is_anchor_extended:
+		joint.node_b = NodePath("")
+		remove_child(anchor)
+		anchor.queue_free()
+		is_anchor_extended = false
 
-func _physics_process(delta):
-	if is_active:
-		handle_input(delta)
+func _physics_process(_delta: float):
+	if is_anchor_extended:
+		_handle_input(_delta)
 		move_attach_proxy()
 		apply_tension()
 		update_joint_position()
 		enforce_length()
 		Global.player_data.rope_length = calc_real_length()
-		# if Global.player_data.rope_length > target_rope_length + 5:
-		# 	target_rope_length = Global.player_data.rope_length
 
 func set_rope_length(value: float) -> void:
 	var clamped = clamp(value, min_rope_length, Global.player_data.max_rope_length)
@@ -65,17 +60,16 @@ func set_rope_length(value: float) -> void:
 
 func calc_real_length():
 	var dist = attach_proxy.global_position.distance_to(anchor.global_position)
-	# print(target_rope_length, ' | ', dist)
 	return dist
 
-func handle_input(delta):
+func _handle_input(_delta: float):
 	if is_active:
 		if Input.is_action_pressed("reel_out"):
-			set_rope_length(target_rope_length + reel_speed * delta)
+			set_rope_length(target_rope_length + reel_speed * _delta)
 		elif Input.is_action_pressed("reel_in"):
-			set_rope_length(target_rope_length - reel_speed * delta)
+			set_rope_length(target_rope_length - reel_speed * _delta)
 		elif Input.is_action_pressed("reel_in"):
-			set_rope_length(target_rope_length - reel_speed * delta)
+			set_rope_length(target_rope_length - reel_speed * _delta)
 
 		if Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
 			anchor.toggle_grabbing()
@@ -123,9 +117,10 @@ func _process(_delta):
 	queue_redraw()
 
 func _draw():
-	var a = attach_proxy.global_position
-	var b = anchor.global_position
-	draw_line(to_local(a), to_local(b), Color.WHITE, 0.5)
+	if is_anchor_extended:
+		var a = attach_proxy.global_position
+		var b = anchor.global_position
+		draw_line(to_local(a), to_local(b), Color.WHITE, 0.5)
 
 func _on_object_grabbed(_object: Node2D) -> void:
 	Global.notify("GRAB", _object)

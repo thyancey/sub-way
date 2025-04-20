@@ -12,4 +12,6 @@ unique_name_in_owner = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
 sprite_frames = ExtResource("1_u87k0")
-offset = Vector2(0, -6)
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(-5, 19)

@@ -17,10 +17,14 @@ unique_name_in_owner = true
 position = Vector2(0, -1)
 
 [node name="Back" type="AnimatedSprite2D" parent="Graphic"]
+position = Vector2(0, 1)
 sprite_frames = ExtResource("4_oe6vi")
 animation = &"back"
+offset = Vector2(0, 6)
 
 [node name="Front" type="AnimatedSprite2D" parent="Graphic"]
 z_index = 1
+position = Vector2(0, 1)
 sprite_frames = ExtResource("4_oe6vi")
 animation = &"front"
+offset = Vector2(0, 6)

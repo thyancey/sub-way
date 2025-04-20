@@ -26,7 +26,7 @@ extends CharacterBody2D
 @onready var light: PointLight2D = %Light
 
 @onready var oxygen_recharge := 0.5
-var lamp_scale := Vector2(0.0, 3.8)
+var lamp_scale := Vector2(0.0, 5.0)
 
 var active_component_idx := 0
 var components: Array[Node2D] = []

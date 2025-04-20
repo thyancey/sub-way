@@ -197,7 +197,7 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
 unique_name_in_owner = true
-position = Vector2(106, 26)
+position = Vector2(100, 149)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
