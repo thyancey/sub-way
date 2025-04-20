@@ -2,20 +2,24 @@ extends Ship_Component
 
 @export var reel_strength := 800 # heavier anchor needs bigger number to keep it up
 @export var anchor_mass := 20.0
+@export var anchor_scene: PackedScene
 
 @onready var attach_proxy: RigidBody2D = $AttachProxy
 @onready var anchor: RigidBody2D = $Anchor
 @onready var joint: PinJoint2D = $Joint
 
-var target_rope_length: float = 5.0
+var INITIAL_ROPE_LENGTH := 5.0
+var target_rope_length := INITIAL_ROPE_LENGTH
 var reel_speed: float = 60.0
 var min_rope_length: float = 1.0
+var col_mask: Array
 
 var is_grabbing := false
 
 
 func _ready():
 	super._ready()
+	# col_mask = _get_collision_mask_array(self)
 	anchor.connect("object_grabbed", _on_object_grabbed)
 	anchor.connect("object_released", _on_object_released)
 	anchor.mass = anchor_mass
@@ -23,17 +27,37 @@ func _ready():
 	anchor.linear_damp = 4.0
 	anchor.angular_damp = 5.0
 
+	_create_anchor()
+
+# func _get_collision_mask_array(node: Node2D) -> Array:
+# 	var mask_array: Array = []
+# 	for i in range(32):
+# 		mask_array.append(node.get_collision_mask_value(i))
+# 	return mask_array
+
+# func _set_collision_mask_from_array(node: Node2D, mask_array: Array) -> void:
+# 	for i in range(min(mask_array.size(), 32)):
+# 		node.set_collision_mask_value(i, mask_array[i])
+
+func _create_anchor() -> void:
+	target_rope_length = INITIAL_ROPE_LENGTH
+	# _set_collision_mask_from_array(self, col_mask)
 	update_joint_position()
 
+func _destroy_anchor() -> void:
+	# anchor.collison_mask = 0
+	pass
+
 func _physics_process(delta):
-	handle_input(delta)
-	move_attach_proxy()
-	apply_tension()
-	update_joint_position()
-	enforce_length()
-	Global.player_data.rope_length = calc_real_length()
-	# if Global.player_data.rope_length > target_rope_length + 5:
-	# 	target_rope_length = Global.player_data.rope_length
+	if is_active:
+		handle_input(delta)
+		move_attach_proxy()
+		apply_tension()
+		update_joint_position()
+		enforce_length()
+		Global.player_data.rope_length = calc_real_length()
+		# if Global.player_data.rope_length > target_rope_length + 5:
+		# 	target_rope_length = Global.player_data.rope_length
 
 func set_rope_length(value: float) -> void:
 	var clamped = clamp(value, min_rope_length, Global.player_data.max_rope_length)
@@ -108,3 +132,11 @@ func _on_object_grabbed(_object: Node2D) -> void:
 
 func _on_object_released() -> void:
 	Global.notify("GRAB", null)
+
+func _on_active_changed(_val: bool):
+	super._on_active_changed(_val)
+
+	if _val:
+		_create_anchor()
+	else:
+		_destroy_anchor()

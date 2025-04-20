@@ -2,7 +2,6 @@ extends Ship_Component
 
 @export var mouse_aim := false
 @onready var spotlight: PointLight2D = %Spotlight
-@onready var graphic: Node2D = %Graphic
 @onready var main_sprite: AnimatedSprite2D = %MainSprite
 @onready var light_sprite: AnimatedSprite2D = %LightSprite
 

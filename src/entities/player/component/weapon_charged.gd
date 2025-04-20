@@ -10,13 +10,16 @@ extends Ship_Component
 @export var charge_curve: Curve
 @export var mouse_aim := false
 @export var launch_velocity := 300.0
-@onready var graphic := %Graphic
+@export_range(0, 360, 1) var angle_degrees: float = 0.0
 
 var charging: bool = false
 var charge_timer: float = 0.0
 var held_projectile: RigidBody2D = null
-var initial_direction := Vector2.ZERO  # Store the initial rotation when charging starts
 var muzzle_offset := Vector2.ZERO
+var initial_direction := Vector2.ZERO
+
+func _ready() -> void:
+	initial_direction = Vector2.RIGHT.rotated(-deg_to_rad(angle_degrees))
 
 func _process(delta: float) -> void:
 	if is_active:
@@ -46,8 +49,9 @@ func _update_projectile_position() -> void:
 	if mouse_aim:
 		initial_direction = (get_global_mouse_position() - global_position).normalized()
 		graphic.rotation = initial_direction.angle()
-	else:
-		initial_direction = Vector2.RIGHT
+	# else:
+	# 	initial_direction = Vector2.RIGHT
+
 	muzzle_offset = Vector2(
 		initial_direction.x * muzzle_distance * muzzle_ellipse_radius_x,  # Apply ellipse X factor
 		initial_direction.y * muzzle_distance * muzzle_ellipse_radius_y   # Apply ellipse Y factor

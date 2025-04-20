@@ -1,17 +1,17 @@
 [gd_scene load_steps=13 format=3 uid="uid://8dseg4ubdv3y"]
 
-[ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
-[ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
+[ext_resource type="SpriteFrames" uid="uid://blg3p2ch34ccm" path="res://src/entities/player/player_new.aseprite" id="3_eb65w"]
+[ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://b6qt6atp6da8x" path="res://src/entities/player/component/dredge/dredge.tscn" id="6_0mfjg"]
 [ext_resource type="PackedScene" uid="uid://c7q30wndrg1n4" path="res://src/entities/player/component/sonar/sonar.tscn" id="6_oih67"]
 [ext_resource type="PackedScene" uid="uid://mklqj1qig8bb" path="res://src/entities/player/component/flare/flare_launcher.tscn" id="7_oih67"]
 [ext_resource type="PackedScene" uid="uid://cueiuajki26m1" path="res://src/entities/player/component/spotlight/spotlight.tscn" id="9_4f0qm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
-radius = 4.0
-height = 50.0
+radius = 12.0
+height = 38.0
 
 [sub_resource type="Gradient" id="Gradient_muk8e"]
 offsets = PackedFloat32Array(0, 0.248837)
@@ -23,8 +23,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muk8e"]
-radius = 6.0
-height = 54.0
+radius = 15.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -41,11 +41,13 @@ position = Vector2(-8, 5)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-sprite_frames = ExtResource("1_4m8ck")
+position = Vector2(0, 12)
+sprite_frames = ExtResource("3_eb65w")
 animation = &"descending"
 offset = Vector2(-1, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vt6n5")
 
@@ -81,23 +83,24 @@ collision_layer = 2
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2(4, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_muk8e")
 
-[node name="C_Sonar" parent="." instance=ExtResource("6_oih67")]
-position = Vector2(-5, -6)
-
 [node name="C_Dredge" parent="." instance=ExtResource("6_0mfjg")]
-position = Vector2(-14, 5)
+position = Vector2(2, 9)
 
 [node name="C_TorpedoBay" parent="." instance=ExtResource("4_ketdh")]
-position = Vector2(6, 3)
+position = Vector2(-6, 10)
 display_name = "Torpedo L"
 
 [node name="C_FlareLauncher" parent="." instance=ExtResource("7_oih67")]
-position = Vector2(-27, -2)
-mouse_aim = true
+position = Vector2(-6, -9)
 display_name = "Flare Launcher"
 
 [node name="C_Spotlight" parent="." instance=ExtResource("9_4f0qm")]
-position = Vector2(17, -9)
+position = Vector2(26, -22)
+
+[node name="C_Sonar" parent="." instance=ExtResource("6_oih67")]
+z_index = 1
+position = Vector2(-5, 4)

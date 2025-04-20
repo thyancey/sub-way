@@ -1,16 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cueiuajki26m1"]
+[gd_scene load_steps=6 format=3 uid="uid://cueiuajki26m1"]
 
 [ext_resource type="Script" uid="uid://gplw5h3ycex4" path="res://src/entities/player/component/spotlight/spotlight.gd" id="1_jv8qw"]
 [ext_resource type="SpriteFrames" uid="uid://bdpp71q8kjpji" path="res://src/entities/player/component/spotlight/spotlight_fixture.aseprite" id="3_ahvle"]
 [ext_resource type="SpriteFrames" uid="uid://dbv6ctxr6ssh8" path="res://src/entities/player/component/spotlight/spotlight.aseprite" id="4_ahvle"]
 [ext_resource type="Texture2D" uid="uid://4b4dmkmxaae7" path="res://src/entities/player/component/spotlight/spotlight_solid.png" id="5_ahvle"]
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="6_3fvsi"]
-[ext_resource type="Texture2D" uid="uid://cimjvnlf88ybo" path="res://src/entities/player/component/spotlight/spotlight_mount.png" id="6_bfjh4"]
 
 [node name="C_Spotlight" type="Node2D" groups=["Component"]]
 script = ExtResource("1_jv8qw")
 mouse_aim = true
 display_name = "Spotlight"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7, 4)
+sprite_frames = ExtResource("3_ahvle")
+animation = &"mount"
 
 [node name="comp_ref" type="Sprite2D" parent="."]
 visible = false
@@ -25,24 +29,19 @@ offset = Vector2(100, 0)
 
 [node name="Graphic" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -1)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="Graphic"]
 unique_name_in_owner = true
 sprite_frames = ExtResource("3_ahvle")
-animation = &"comp"
+animation = &"on"
+offset = Vector2(4, 0)
 
 [node name="LightSprite" type="AnimatedSprite2D" parent="Graphic"]
 unique_name_in_owner = true
 self_modulate = Color(1, 0.977, 0.54, 0.396078)
-position = Vector2(1, 1)
 sprite_frames = ExtResource("4_ahvle")
 animation = &"idle"
 autoplay = "idle"
 frame = 1
 frame_progress = 0.471522
 offset = Vector2(100, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-texture = ExtResource("6_bfjh4")

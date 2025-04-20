@@ -7,6 +7,9 @@
 script = ExtResource("1_xcwkm")
 display_name = "Sonar"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
 sprite_frames = ExtResource("1_u87k0")
 offset = Vector2(0, -6)
