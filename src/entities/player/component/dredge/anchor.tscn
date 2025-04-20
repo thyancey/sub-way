@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://biqd5nwxh7vi2"]
+[gd_scene load_steps=7 format=3 uid="uid://biqd5nwxh7vi2"]
 
 [ext_resource type="Script" uid="uid://dnk2lmu36prtd" path="res://src/entities/player/component/dredge/anchor.gd" id="1_dptfr"]
 [ext_resource type="SpriteFrames" uid="uid://bkqwjsmk1elq1" path="res://src/entities/player/component/dredge/anchor.aseprite" id="2_s3t3w"]
@@ -6,6 +6,17 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dptfr"]
 radius = 2.0
 height = 8.0
+
+[sub_resource type="Gradient" id="Gradient_dptfr"]
+offsets = PackedFloat32Array(0, 0.134884)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3t3w"]
+gradient = SubResource("Gradient_dptfr")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dptfr"]
 radius = 2.0
@@ -16,7 +27,7 @@ collision_mask = 73
 mass = 20.0
 gravity_scale = 0.2
 center_of_mass_mode = 1
-center_of_mass = Vector2(0, 12)
+center_of_mass = Vector2(0, 10)
 continuous_cd = 2
 linear_damp_mode = 1
 linear_damp = 1.0
@@ -27,12 +38,24 @@ script = ExtResource("1_dptfr")
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = ExtResource("2_s3t3w")
-animation = &"idle"
+animation = &"grabbing"
 offset = Vector2(0.00871819, 4.93383)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision_Closed" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_dptfr")
+
+[node name="Collision_Open" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+polygon = PackedVector2Array(2, 3, 5, 3, 7, 5, 0, 4, -7, 5, -5, 3, -2, 3, 0, -2)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 6)
+color = Color(0, 0.966667, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_s3t3w")
+texture_scale = 2.0
 
 [node name="GrabArea" type="Area2D" parent="."]
 unique_name_in_owner = true

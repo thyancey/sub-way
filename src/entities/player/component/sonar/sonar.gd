@@ -1,7 +1,7 @@
 extends Ship_Component
 
 func _input(_delta) -> void:
-	if is_active && Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
+	if is_active && Input.is_action_just_pressed("COMPONENT_ACTIVATE"):
 		perform_sonar_ping(Global.player_data.ping_range)
 
 
@@ -34,8 +34,8 @@ func perform_sonar_ping(max_radius: float):
 				query.exclude = [self]
 
 				# choose walls, floor, etc to not pass through
-				# query.collision_mask = make_bitwise([4, 5])
-				query.collision_mask = 4
+				query.collision_mask = make_bitwise([4])
+				# query.collision_mask = 4
 				query.collide_with_areas = false
 				query.collide_with_bodies = true
 

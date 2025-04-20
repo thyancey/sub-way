@@ -252,7 +252,7 @@ func trigger_splash() -> void:
 	print('splash')
 
 func _input(_delta) -> void:
-	if Input.is_action_just_pressed("SWAP_COMPONENT"):
+	if Input.is_action_just_pressed("COMPONENT_SWAP"):
 		swap_component()
 
 func swap_component(_force_idx := -1):

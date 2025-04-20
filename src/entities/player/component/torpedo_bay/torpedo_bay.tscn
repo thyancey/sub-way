@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dw52b4cbfjtwh"]
 
 [ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_2iwvw"]
-[ext_resource type="PackedScene" uid="uid://cf3byig2yww5w" path="res://src/entities/projectiles/torpedo.tscn" id="2_o5rdg"]
+[ext_resource type="PackedScene" uid="uid://biwn4lguwluma" path="res://src/entities/projectiles/torpedo_glow.tscn" id="2_oe6vi"]
 [ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_lpew4"]
 [ext_resource type="SpriteFrames" uid="uid://02rxep3fikpo" path="res://src/entities/player/component/torpedo_bay/torpedo_bay.aseprite" id="4_oe6vi"]
 
 [node name="C_TorpedoBay" type="Node2D" groups=["Component"]]
 script = ExtResource("1_2iwvw")
 muzzle_distance = 5.0
-projectile_scene = ExtResource("2_o5rdg")
+projectile_scene = ExtResource("2_oe6vi")
 charge_curve = ExtResource("3_lpew4")
 display_name = "Torpedo"
 

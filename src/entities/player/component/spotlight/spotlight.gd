@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 			spotlight.rotation = aim_direction.angle()
 
 func _input(_delta) -> void:
-	if is_active && Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
+	if is_active && Input.is_action_just_pressed("COMPONENT_ACTIVATE"):
 		_light_on = !_light_on
 		_render_light(_light_on)
 

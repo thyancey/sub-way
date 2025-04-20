@@ -7,8 +7,13 @@ extends CanvasLayer
 @onready var junk_widget: Control = %JunkWidget
 @onready var money_widget: Control = %MoneyWidget
 @onready var notification_widget: Control = %NotificationWidget
+@onready var radar: Control = %Radar
+
+@export var hud_transparency := 0.5
 
 func _ready() -> void:
+	_set_hud_transparency(hud_transparency)
+
 	junk_widget.hide()
 	Global.connect("notified", _on_global_notified)
 
@@ -30,6 +35,16 @@ func _ready() -> void:
 	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.player_data.max_oxygen), Global.player_data.oxygen, true)
 	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.player_data.depth)
 	rope_length_gauge.setData("rope", Vector2(0.0, Global.player_data.max_rope_length), Global.player_data.rope_length)
+
+func _set_hud_transparency(_value: float) -> void:
+	oxygen_gauge.modulate.a = _value
+	rope_length_gauge.modulate.a = _value
+	depth_gauge.modulate.a = _value
+	component_widget.modulate.a = _value
+	junk_widget.modulate.a = _value
+	money_widget.modulate.a = _value
+	notification_widget.modulate.a = _value
+	radar.modulate.a = _value
 
 func _on_updated_money(value: int) -> void:
 	money_widget.label_value = str("$", value)

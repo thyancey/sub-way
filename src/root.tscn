@@ -197,13 +197,13 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("2_pribe")]
 unique_name_in_owner = true
-position = Vector2(100, 149)
+position = Vector2(363, 61)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
 
 [node name="Junk_Amethyst7" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
-position = Vector2(20, 85)
+position = Vector2(-336, 195)
 
 [node name="Junk_Ruby7" parent="Stuff/Group_Junk" instance=ExtResource("10_xy117")]
 position = Vector2(15, 67)
@@ -213,6 +213,20 @@ position = Vector2(372, 96)
 
 [node name="Junk_Amethyst8" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
 position = Vector2(272, 182)
+
+[node name="Junk_Amethyst9" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(405, 74)
+
+[node name="Junk_Amethyst10" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(430, 71)
+scale = Vector2(2, 2)
+
+[node name="Junk_Amethyst11" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(445, 90)
+
+[node name="Junk_Amethyst12" parent="Stuff/Group_Junk" instance=ExtResource("10_ik3te")]
+position = Vector2(417, 108)
+scale = Vector2(2, 2)
 
 [node name="Junk_Boot4" parent="Stuff/Group_Junk" instance=ExtResource("12_txdvm")]
 position = Vector2(351, 84)
@@ -269,7 +283,7 @@ tile_set = ExtResource("19_xq87x")
 [node name="TM_Seaweed_Green" type="TileMapLayer" parent="Level_FG"]
 material = SubResource("ShaderMaterial_sid45")
 position = Vector2(-4, -4)
-tile_map_data = PackedByteArray("AAD5/wsAAAAAAAEAAAD6/wsAAAAAAAEAAAD7/wsAAAAAAAMAAAD8/wsAAAAAAAIAAAD9/wsAAAAAAAIAAAD+/wsAAAAAAAAAAAD//wsAAAAAAAEAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAMAAAACAAsAAAAAAAEAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAEAAAAFAAsAAAAAAAMAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAATAAsAAAAAAAMAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAEAAAAXAAsAAAAAAAMAAAAYAAsAAAAAAAIAAAAZAAsAAAAAAAMAAAAaAAsAAAAAAAEAAAAbAAsAAAAAAAIAAAAcAAsAAAAAAAMAAAAdAAsAAAAAAAMAAAAeAAsAAAAAAAEAAAAfAAsAAAAAAAEAAAAgAAsAAAAAAAEAAAAhAAsAAAAAAAIAAAAjAA8AAAAAAAIAAAAiAA0AAAAAAAAAAAArAAsAAAAAAAIAAAAPAA8AAAAAAAMAAAAIABYAAAAAAAMAAADy/wcAAAAAAAEAAADz/wcAAAAAAAAAAAD0/wUAAAAAAAMAAADx/wkAAAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAD5/wsAAAAAAAEAAAD6/wsAAAAAAAEAAAD7/wsAAAAAAAMAAAD8/wsAAAAAAAIAAAD9/wsAAAAAAAIAAAD+/wsAAAAAAAAAAAD//wsAAAAAAAEAAAAAAAsAAAAAAAAAAAABAAsAAAAAAAMAAAACAAsAAAAAAAEAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAEAAAAFAAsAAAAAAAMAAAAGAAsAAAAAAAIAAAAHAAsAAAAAAAIAAAATAAsAAAAAAAMAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAEAAAAXAAsAAAAAAAMAAAAYAAsAAAAAAAIAAAAZAAsAAAAAAAMAAAAaAAsAAAAAAAEAAAAbAAsAAAAAAAIAAAAcAAsAAAAAAAMAAAAdAAsAAAAAAAMAAAAeAAsAAAAAAAEAAAAfAAsAAAAAAAEAAAAgAAsAAAAAAAEAAAAhAAsAAAAAAAIAAAAjAA8AAAAAAAIAAAAiAA0AAAAAAAAAAAArAAsAAAAAAAIAAAAPAA8AAAAAAAMAAAAIABYAAAAAAAMAAADy/wcAAAAAAAEAAAD0/wUAAAAAAAMAAADx/wkAAAAAAAMAAAA=")
 tile_set = ExtResource("19_xq87x")
 
 [node name="UI" parent="." instance=ExtResource("5_oe21g")]

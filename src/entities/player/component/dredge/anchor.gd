@@ -4,6 +4,9 @@ signal object_grabbed(object: Node2D)
 signal object_released()
 signal updated_is_grabbing(is_grabbing: bool)
 
+@onready var collision_open: CollisionPolygon2D = %Collision_Open
+@onready var collision_closed: CollisionShape2D = %Collision_Closed
+
 @export var is_grabbing := false:
 	get:
 		return is_grabbing
@@ -15,15 +18,22 @@ signal updated_is_grabbing(is_grabbing: bool)
 var current_joint: PinJoint2D = null
 var grabbed_object: Node2D = null
 
+func _ready() -> void:
+	toggle_grabbing()
+
 func toggle_grabbing() -> void:
 	if (!is_grabbing):
 		is_grabbing = true
+		collision_closed.disabled = true
+		collision_open.disabled = false
 		%MainSprite.play("grabbing")
 		var _closest_junk = _get_closest_junk()
 		if _closest_junk != null:
 			grab_object(_closest_junk)
 	else:
 		is_grabbing = false
+		collision_closed.disabled = false
+		collision_open.disabled = true
 		%MainSprite.play("idle")
 		if (grabbed_object != null):
 			release_object(grabbed_object)

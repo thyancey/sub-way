@@ -18,14 +18,17 @@ hide_on_disable = true
 
 [node name="Graphic" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(6, 1)
 
 [node name="bg" type="AnimatedSprite2D" parent="Graphic"]
+position = Vector2(-6, -1)
 sprite_frames = ExtResource("5_iojp4")
 animation = &"back"
-offset = Vector2(-2, 18)
+offset = Vector2(4, 19)
 
 [node name="fg" type="AnimatedSprite2D" parent="Graphic"]
 z_index = 1
+position = Vector2(-6, -1)
 sprite_frames = ExtResource("5_iojp4")
 animation = &"front"
-offset = Vector2(-2, 18)
+offset = Vector2(4, 19)

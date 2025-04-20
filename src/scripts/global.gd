@@ -63,16 +63,17 @@ func spawn_particle(_type: String, _pos: Vector2, _overrides: Dictionary = {}):
 	get_tree().current_scene.add_child(_particle)
 
 func _spawn_ping_circle(_pos: Vector2, _group: String):
-	var circle = Scene_PingCircle.instantiate()
-	circle.global_position = _pos
+	if _group in [ "Junk" ]:
+		var circle = Scene_PingCircle.instantiate()
+		circle.global_position = _pos
 
-	var _color := Color.WHITE
-	if _group == "Junk":
-		_color = Color(1, 0, 1, 1)
-	elif _group == "Enemy":
-		_color = Color(1, 0, 0, 1)
-	circle.color = _color
-	get_tree().current_scene.add_child(circle)
+		var _color := Color.WHITE
+		# if _group == "Junk":
+		# 	_color = Color(1, 0, 1, 1)
+		# elif _group == "Enemy":
+		# 	_color = Color(1, 0, 0, 1)
+		circle.color = _color
+		get_tree().current_scene.add_child(circle)
 
 func ping(_pos: Vector2, _origin_pos: Vector2, _group: String) -> void:
 	ping_spawned.emit(_pos, _origin_pos, _group)

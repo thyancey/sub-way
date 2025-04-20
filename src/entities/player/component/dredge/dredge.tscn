@@ -24,9 +24,6 @@ color = Color(1, 0, 0, 1)
 
 [node name="Joint" type="PinJoint2D" parent="."]
 node_a = NodePath("../AttachProxy")
-node_b = NodePath("../Anchor")
-
-[node name="Anchor" parent="." instance=ExtResource("3_5yvdd")]
 
 [node name="Graphic" type="Node2D" parent="."]
 unique_name_in_owner = true

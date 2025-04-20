@@ -14,10 +14,7 @@ var target_rope_length := INITIAL_ROPE_LENGTH
 var reel_speed: float = 60.0
 var min_rope_length: float = 1.0
 var col_mask: Array
-
-var is_grabbing := false
 var is_anchor_extended := false
-
 
 
 func _ready():
@@ -64,15 +61,24 @@ func calc_real_length():
 
 func _handle_input(_delta: float):
 	if is_active:
-		if Input.is_action_pressed("reel_out"):
-			set_rope_length(target_rope_length + reel_speed * _delta)
-		elif Input.is_action_pressed("reel_in"):
-			set_rope_length(target_rope_length - reel_speed * _delta)
-		elif Input.is_action_pressed("reel_in"):
-			set_rope_length(target_rope_length - reel_speed * _delta)
+		if Input.is_action_pressed("COMPONENT_ACTIVATE"):
+			_reel_out(_delta)
+		else:
+			_reel_in(_delta)
 
-		if Input.is_action_just_pressed("ACTIVATE_COMPONENT"):
+		# if Input.is_action_pressed("reel_out"):
+		# 	_reel_out(_delta)
+		# elif Input.is_action_pressed("reel_in"):
+		# 	_reel_in(_delta)
+
+		if Input.is_action_just_pressed("COMPONENT_MODE"):
 			anchor.toggle_grabbing()
+
+func _reel_in(_delta: float) -> void:
+	set_rope_length(target_rope_length - reel_speed * _delta)
+
+func _reel_out(_delta: float) -> void:
+	set_rope_length(target_rope_length + reel_speed * _delta)
 
 
 # Attach proxy's position should remain fixed relative to the submarine.

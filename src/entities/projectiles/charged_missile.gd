@@ -15,6 +15,9 @@ extends RigidBody2D
 var life_timer: float = 0.0
 var current_speed: float = 0.0
 
+var previous_velocity := Vector2.ZERO
+var velocity_drop_threshold := 20.0 #when a drop in velocity > this is detected, detonate
+
 func _ready() -> void:
 	gravity_scale = 0.0
 	main_sprite.play("charge")
@@ -28,10 +31,28 @@ func _physics_process(delta: float) -> void:
 		current_speed = min(current_speed + acceleration * delta, max_speed)
 		var target_velocity = direction * current_speed
 		linear_velocity = linear_velocity.lerp(target_velocity, 0.1)
+
+		_check_for_impact()
 	else:
 		linear_velocity = Vector2.ZERO
 
-func _on_area_2d_body_entered(_body:Node2D) -> void:
+# since collisions with tilemaps can't be easily detected (but the physics collision happens),
+# if a sudden drop in velocity is sensed, you've probably hit something, so detonate!
+func _check_for_impact() -> void:
+	var current_velocity = linear_velocity
+	var delta_velocity = previous_velocity.length() - current_velocity.length()
+
+	if delta_velocity > velocity_drop_threshold:
+		# print("Likely impact! Δv =", delta_velocity)
+		_detonate()
+
+	previous_velocity = current_velocity
+
+func _detonate() -> void:
+	print("_detonate")
+	queue_free()
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Enemy"):
 		if damage > 0.0:
 			_body.hit()
@@ -45,4 +66,3 @@ func release_charge(_direction: Vector2, _speed_mod: float, _launch_velocity: fl
 	direction = _direction
 	acceleration = lerp(acceleration_range.x, acceleration_range.y, _speed_mod)
 	max_speed = lerp(speed_range.x, speed_range.y, _speed_mod)
-	
