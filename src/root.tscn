@@ -43,11 +43,10 @@ script = ExtResource("1_ri26b")
 unique_name_in_owner = true
 
 [node name="bg" type="ColorRect" parent="."]
-visible = false
-offset_left = -450.0
-offset_top = -234.0
+offset_left = -1301.0
+offset_top = 3.0
 offset_right = 862.0
-offset_bottom = 575.0
+offset_bottom = 1027.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="bg"]
@@ -63,14 +62,14 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BlurLayer" type="CanvasLayer" parent="."]
 
-[node name="test" type="Sprite2D" parent="CanvasLayer"]
+[node name="test" type="Sprite2D" parent="BlurLayer"]
 visible = false
 material = ExtResource("3_yxa4x")
 centered = false
 
-[node name="BlurEffect" type="ColorRect" parent="CanvasLayer"]
+[node name="BlurEffect" type="ColorRect" parent="BlurLayer"]
 unique_name_in_owner = true
 material = ExtResource("3_yxa4x")
 offset_right = 320.0

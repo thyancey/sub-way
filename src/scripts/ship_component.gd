@@ -15,7 +15,7 @@ func _on_active_changed(_val: bool):
 	if _val:
 		modulate.a = 1.0
 	else:
-		modulate.a = 0.15
+		modulate.a = 0.3
 
 func _ready():
 	_on_active_changed(is_active)

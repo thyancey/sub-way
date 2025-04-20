@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwxf3q0yhfldu"]
 
-[ext_resource type="Script" uid="uid://dqmivxail6sbb" path="res://src/entities/projectiles/charged.gd" id="1_2vkdi"]
+[ext_resource type="Script" uid="uid://dqmivxail6sbb" path="res://src/entities/projectiles/charged_missile.gd" id="1_2vkdi"]
 [ext_resource type="SpriteFrames" uid="uid://crxb44anb6sdn" path="res://src/entities/projectiles/torpedo_snub.aseprite" id="2_2vkdi"]
 [ext_resource type="Texture2D" uid="uid://d3i8fxyrk71h0" path="res://src/entities/bubble/bubble.png" id="3_1u78r"]
 

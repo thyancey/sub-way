@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=13 format=3 uid="uid://8dseg4ubdv3y"]
 
 [ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
@@ -6,19 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://b6qt6atp6da8x" path="res://src/entities/player/component/dredge/dredge.tscn" id="6_0mfjg"]
 [ext_resource type="PackedScene" uid="uid://c7q30wndrg1n4" path="res://src/entities/player/component/sonar/sonar.tscn" id="6_oih67"]
+[ext_resource type="PackedScene" uid="uid://mklqj1qig8bb" path="res://src/entities/player/component/flare/flare_launcher.tscn" id="7_oih67"]
+[ext_resource type="PackedScene" uid="uid://cueiuajki26m1" path="res://src/entities/player/component/spotlight/spotlight.tscn" id="9_4f0qm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
 radius = 4.0
 height = 50.0
 
 [sub_resource type="Gradient" id="Gradient_muk8e"]
-offsets = PackedFloat32Array(0, 0.435065)
+offsets = PackedFloat32Array(0, 0.248837)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wrxq6"]
 gradient = SubResource("Gradient_muk8e")
 fill = 1
-fill_from = Vector2(0.486239, 0.477064)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muk8e"]
 radius = 6.0
@@ -68,10 +70,9 @@ linear_accel_max = 1.0
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.8147e-06, 0)
-scale = Vector2(3.71875, 2.85757)
-color = Color(0.62, 0.2976, 0.2976, 1)
-energy = 1.6
+position = Vector2(0, 6)
+scale = Vector2(4, 2)
+energy = 5.0
 texture = SubResource("GradientTexture2D_wrxq6")
 
 [node name="Detector" type="Area2D" parent="."]
@@ -89,6 +90,14 @@ position = Vector2(-5, -6)
 [node name="C_Dredge" parent="." instance=ExtResource("6_0mfjg")]
 position = Vector2(-14, 5)
 
-[node name="C_TorpedoBay3" parent="." instance=ExtResource("4_ketdh")]
-position = Vector2(17, -4)
+[node name="C_TorpedoBay" parent="." instance=ExtResource("4_ketdh")]
+position = Vector2(6, 3)
 display_name = "Torpedo L"
+
+[node name="C_FlareLauncher" parent="." instance=ExtResource("7_oih67")]
+position = Vector2(-27, -2)
+mouse_aim = true
+display_name = "Flare Launcher"
+
+[node name="C_Spotlight" parent="." instance=ExtResource("9_4f0qm")]
+position = Vector2(17, -9)
