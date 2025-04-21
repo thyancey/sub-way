@@ -71,7 +71,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [10.0, 8.0, 10.0]
+"values": [5.0, 3.0, 5.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -83,7 +83,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [6.0, 5.0, 6.0]
+"values": [4.0, 3.0, 4.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xx1v0"]
@@ -104,7 +104,7 @@ script = ExtResource("1_238wo")
 age_when_charging = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 0, 0, 0.215686)
+modulate = Color(0.0166667, 1, 0, 0.215686)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -122,12 +122,12 @@ texture = SubResource("GradientTexture2D_qtf68")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 0, 0, 1)
+modulate = Color(0.47, 1, 0.531833, 1)
 sprite_frames = ExtResource("1_51mv6")
 animation = &"charge"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(1, 0.19, 0.19, 1)
+color = Color(0.2305, 1, 0.19, 0.14902)
 energy = 10.0
 texture = SubResource("GradientTexture2D_238wo")
 texture_scale = 4.0

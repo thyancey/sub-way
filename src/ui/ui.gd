@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var money_widget: Control = %MoneyWidget
 @onready var notification_widget: Control = %NotificationWidget
 @onready var radar: Control = %Radar
+@onready var ui_wrapper: Control = %Wrapper
 
 @export var hud_transparency := 0.8
 
@@ -37,14 +38,7 @@ func _ready() -> void:
 	rope_length_gauge.setData("rope", Global.player_data.rope_range, Global.player_data.rope_length)
 
 func _set_hud_transparency(_value: float) -> void:
-	oxygen_gauge.modulate.a = _value
-	rope_length_gauge.modulate.a = _value
-	depth_gauge.modulate.a = _value
-	component_widget.modulate.a = _value
-	junk_widget.modulate.a = _value
-	money_widget.modulate.a = _value
-	notification_widget.modulate.a = _value
-	radar.modulate.a = _value
+	ui_wrapper.modulate.a = _value
 
 func _on_updated_money(value: int) -> void:
 	money_widget.label_value = str("$", value)
