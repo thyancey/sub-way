@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://pobj4wpyh5ov"]
+
+[ext_resource type="SpriteFrames" uid="uid://cctv5e0snyfii" path="res://src/ui/gauge/radar_blip.aseprite" id="1_84f0y"]
+
+[sub_resource type="Animation" id="Animation_b4y4p"]
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.5),
+"transitions": PackedFloat32Array(0.5, 1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mgqm1"]
+resource_name = "new_animation"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xo5n7"]
+_data = {
+&"RESET": SubResource("Animation_b4y4p"),
+&"ping": SubResource("Animation_mgqm1")
+}
+
+[node name="Node2D" type="Node2D"]
+self_modulate = Color(1, 0, 1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+sprite_frames = ExtResource("1_84f0y")
+frame_progress = 0.221364
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_xo5n7")
+}
+autoplay = "RESET"

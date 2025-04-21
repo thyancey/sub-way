@@ -1,34 +1,39 @@
-[gd_scene load_steps=11 format=3 uid="uid://8dseg4ubdv3y"]
+[gd_scene load_steps=13 format=3 uid="uid://8dseg4ubdv3y"]
 
-[ext_resource type="SpriteFrames" uid="uid://dgic8045r8kol" path="res://src/entities/player/player.aseprite" id="1_4m8ck"]
 [ext_resource type="Script" uid="uid://mk71yg637r5r" path="res://src/entities/player/player.gd" id="1_vt6n5"]
 [ext_resource type="PackedScene" uid="uid://ysk2j0q02raj" path="res://src/entities/bubble/bubble_particles.tscn" id="2_muk8e"]
-[ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay.tscn" id="4_ketdh"]
+[ext_resource type="SpriteFrames" uid="uid://blg3p2ch34ccm" path="res://src/entities/player/player_new.aseprite" id="3_eb65w"]
+[ext_resource type="PackedScene" uid="uid://dw52b4cbfjtwh" path="res://src/entities/player/component/torpedo_bay/torpedo_bay.tscn" id="4_ketdh"]
 [ext_resource type="PackedScene" uid="uid://b6qt6atp6da8x" path="res://src/entities/player/component/dredge/dredge.tscn" id="6_0mfjg"]
-[ext_resource type="PackedScene" uid="uid://bw76lqhs8clih" path="res://src/entities/player/component/missile_bay.tscn" id="6_oih67"]
+[ext_resource type="PackedScene" uid="uid://c7q30wndrg1n4" path="res://src/entities/player/component/sonar/sonar.tscn" id="6_oih67"]
+[ext_resource type="PackedScene" uid="uid://mklqj1qig8bb" path="res://src/entities/player/component/flare/flare_launcher.tscn" id="7_oih67"]
+[ext_resource type="PackedScene" uid="uid://cueiuajki26m1" path="res://src/entities/player/component/spotlight/spotlight.tscn" id="9_4f0qm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt6n5"]
-radius = 4.0
-height = 50.0
+radius = 12.0
+height = 38.0
 
 [sub_resource type="Gradient" id="Gradient_muk8e"]
-offsets = PackedFloat32Array(0, 0.435065)
+offsets = PackedFloat32Array(0, 0.248837)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wrxq6"]
 gradient = SubResource("Gradient_muk8e")
 fill = 1
-fill_from = Vector2(0.486239, 0.477064)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muk8e"]
-radius = 6.0
-height = 54.0
+radius = 14.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 8
 motion_mode = 1
 script = ExtResource("1_vt6n5")
+submerged_horizontal_max = 40.0
+surface_horizontal_acceleration = 30.0
+surface_horizontal_max = 60.0
 
 [node name="BubbleParticles" parent="." instance=ExtResource("2_muk8e")]
 unique_name_in_owner = true
@@ -36,11 +41,13 @@ position = Vector2(-8, 5)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-sprite_frames = ExtResource("1_4m8ck")
+position = Vector2(0, 12)
+sprite_frames = ExtResource("3_eb65w")
 animation = &"descending"
 offset = Vector2(-1, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vt6n5")
 
@@ -48,18 +55,32 @@ shape = SubResource("CapsuleShape2D_vt6n5")
 unique_name_in_owner = true
 position = Vector2(8, 5)
 
+[node name="SurfaceParticles" parent="." instance=ExtResource("2_muk8e")]
+unique_name_in_owner = true
+position = Vector2(0, 2)
+emitting = false
+amount = 128
+lifetime = 2.0
+emission_rect_extents = Vector2(25, 2)
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+linear_accel_min = 0.1
+linear_accel_max = 1.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.8147e-06, 0)
-scale = Vector2(3.71875, 2.85757)
-color = Color(0.62, 0.2976, 0.2976, 1)
-energy = 1.6
+position = Vector2(20, 3)
+scale = Vector2(1, 2)
+color = Color(1, 0, 0, 1)
+energy = 5.0
 texture = SubResource("GradientTexture2D_wrxq6")
 
 [node name="Detector" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(5, 1)
 collision_layer = 2
 collision_mask = 16
 
@@ -67,12 +88,21 @@ collision_mask = 16
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_muk8e")
 
-[node name="C_TorpedoBay3" parent="." instance=ExtResource("4_ketdh")]
-position = Vector2(-4, -4)
-display_name = "Torpedo L"
+[node name="C_FlareLauncher" parent="." instance=ExtResource("7_oih67")]
+position = Vector2(-5, -10)
+display_name = "Flare Launcher"
 
 [node name="C_Dredge" parent="." instance=ExtResource("6_0mfjg")]
-position = Vector2(-14, 5)
+z_index = 0
+position = Vector2(2, 9)
 
-[node name="C_MissileBay" parent="." instance=ExtResource("6_oih67")]
-position = Vector2(12, 6)
+[node name="C_TorpedoBay" parent="." instance=ExtResource("4_ketdh")]
+position = Vector2(-1, 3)
+display_name = "Torpedo L"
+
+[node name="C_Spotlight" parent="." instance=ExtResource("9_4f0qm")]
+position = Vector2(28, -22)
+
+[node name="C_Sonar" parent="." instance=ExtResource("6_oih67")]
+z_index = 1
+position = Vector2(4, -11)

@@ -5,18 +5,21 @@ extends Node2D
 
 var blur_material: ShaderMaterial
 
-var blur_range := Vector2(0.0, Global.max_oxygen)
-var blur_scale := Vector2(1.0, 0.25)
+var blur_range := Vector2(0.0, Global.player_data.max_oxygen)
+var blur_scale := Vector2(1.0, 0.35)
 
 func _ready() -> void:
 	blur_material = %BlurEffect.material
 
 	Global.connect('updated_darkness', on_updated_darkness)
-	on_updated_darkness(Global.calc_darkness(Global.depth))
+	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
+
+	for collector in get_tree().get_nodes_in_group("Collector"):
+		collector.junk_salvaged.connect(_on_junk_salvaged)
 
 	# for now, blur works fine with depth
-	# Global.connect('updated_oxygen', on_updated_oxygen)
-	# on_updated_oxygen(Global.oxygen)
+	# Global.player_data.connect('updated_oxygen', on_updated_oxygen)
+	# on_updated_oxygen(Global.player_data.oxygen)
 	
 func on_updated_darkness(darkness_percent: float) -> void:
 	darkness.color = lerp(Color(1, 1, 1), Color(0, 0, 0), darkness_percent)
@@ -42,3 +45,9 @@ func _calc_blur(_oxygen: float) -> float:
 	#invert it, since less oxygen = more blurry
 	blur_percent = clamp(1.0 - blur_percent, 0.0, 1.0)
 	return blur_percent
+
+func _on_junk_salvaged(_pos: Vector2, _junk_data: JunkData) -> void:
+	print("SALVAGED: %s: $%d" % [_junk_data.name, _junk_data.value])
+	Global.notify("SALVAGE", _junk_data)
+	Global.spawn_particle("salvage", _pos, { "color": _junk_data.color })
+	Global.player_data.money += _junk_data.value

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0a2npy2qjun2"]
+
+[ext_resource type="SpriteFrames" uid="uid://mslmotxyt72k" path="res://src/entities/jelly/jelly.aseprite" id="1_c0fb1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c0fb1"]
+radius = 9.0
+height = 92.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10v4y"]
+radius = 22.0
+height = 80.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nf35c"]
+radius = 12.0
+height = 88.0
+
+[node name="Jelly" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_c0fb1")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -30)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c0fb1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_10v4y")
+
+[node name="Zone" type="Area2D" parent="." groups=["Surface"]]
+position = Vector2(0, -10)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
+position = Vector2(0, 1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_nf35c")

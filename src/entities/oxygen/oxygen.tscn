@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce5xykcagcasc"]
+
+[ext_resource type="SpriteFrames" uid="uid://42qbprrum2s2" path="res://src/entities/oxygen/oxygen.aseprite" id="1_8usgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8usgm"]
+size = Vector2(58, 18)
+
+[node name="Oxygen" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_8usgm")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, 26, -38, -17, 38, -17, 38, 26, 36, 26, 25, 6, 25, -4, -25, -4, -25, 7, -36, 26)
+
+[node name="Area2D" type="Area2D" parent="." groups=["Surface"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_8usgm")

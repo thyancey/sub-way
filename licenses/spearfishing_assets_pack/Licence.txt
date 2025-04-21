@@ -1,0 +1,34 @@
+Asset Pack License Agreement
+
+This Asset Pack License Agreement is entered into between Szym ("Licensor") and the user ("Licensee") who wishes to use the assets contained within the asset pack provided by Licensor. By accessing, downloading, or using the assets from the asset pack, Licensee agrees to be bound by the terms and conditions set forth in this Agreement.
+
+1. Grant of License:
+Licensor hereby grants Licensee a non-exclusive, non-transferable, worldwide license to use the assets included in the asset pack for both private and commercial projects, subject to the terms and conditions of this Agreement.
+
+2. Permitted Usage:
+Licensee is authorized to use the assets in their projects, including but not limited to games, applications, videos, animations, websites, and other digital or printed media. Licensee may modify the assets to fit their projects' needs but is expressly prohibited from reselling or distributing the assets in any form, whether unmodified or slightly modified.
+
+3. Prohibited Usage:
+Licensee is not authorized to use the assets for any project or content related to Non-Fungible Tokens (NFTs) or any blockchain-based digital assets.
+
+4. Attribution and Credit:
+a. For personal projects, Licensee is not required to provide explicit credit to the Licensor. However, Licensor highly appreciates any voluntary attribution.
+b. For commercial projects, Licensee must give appropriate credit to Licensor by providing a visible link to the web page of the asset pack or Licensor's official website, within the project or associated documentation.
+
+5. Ownership and Intellectual Property:
+a. All rights, title, and interest in and to the assets remain the exclusive property of Licensor.
+b. This Agreement does not transfer any ownership or intellectual property rights to Licensee.
+
+6. Termination:
+Licensor reserves the right to terminate this license at any time if Licensee breaches any of the terms outlined in this Agreement. Upon termination, Licensee must cease all usage of the assets and remove them from any projects.
+
+7. Limitation of Liability:
+Licensor is not liable for any damages, losses, or claims arising from the use or inability to use the assets provided in the asset pack.
+
+8. Governing Law:
+This Agreement shall be governed by and construed in accordance with the laws of France, without regard to its conflict of law principles.
+
+9. Entire Agreement:
+This Agreement constitutes the entire understanding between Licensor and Licensee regarding the subject matter herein and supersedes all prior agreements, understandings, and negotiations, whether oral or written.
+
+By downloading and using the assets from the asset pack, Licensee acknowledges that they have read, understood, and agreed to be bound by the terms and conditions of this License Agreement.

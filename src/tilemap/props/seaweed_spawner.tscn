@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xq3odg4eyowv"]
+
+[ext_resource type="Script" uid="uid://dtncls0tvy6xd" path="res://src/tilemap/props/seaweed_spawner.gd" id="1_rp7rl"]
+[ext_resource type="PackedScene" uid="uid://bu2sxmrvelstl" path="res://src/tilemap/props/seaweed.tscn" id="2_lm0aj"]
+
+[node name="SeaweedSpawner" type="Node2D"]
+script = ExtResource("1_rp7rl")
+seaweed_scene = ExtResource("2_lm0aj")
+spawn_area_size = Vector2(1000, 400)

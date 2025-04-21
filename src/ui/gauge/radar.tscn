@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://wyaggvb52mrq"]
+
+[ext_resource type="SpriteFrames" uid="uid://djpfjx0jmqgbf" path="res://src/ui/gauge/radar.aseprite" id="1_532p4"]
+[ext_resource type="Script" uid="uid://j6cp35tst10t" path="res://src/ui/gauge/radar.gd" id="1_it1k6"]
+
+[sub_resource type="Curve" id="Curve_it1k6"]
+_data = [Vector2(0, 0), 0.0, 0.504506, 0, 0, Vector2(0.997845, 1), 1.63336, 0.0, 0, 0]
+point_count = 2
+
+[node name="Radar" type="Control"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 60.0
+pivot_offset = Vector2(30, 30)
+script = ExtResource("1_it1k6")
+distance_curve = SubResource("Curve_it1k6")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_532p4")

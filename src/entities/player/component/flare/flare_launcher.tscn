@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://mklqj1qig8bb"]
+
+[ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_lcagu"]
+[ext_resource type="PackedScene" uid="uid://ck8rcf8hiqc0" path="res://src/entities/projectiles/flare.tscn" id="2_lcagu"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_17or4"]
+[ext_resource type="SpriteFrames" uid="uid://cik7ssdn0yco2" path="res://src/entities/player/component/flare/rear_hatch.aseprite" id="5_iojp4"]
+
+[node name="C_FlareLauncher" type="Node2D" groups=["Component"]]
+script = ExtResource("1_lcagu")
+muzzle_distance = 5.0
+charge_time = 1.0
+projectile_scene = ExtResource("2_lcagu")
+charge_curve = ExtResource("3_17or4")
+launch_velocity = 150.0
+angle_degrees = 125.0
+display_name = "Torpedo"
+hide_on_disable = true
+
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(6, 1)
+
+[node name="bg" type="AnimatedSprite2D" parent="Graphic"]
+position = Vector2(-6, -1)
+sprite_frames = ExtResource("5_iojp4")
+animation = &"back"
+offset = Vector2(4, 19)
+
+[node name="fg" type="AnimatedSprite2D" parent="Graphic"]
+z_index = 1
+position = Vector2(-6, -1)
+sprite_frames = ExtResource("5_iojp4")
+animation = &"front"
+offset = Vector2(4, 19)

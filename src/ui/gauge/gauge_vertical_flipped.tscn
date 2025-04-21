@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://b33b02fuw8nhl"]
+
+[ext_resource type="Script" uid="uid://cs13thnenmw81" path="res://src/ui/gauge/gauge_vertical.gd" id="1_3fftp"]
+[ext_resource type="SpriteFrames" uid="uid://s7vsdf7qm06g" path="res://src/ui/gauge/vertical_marker.aseprite" id="2_f2dou"]
+
+[node name="Gauge_Vertical_Flipped" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+script = ExtResource("1_3fftp")
+
+[node name="StartLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -18.0
+offset_right = 16.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, 7)
+theme_override_colors/font_color = Color(0.858824, 0.992157, 1, 1)
+text = "0 ft"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 20.0
+grow_vertical = 2
+rotation = 1.5708
+pivot_offset = Vector2(22, 24)
+theme_override_colors/font_color = Color(0.360784, 0.898039, 0.898039, 1)
+theme_override_font_sizes/font_size = 24
+text = "depth"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EndLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -24.0
+offset_top = 143.0
+offset_right = 16.0
+offset_bottom = 159.0
+pivot_offset = Vector2(0, 7)
+theme_override_colors/font_color = Color(0.858824, 0.992157, 1, 1)
+text = "0 ft"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Marker" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_right = 2.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(40, 20)
+
+[node name="ValueLabel" type="Label" parent="Marker"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -10.0
+offset_top = 13.0
+offset_right = 30.0
+offset_bottom = 29.0
+pivot_offset = Vector2(40, 7)
+theme_override_colors/font_color = Color(0.360784, 0.898039, 0.898039, 1)
+text = "0.0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="Marker"]
+position = Vector2(40, 20)
+rotation = -3.14159
+sprite_frames = ExtResource("2_f2dou")
+animation = &"idle"
+offset = Vector2(4, 0)
+
+[node name="Line" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 140.0
+color = Color(0.858824, 0.992157, 1, 1)

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/anchor.aseprite-71f192adada74d9271f27b3757fcc
 [params]
 
 layer/exclude_layers_pattern=""
-layer/only_visible_layers=true
+layer/only_visible_layers=false
 sheet/sheet_type="packed"
 sheet/sheet_columns=12
 animation/round_fps=true

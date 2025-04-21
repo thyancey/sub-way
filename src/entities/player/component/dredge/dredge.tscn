@@ -1,29 +1,40 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6qt6atp6da8x"]
 
 [ext_resource type="Script" uid="uid://jbc0awu4vq5d" path="res://src/entities/player/component/dredge/dredge.gd" id="1_5cx2p"]
+[ext_resource type="SpriteFrames" uid="uid://d13fo81d0k1lx" path="res://src/entities/player/component/dredge/dredge_hatch.aseprite" id="3_5cx2p"]
 [ext_resource type="PackedScene" uid="uid://biqd5nwxh7vi2" path="res://src/entities/player/component/dredge/anchor.tscn" id="3_5yvdd"]
-[ext_resource type="SpriteFrames" uid="uid://cbpkkqs15d1g3" path="res://src/entities/player/component/dredge/dredge.aseprite" id="4_q4him"]
 
 [node name="C_Dredge" type="Node2D" groups=["Component"]]
+z_index = -1
 script = ExtResource("1_5cx2p")
+reel_strength = 1600
+anchor_scene = ExtResource("3_5yvdd")
 display_name = "Dredge"
+hide_on_disable = true
 
 [node name="AttachProxy" type="RigidBody2D" parent="."]
-position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 0
 
 [node name="ColorRect" type="ColorRect" parent="AttachProxy"]
+visible = false
 offset_right = 2.0
 offset_bottom = 2.0
 color = Color(1, 0, 0, 1)
 
 [node name="Joint" type="PinJoint2D" parent="."]
-position = Vector2(0, -2)
 node_a = NodePath("../AttachProxy")
-node_b = NodePath("../Anchor")
 
-[node name="Anchor" parent="." instance=ExtResource("3_5yvdd")]
-position = Vector2(0, -2)
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1)
-sprite_frames = ExtResource("4_q4him")
+[node name="MainSprite_Bg" type="AnimatedSprite2D" parent="Graphic"]
+position = Vector2(-3, 0)
+sprite_frames = ExtResource("3_5cx2p")
+animation = &"active_bg"
+
+[node name="MainSprite_Fg" type="AnimatedSprite2D" parent="Graphic"]
+z_index = 1
+position = Vector2(-3, 0)
+sprite_frames = ExtResource("3_5cx2p")
+animation = &"active_fg"

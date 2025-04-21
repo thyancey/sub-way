@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://biwn4lguwluma"]
+
+[ext_resource type="Script" uid="uid://dqmivxail6sbb" path="res://src/entities/projectiles/charged_missile.gd" id="1_glgch"]
+[ext_resource type="SpriteFrames" uid="uid://crxb44anb6sdn" path="res://src/entities/projectiles/torpedo_snub.aseprite" id="2_irmio"]
+[ext_resource type="Texture2D" uid="uid://d3i8fxyrk71h0" path="res://src/entities/bubble/bubble.png" id="3_46f1k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lxjjw"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3g1ya"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="Gradient" id="Gradient_k0axj"]
+offsets = PackedFloat32Array(0, 0.453333)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_dptfr"]
+offsets = PackedFloat32Array(0, 0.15814)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glgch"]
+gradient = SubResource("Gradient_dptfr")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Projectile" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 8
+gravity_scale = 0.0
+linear_damp_mode = 1
+linear_damp = 20.0
+script = ExtResource("1_glgch")
+damage = 1.0
+health = 1.0
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, 0)
+sprite_frames = ExtResource("2_irmio")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lxjjw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3g1ya")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-9, 0)
+amount = 16
+texture = ExtResource("3_46f1k")
+lifetime = 2.0
+randomness = 0.5
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+direction = Vector2(-1, 0)
+gravity = Vector2(0, -20)
+initial_velocity_max = 3.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_k0axj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 6)
+color = Color(0, 0.966667, 1, 1)
+texture = SubResource("GradientTexture2D_glgch")
+texture_scale = 2.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

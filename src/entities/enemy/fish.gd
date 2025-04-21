@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Creature
 
 @export var swim_speed: float = 40.0
 @export var turn_interval: float = 6.0

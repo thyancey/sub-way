@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7q30wndrg1n4"]
+
+[ext_resource type="SpriteFrames" uid="uid://b8g8dpihoi0mf" path="res://src/entities/player/component/sonar/sonar.aseprite" id="1_u87k0"]
+[ext_resource type="Script" uid="uid://byygdp3i87rhd" path="res://src/entities/player/component/sonar/sonar.gd" id="1_xcwkm"]
+
+[node name="C_Sonar" type="Node2D" groups=["Component"]]
+script = ExtResource("1_xcwkm")
+display_name = "Sonar"
+
+[node name="Graphic" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphic"]
+sprite_frames = ExtResource("1_u87k0")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(-5, 19)
