@@ -1,7 +1,10 @@
 extends Node2D
 
+signal menu_loaded(_menu_key: String, _menu_param: Variant)
+
 @onready var darkness: CanvasModulate = %Darkness
 @onready var blur_effect: ColorRect = %BlurEffect
+@onready var ui: CanvasLayer = %UI
 
 var blur_material: ShaderMaterial
 
@@ -20,6 +23,24 @@ func _ready() -> void:
 	# for now, blur works fine with depth
 	# Global.player_data.connect('updated_oxygen', on_updated_oxygen)
 	# on_updated_oxygen(Global.player_data.oxygen)
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("PAUSE"):
+		_on_game_pause()
+
+func _on_game_pause() -> void:
+	print("_on_game_pause()")
+	Global.pause()
+	ui.hide()
+	menu_loaded.emit("menu_pause");
+
+func on_menus_closed() -> void:
+	print("on_menus_closed()")
+	Global.unpause()
+	ui.show()
+
+func cleanup() -> void:
+	print("Game.cleanup()")
 	
 func on_updated_darkness(darkness_percent: float) -> void:
 	darkness.color = lerp(Color(1, 1, 1), Color(0, 0, 0), darkness_percent)

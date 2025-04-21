@@ -10,6 +10,7 @@ var particle_scenes := {
 signal updated_darkness(val: float)
 signal notified(_type: String, _payload: Variant)
 signal ping_spawned(_pos: Vector2,_origin_pos: Vector2, _group: String)
+signal paused(_pause_state: bool)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(10.0, 50.0)
@@ -79,3 +80,10 @@ func ping(_pos: Vector2, _origin_pos: Vector2, _group: String) -> void:
 	ping_spawned.emit(_pos, _origin_pos, _group)
 	_spawn_ping_circle(_pos, _group)
 
+func pause() -> void:
+	get_tree().paused = true
+	paused.emit(true)
+
+func unpause() -> void:
+	get_tree().paused = false
+	paused.emit(false)
