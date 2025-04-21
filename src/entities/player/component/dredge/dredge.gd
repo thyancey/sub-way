@@ -52,7 +52,7 @@ func _physics_process(_delta: float):
 		Global.player_data.rope_length = calc_real_length()
 
 func set_rope_length(value: float) -> void:
-	var clamped = clamp(value, min_rope_length, Global.player_data.max_rope_length)
+	var clamped = clamp(value, Global.player_data.rope_range.x, Global.player_data.rope_range.y)
 	target_rope_length = clamped
 
 func calc_real_length():

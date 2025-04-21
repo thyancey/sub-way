@@ -9,13 +9,22 @@ var scene_map: Dictionary = {
 
 @onready var scene_container: Node2D = %Scene
 @onready var menu_container: CanvasLayer = %Menu
+@onready var blur_effect: ColorRect = %BlurEffect
 
 var active_menu: MenuControl = null
 var game_scene: Node2D = null
 var menu_stack: Array[String] = []
+var blur_material: ShaderMaterial
+var blur_range := Vector2(0.0, Global.player_data.max_oxygen)
+var blur_scale := Vector2(1.0, 0.35)
 
 func _ready() -> void:
+	blur_material = %BlurEffect.material
 	_on_menu_loaded("menu_main")
+	# blur_effect.hide()
+
+	Global.connect('updated_darkness', _on_updated_darkness)
+	_on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
 
 func _load_menu(_packed_scene: PackedScene, _custom_param: Variant = null) -> void:
 	if (active_menu):
@@ -32,6 +41,7 @@ func _load_menu(_packed_scene: PackedScene, _custom_param: Variant = null) -> vo
 	
 	active_menu.menu_param = _custom_param
 	menu_container.add_child(active_menu)
+	# blur_effect.hide()
 
 func _close_out_menus() -> void:
 	menu_stack = []
@@ -40,6 +50,7 @@ func _close_out_menus() -> void:
 		active_menu = null
 
 	menu_container.hide()
+	# blur_effect.show()
 
 	if game_scene:
 		game_scene.on_menus_closed()
@@ -55,15 +66,11 @@ func _on_scene_loaded(_scene_key: String, _detail: Variant) -> void:
 	if game_scene:
 		_teardown_game()
 
-	print("1> ", _scene_key)
-	print("2> ", scene_map[_scene_key])
 	var _packed: PackedScene = scene_map[_scene_key]
-	print("3> ", _packed)
 	game_scene = _packed.instantiate()
 	game_scene.connect("menu_loaded", _on_menu_loaded)
 	
 	scene_container.add_child(game_scene)
-
 
 func _on_menu_loaded(_menu_key: String, _menu_param: Variant = null) -> void:
 	if !scene_map.has(_menu_key):
@@ -94,3 +101,11 @@ func _on_command_sent(_command: String) -> void:
 		if game_scene:
 			game_scene.queue_free()
 			game_scene = null
+
+func _on_updated_darkness(_darkness_percent: float) -> void:
+	_update_blur(_darkness_percent)
+
+func _update_blur(_blur_percent: float) -> void:
+	var _blur: float = lerp(blur_scale.x, blur_scale.y, _blur_percent)
+	if blur_material is ShaderMaterial:
+		blur_material.set_shader_parameter("colorCorrection", _blur)

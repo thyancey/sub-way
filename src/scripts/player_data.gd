@@ -10,7 +10,7 @@ signal updated_rope_length(val: float)
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
-var max_rope_length := 200.0
+var rope_range := Vector2(1.0, 200.0)
 var ping_range := 200.0
 
 var active_component_name := "???":
@@ -48,7 +48,7 @@ var oxygen := max_oxygen:
 			oxygen = new_value
 			updated_oxygen.emit(new_value)
 			
-var rope_length := max_oxygen:
+var rope_length := rope_range.x:
 	get:
 		return rope_length
 	set(value):
@@ -59,3 +59,10 @@ var rope_length := max_oxygen:
 func round_to_decimals(value: float, decimals: int) -> float:
 	var multiplier = pow(10.0, decimals)
 	return round(value * multiplier) / multiplier
+
+func reset() -> void:
+	self.oxygen = max_oxygen
+	self.money = 0
+	self.depth = 0
+	self.rope_length = rope_range.x
+	self.active_component_name = "???"

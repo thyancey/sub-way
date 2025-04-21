@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var notification_widget: Control = %NotificationWidget
 @onready var radar: Control = %Radar
 
-@export var hud_transparency := 0.5
+@export var hud_transparency := 0.8
 
 func _ready() -> void:
 	_set_hud_transparency(hud_transparency)
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 	oxygen_gauge.setData("oxygen", Vector2(0.0, Global.player_data.max_oxygen), Global.player_data.oxygen, true)
 	depth_gauge.setData("depth", Vector2(0.0, 400.0), Global.player_data.depth)
-	rope_length_gauge.setData("rope", Vector2(0.0, Global.player_data.max_rope_length), Global.player_data.rope_length)
+	rope_length_gauge.setData("rope", Global.player_data.rope_range, Global.player_data.rope_length)
 
 func _set_hud_transparency(_value: float) -> void:
 	oxygen_gauge.modulate.a = _value

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6xt8jh3ij33p"]
+[gd_scene load_steps=3 format=3 uid="uid://c6xt8jh3ij33p"]
 
 [ext_resource type="Script" uid="uid://curplwlg42a87" path="res://root.gd" id="1_dop5u"]
+[ext_resource type="Material" uid="uid://c5k2whulyxkyu" path="res://src/tilemap/water_fx.tres" id="2_pribe"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_dop5u")
@@ -8,6 +9,20 @@ script = ExtResource("1_dop5u")
 [node name="Scene" type="Node2D" parent="."]
 unique_name_in_owner = true
 process_mode = 1
+
+[node name="BlurLayer" type="CanvasLayer" parent="."]
+
+[node name="test" type="Sprite2D" parent="BlurLayer"]
+visible = false
+material = ExtResource("2_pribe")
+centered = false
+
+[node name="BlurEffect" type="ColorRect" parent="BlurLayer"]
+unique_name_in_owner = true
+material = ExtResource("2_pribe")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="Menu" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

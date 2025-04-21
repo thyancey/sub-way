@@ -10,3 +10,9 @@ signal menu_closed()
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		menu_closed.emit()
+
+# hack to avoid warning on ununsed symbols
+func _nothing() -> void:
+	_dump_signals([menu_loaded, menu_closed, scene_loaded, command_sent])
+func _dump_signals(_var_args: Array) -> void:
+	pass
