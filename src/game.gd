@@ -11,9 +11,10 @@ var blur_range := Vector2(0.0, Global.player_data.max_oxygen)
 var blur_scale := Vector2(1.0, 0.35)
 
 func _ready() -> void:
-	blur_material = %BlurEffect.material
 	Global.player_data.reset()
+
 	Global.connect('updated_darkness', on_updated_darkness)
+	blur_material = %BlurEffect.material
 	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
 
 	for collector in get_tree().get_nodes_in_group("Collector"):

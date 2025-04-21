@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var component_widget: Control = %ComponentWidget
 @onready var junk_widget: Control = %JunkWidget
 @onready var money_widget: Control = %MoneyWidget
+@onready var goal_widget: Control = %GoalWidget
+@onready var level_widget: Control = %LevelWidget
 @onready var notification_widget: Control = %NotificationWidget
 @onready var radar: Control = %Radar
 @onready var ui_wrapper: Control = %Wrapper
@@ -17,6 +19,9 @@ func _ready() -> void:
 
 	junk_widget.hide()
 	Global.connect("notified", _on_global_notified)
+
+	Global.player_data.connect('updated_mission_level', _on_updated_mission_level)
+	_on_updated_mission_level(Global.player_data.mission_level)
 
 	Global.player_data.connect('updated_money', _on_updated_money)
 	_on_updated_money(Global.player_data.money)
@@ -40,20 +45,26 @@ func _ready() -> void:
 func _set_hud_transparency(_value: float) -> void:
 	ui_wrapper.modulate.a = _value
 
-func _on_updated_money(value: int) -> void:
-	money_widget.label_value = str("$", value)
+func _on_updated_money(_value: int) -> void:
+	money_widget.label_value = str("$", _value)
 
-func _on_updated_depth(value: int) -> void:
-	depth_gauge.value = value
+func _on_updated_mission_level(_value: int) -> void:
+	if (_value > -1):
+		var _md = Global.player_data.get_mission_data(_value)
+		goal_widget.label_value = str("$", _md.goal.money)
+		level_widget.label_value = _md.message
 
-func _on_updated_oxygen(value: float) -> void:
-	oxygen_gauge.value = value
+func _on_updated_depth(_value: int) -> void:
+	depth_gauge.value = _value
 
-func _on_updated_rope_length(value: float) -> void:
-	rope_length_gauge.value = value
+func _on_updated_oxygen(_value: float) -> void:
+	oxygen_gauge.value = _value
 
-func _on_updated_active_component_name(value: String) -> void:
-	component_widget.label_value = value
+func _on_updated_rope_length(_value: float) -> void:
+	rope_length_gauge.value = _value
+
+func _on_updated_active_component_name(_value: String) -> void:
+	component_widget.label_value = _value
 
 func _on_global_notified(_type: String, _payload: Variant) -> void:
 	if _type == 'SALVAGE':

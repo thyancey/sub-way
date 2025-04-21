@@ -22,6 +22,7 @@ import/import_plugin/default_automatic_importer="SpriteFrames"
 [autoload]
 
 Enums="*res://src/scripts/enums.gd"
+GameData="*res://src/scripts/game_data.gd"
 Global="*res://src/scripts/global.gd"
 
 [display]

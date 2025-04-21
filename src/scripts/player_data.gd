@@ -6,12 +6,21 @@ signal updated_depth(val: int)
 signal updated_oxygen(val: float)
 signal updated_active_component_name(val: String)
 signal updated_rope_length(val: float)
+signal updated_mission_level(val: int)
 
 # min/max depth for applying the darkness effect
 var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
 var rope_range := Vector2(1.0, 200.0)
 var ping_range := 200.0
+
+var mission_level := -1:
+	get:
+		return mission_level
+	set(value):
+		if mission_level != value:
+			mission_level = value
+			updated_mission_level.emit(mission_level)
 
 var active_component_name := "???":
 	get:
@@ -28,6 +37,8 @@ var money := 0:
 		if money != value:
 			money = value
 			updated_money.emit(money)
+			if _check_against_quota():
+				mission_level += 1
 
 var depth := 0:
 	get:
@@ -66,3 +77,19 @@ func reset() -> void:
 	self.depth = 0
 	self.rope_length = rope_range.x
 	self.active_component_name = "???"
+	self.mission_level = 0
+
+func get_mission_data(_mission_idx: int) -> Dictionary:
+	print("get_mission_data ", _mission_idx)
+	if _mission_idx >= 0 and _mission_idx < GameData.MISSIONS.size():
+		return GameData.MISSIONS[_mission_idx]
+	else:
+		push_error("no goal for mission idx: ", _mission_idx)
+		return {}
+
+	
+func _check_against_quota() -> bool:
+	if money > get_mission_data(mission_level).goal.money:
+		return true
+	else:
+		return false

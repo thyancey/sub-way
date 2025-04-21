@@ -27,17 +27,23 @@ offset_right = 64.0
 offset_bottom = 40.0
 theme_override_constants/separation = 0
 
-[node name="MoneyWidget" parent="Wrapper/VBoxContainer" instance=ExtResource("3_qemve")]
+[node name="LevelWidget" parent="Wrapper/VBoxContainer" instance=ExtResource("3_qemve")]
 unique_name_in_owner = true
 layout_mode = 2
-label_name = "Money"
-label_value = "0"
+label_name = "Message"
+label_value = "hi"
 
 [node name="GoalWidget" parent="Wrapper/VBoxContainer" instance=ExtResource("3_qemve")]
 unique_name_in_owner = true
 layout_mode = 2
 label_name = "Quota"
 label_value = "5000"
+
+[node name="MoneyWidget" parent="Wrapper/VBoxContainer" instance=ExtResource("3_qemve")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = "Money"
+label_value = "0"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Wrapper"]
 layout_mode = 1
@@ -91,9 +97,9 @@ grow_vertical = 0
 [node name="Gauge_Vertical_L" parent="Wrapper" instance=ExtResource("5_sjdex")]
 unique_name_in_owner = true
 offset_left = 11.0
-offset_top = 34.0
+offset_top = 42.0
 offset_right = 11.0
-offset_bottom = 34.0
+offset_bottom = 42.0
 scale = Vector2(0.5, 0.5)
 height = 180
 
