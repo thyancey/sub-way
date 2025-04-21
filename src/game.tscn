@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://yicvylsf3yku"]
+[gd_scene load_steps=24 format=4 uid="uid://yicvylsf3yku"]
 
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/game.gd" id="1_b6dhc"]
+[ext_resource type="Material" uid="uid://c5k2whulyxkyu" path="res://src/tilemap/water_fx.tres" id="2_lslma"]
 [ext_resource type="TileSet" uid="uid://5jjj54pksp33" path="res://src/tilemap/tileset_basic.tres" id="3_sv437"]
 [ext_resource type="Texture2D" uid="uid://8aayypt2riae" path="res://assets/comp.png" id="4_6fytc"]
 [ext_resource type="PackedScene" uid="uid://cf1osjkkrt82j" path="res://src/entities/enemy/fish.tscn" id="5_ra4no"]
@@ -60,6 +61,20 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="BlurLayer" type="CanvasLayer" parent="."]
+
+[node name="test" type="Sprite2D" parent="BlurLayer"]
+visible = false
+material = ExtResource("2_lslma")
+centered = false
+
+[node name="BlurEffect" type="ColorRect" parent="BlurLayer"]
+unique_name_in_owner = true
+material = ExtResource("2_lslma")
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="Level_BG" type="Node2D" parent="."]
 
@@ -274,4 +289,3 @@ tile_set = ExtResource("18_noxbr")
 
 [node name="UI" parent="." instance=ExtResource("19_8q7bk")]
 unique_name_in_owner = true
-hud_transparency = null

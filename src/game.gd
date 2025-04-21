@@ -4,8 +4,14 @@ signal menu_loaded(_menu_key: String, _menu_param: Variant)
 
 @onready var darkness: CanvasModulate = %Darkness
 @onready var ui: CanvasLayer = %UI
+@onready var blur_effect: ColorRect = %BlurEffect
+
+var blur_material: ShaderMaterial
+var blur_range := Vector2(0.0, Global.player_data.max_oxygen)
+var blur_scale := Vector2(1.0, 0.35)
 
 func _ready() -> void:
+	blur_material = %BlurEffect.material
 	Global.player_data.reset()
 	Global.connect('updated_darkness', on_updated_darkness)
 	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
@@ -31,11 +37,17 @@ func on_menus_closed() -> void:
 func cleanup() -> void:
 	print("Game.cleanup()")
 	
-func on_updated_darkness(darkness_percent: float) -> void:
-	darkness.color = lerp(Color(1, 1, 1), Color(0, 0, 0), darkness_percent)
+func on_updated_darkness(_darkness_percent: float) -> void:
+	darkness.color = lerp(Color(1, 1, 1), Color(0, 0, 0), _darkness_percent)
+	_update_blur(_darkness_percent)
 
 func _on_junk_salvaged(_pos: Vector2, _junk_data: JunkData) -> void:
 	# print("SALVAGED: %s: $%d" % [_junk_data.name, _junk_data.value])
 	Global.notify("SALVAGE", _junk_data)
 	Global.spawn_particle("salvage", _pos, { "color": _junk_data.color })
 	Global.player_data.money += _junk_data.value
+
+func _update_blur(_blur_percent: float) -> void:
+	var _blur: float = lerp(blur_scale.x, blur_scale.y, _blur_percent)
+	if blur_material is ShaderMaterial:
+		blur_material.set_shader_parameter("colorCorrection", _blur)
