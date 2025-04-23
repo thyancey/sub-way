@@ -19,7 +19,7 @@ func _ready() -> void:
 	# 	print("menu_main loaded with no reason")
 
 func _on_button_start_pressed() -> void:
-	scene_loaded.emit("game_main", null)
+	menu_loaded.emit("menu_loading")
 
 func _on_button_settings_pressed() -> void:
 	menu_loaded.emit("menu_settings")

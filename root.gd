@@ -2,6 +2,7 @@ extends Node2D
 
 var scene_map: Dictionary = {
 	"menu_main": preload("res://src/menu/menu_main.tscn"),
+	"menu_loading": preload("res://src/menu/menu_loading.tscn"),
 	"menu_pause": preload("res://src/menu/menu_pause.tscn"),
 	"menu_settings": preload("res://src/menu/menu_settings.tscn"),
 	"game_main": preload("res://src/game.tscn")
