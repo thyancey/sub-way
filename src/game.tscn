@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://yicvylsf3yku"]
+[gd_scene load_steps=25 format=4 uid="uid://yicvylsf3yku"]
 
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/game.gd" id="1_b6dhc"]
 [ext_resource type="Material" uid="uid://c5k2whulyxkyu" path="res://src/tilemap/water_fx.tres" id="2_lslma"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://ci0eb2kix4uds" path="res://src/scripts/colorize.gdshader" id="17_4lake"]
 [ext_resource type="TileSet" uid="uid://dighybshiyhup" path="res://src/tilemap/props/tm_seaweed_pink.tres" id="18_noxbr"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="19_8q7bk"]
+[ext_resource type="PackedScene" uid="uid://yjr2nvpmrt8x" path="res://src/entities/terminal/terminal.tscn" id="20_lslma"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xq87x"]
 shader = ExtResource("17_4lake")
@@ -89,6 +90,9 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(160, 90)
 texture = ExtResource("4_6fytc")
+
+[node name="Oxygen" parent="." instance=ExtResource("20_lslma")]
+position = Vector2(429, 57)
 
 [node name="Stuff" type="Node2D" parent="."]
 

@@ -264,5 +264,4 @@ func swap_component(_force_idx := -1):
 		components[active_component_idx].is_active = false
 		active_component_idx = (active_component_idx + 1) % components.size()
 		components[active_component_idx].is_active = true
-
 	Global.player_data.active_component_name = components[active_component_idx].display_name

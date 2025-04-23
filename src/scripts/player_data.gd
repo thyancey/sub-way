@@ -76,7 +76,7 @@ func reset() -> void:
 	self.money = 0
 	self.depth = 0
 	self.rope_length = rope_range.x
-	self.active_component_name = "???"
+	# self.active_component_name = "???"
 	self.mission_level = 0
 
 func get_mission_data(_mission_idx: int) -> Dictionary:
