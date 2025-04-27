@@ -8,8 +8,6 @@ signal updated_active_component_name(val: String)
 signal updated_rope_length(val: float)
 signal updated_mission_level(val: int)
 
-# min/max depth for applying the darkness effect
-var darkness_depth := Vector2(50.0, 150.0)
 var max_oxygen := 100.0
 var rope_range := Vector2(1.0, 200.0)
 var ping_range := 200.0

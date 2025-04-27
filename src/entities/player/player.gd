@@ -74,17 +74,11 @@ func _ready() -> void:
 	surface_detector.area_entered.connect(_on_surface_reached)
 	bubble_particles.emitting = false
 	bubble_particles2.emitting = false
-	
-	Global.connect('updated_darkness', on_updated_darkness)
-	on_updated_darkness(Global.calc_darkness(Global.player_data.depth))
 
 	for child in get_children():
 		if child.is_in_group("Component"):
 			components.append(child)
 	swap_component(active_component_idx)
-
-func on_updated_darkness(darkness_percent: float) -> void:
-	light.energy = lerp(lamp_scale.x, lamp_scale.y, darkness_percent)
 
 func _physics_process(delta: float) -> void:
 	if current_state == SubmarineState.SUBMERGED:

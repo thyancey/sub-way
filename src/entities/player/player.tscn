@@ -14,8 +14,8 @@ radius = 12.0
 height = 38.0
 
 [sub_resource type="Gradient" id="Gradient_muk8e"]
-offsets = PackedFloat32Array(0, 0.248837)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.22093)
+colors = PackedColorArray(0.482517, 0.482517, 0.482517, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wrxq6"]
 gradient = SubResource("Gradient_muk8e")
@@ -37,7 +37,7 @@ surface_horizontal_max = 60.0
 
 [node name="BubbleParticles" parent="." instance=ExtResource("2_muk8e")]
 unique_name_in_owner = true
-position = Vector2(-8, 5)
+position = Vector2(-5, 8)
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -53,11 +53,11 @@ shape = SubResource("CapsuleShape2D_vt6n5")
 
 [node name="BubbleParticles2" parent="." instance=ExtResource("2_muk8e")]
 unique_name_in_owner = true
-position = Vector2(8, 5)
+position = Vector2(8, 9)
 
 [node name="SurfaceParticles" parent="." instance=ExtResource("2_muk8e")]
 unique_name_in_owner = true
-position = Vector2(0, 2)
+position = Vector2(0, -4)
 emitting = false
 amount = 128
 lifetime = 2.0
@@ -72,10 +72,10 @@ linear_accel_max = 1.0
 
 [node name="Light" type="PointLight2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(20, 3)
-scale = Vector2(1, 2)
-color = Color(1, 0, 0, 1)
-energy = 5.0
+position = Vector2(21.5149, 1.5)
+scale = Vector2(1.01609, 1.40753)
+color = Color(1, 0.571068, 0.508893, 1)
+energy = 3.0
 texture = SubResource("GradientTexture2D_wrxq6")
 
 [node name="Detector" type="Area2D" parent="."]
