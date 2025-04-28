@@ -1,0 +1,54 @@
+~ intro
+
+terminal: NEW ENTITY DETECTED. PROVIDING ASSITANCE.
+=> intro_conversation
+
+~ intro_conversation
+player: ...
+- Where am I?
+	player: Where am I?
+	terminal: LOCATION: AQ-72, A RESOURCE-RICH AQUATIC PLANET
+	=> intro_conversation
+- Who are you?
+	terminal: TERMN AL IDENTIFICATION: TERMIN AL.
+	player: ...[wait=.5]Thanks
+	=> intro_conversation
+- Why am here?
+	terminal: PLAYER DIRECTIVE: REPAY COMPANY [color=red]DEBT[/color]
+	player: oh nice. How do I get [color=green]SCRIP[/color]?
+	terminal: TERMN AL DIRECTIVE: CONVERT [color=green]SCRIP[/color] INTO UPGRADES FOR YOUR SUB
+	terminal: PLAYER DIRECTIVE: LOCATE RESOURCES ON SEA FLOOR
+	terminal: PLAYER DIRECTIVE: SALVAGE RESOURCES IN [b][color=#ff74b0]GEM SHREDDER[/color][/b]
+	player: alright, I'll do that.
+	=> intro_conversation
+- So.. what's next?
+	terminal: CURRENT DEBT: [color=green]3,000,000 SCRIP[/color]. PRINCIPLE PAID: [color=green]0 SCRIP[/color]
+	terminal: NEXT TARGET: [color=green]3,000 SCRIP[/color].
+	=> intro_conversation
+- Leave
+	=> END
+
+player: I think I better just get to work. I gotta find [color=green]3,000 SCRIP[/color] worth of [color=#ff74b0]gems.[/color]
+=> END
+
+
+~ tutorial_searchlight_1
+player: Would be a little easier if I could see..
+terminal: PRESS SPACEBAR TO SWAP TO THE SEARCHLIGHT
+do Global.dialogue_event("example", "example arg")
+=> END
+
+~ tutorial_searchlight_2
+terminal: HOLD LMB TO ENABLE LIGHT, LOOK AROUND WITH MOUSE
+do Global.dialogue_event("example", "example arg")
+=> END
+
+
+~ terminal_touch
+terminal: MISSION #{{Global.player_data.mission_level + 1}}: {{Global.player_data.get_mission_data().message}}
+do Global.dialogue_event("show_current_mission", null)
+=> END
+
+
+  
+  

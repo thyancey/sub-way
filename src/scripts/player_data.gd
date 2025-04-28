@@ -77,7 +77,10 @@ func reset() -> void:
 	# self.active_component_name = "???"
 	self.mission_level = 0
 
-func get_mission_data(_mission_idx: int) -> Dictionary:
+func get_mission_data(_mission_idx: int = -1) -> Dictionary:
+	if _mission_idx == -1:
+		_mission_idx = mission_level
+
 	print("get_mission_data ", _mission_idx)
 	if _mission_idx >= 0 and _mission_idx < GameData.MISSIONS.size():
 		return GameData.MISSIONS[_mission_idx]

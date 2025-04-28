@@ -10,6 +10,8 @@ var particle_scenes := {
 signal notified(_type: String, _payload: Variant)
 signal ping_spawned(_pos: Vector2,_origin_pos: Vector2, _group: String)
 signal paused(_pause_state: bool)
+signal dialogue_event_sent(arg1: Variant, arg2: Variant)
+signal dialogue_requested(id: String, dialogue_id: String)
 
 var player_data: PlayerData = null
 
@@ -69,3 +71,9 @@ func pause() -> void:
 func unpause() -> void:
 	get_tree().paused = false
 	paused.emit(false)
+
+func dialogue_event(arg1: Variant, arg2: Variant) -> void:
+	dialogue_event_sent.emit(arg1, arg2)
+
+func request_dialogue(id: String, dialogue_id: String = "default") -> void:
+	dialogue_requested.emit(id, dialogue_id)

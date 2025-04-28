@@ -54,7 +54,7 @@ func _on_updated_mission_level(_value: int) -> void:
 		var _md = Global.player_data.get_mission_data(_value)
 		goal_widget.label_value = str("$", _md.goal.money)
 		level_widget.label_value = _md.message
-		mission_widget.notify(_md.message)
+		# mission_widget.notify(_md.message)
 
 func _on_updated_depth(_value: int) -> void:
 	depth_gauge.value = _value
@@ -71,6 +71,9 @@ func _on_updated_active_component_name(_value: String) -> void:
 func _on_global_notified(_type: String, _payload: Variant) -> void:
 	if _type == 'SALVAGE':
 		notification_widget.notify("%s: $%d" % [ (_payload as JunkData).name, (_payload as JunkData).value ])
+	elif _type == 'MISSION':
+		print("mission", _payload)
+		mission_widget.notify("%d: %s" % [ (Global.player_data.mission_level + 1), _payload.message]) 
 	elif _type == 'GRAB':
 		if (_payload == null):
 			junk_widget.hide()

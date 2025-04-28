@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://yicvylsf3yku"]
+[gd_scene load_steps=26 format=4 uid="uid://yicvylsf3yku"]
 
 [ext_resource type="Script" uid="uid://dtlyhlmsx2ah3" path="res://src/game.gd" id="1_b6dhc"]
 [ext_resource type="PackedScene" uid="uid://b3khhoxrire1v" path="res://src/effects/screen_effects.tscn" id="2_lslma"]
@@ -20,6 +20,7 @@
 [ext_resource type="TileSet" uid="uid://dighybshiyhup" path="res://src/tilemap/props/tm_seaweed_pink.tres" id="18_noxbr"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="19_8q7bk"]
 [ext_resource type="PackedScene" uid="uid://yjr2nvpmrt8x" path="res://src/entities/terminal/terminal.tscn" id="20_lslma"]
+[ext_resource type="Script" uid="uid://b7jp3tjvw7bew" path="res://src/ui/dialogue/dialogue_manager.gd" id="21_sv437"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xq87x"]
 shader = ExtResource("17_4lake")
@@ -187,7 +188,7 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("8_2gais")]
 unique_name_in_owner = true
-position = Vector2(254, 73)
+position = Vector2(262, 130)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
@@ -278,3 +279,10 @@ tile_set = ExtResource("18_noxbr")
 
 [node name="UI" parent="." instance=ExtResource("19_8q7bk")]
 unique_name_in_owner = true
+
+[node name="DialogueManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_sv437")
