@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxqh6ub2bdvs"]
+[gd_scene load_steps=9 format=3 uid="uid://dxqh6ub2bdvs"]
 
 [ext_resource type="Script" uid="uid://c2nukb8y0jaq8" path="res://src/ui/ui.gd" id="1_sp1ie"]
 [ext_resource type="PackedScene" uid="uid://bvmepulwpxta1" path="res://src/ui/gauge/gauge.tscn" id="2_jlntk"]
 [ext_resource type="PackedScene" uid="uid://c3v1hw5tg5y5q" path="res://src/ui/label_widget.tscn" id="3_qemve"]
 [ext_resource type="PackedScene" uid="uid://r065y6euwjxh" path="res://src/ui/notification_widget.tscn" id="4_8wxmc"]
+[ext_resource type="PackedScene" uid="uid://cnjcsi7mbw3k4" path="res://src/ui/mission_widget.tscn" id="5_cx7gx"]
 [ext_resource type="PackedScene" uid="uid://cc4jmddx2vhpt" path="res://src/ui/gauge/gauge_vertical.tscn" id="5_sjdex"]
 [ext_resource type="PackedScene" uid="uid://wyaggvb52mrq" path="res://src/ui/gauge/radar.tscn" id="6_7abqo"]
 [ext_resource type="PackedScene" uid="uid://b33b02fuw8nhl" path="res://src/ui/gauge/gauge_vertical_flipped.tscn" id="7_gucsq"]
@@ -87,10 +88,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 140.0
-offset_top = 132.0
-offset_right = 140.0
-offset_bottom = 132.0
+offset_top = -8.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -126,3 +125,23 @@ offset_top = 32.0
 offset_right = -16.0
 offset_bottom = 32.0
 scale = Vector2(0.5, 0.5)
+
+[node name="MissionWidget" parent="." instance=ExtResource("5_cx7gx")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 87.0
+offset_top = 196.0
+offset_right = 278.0
+offset_bottom = 212.0
+text = "Level 2 - where you get $50,000"

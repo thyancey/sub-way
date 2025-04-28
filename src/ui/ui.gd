@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var goal_widget: Control = %GoalWidget
 @onready var level_widget: Control = %LevelWidget
 @onready var notification_widget: Control = %NotificationWidget
+@onready var mission_widget: Control = %MissionWidget
 @onready var radar: Control = %Radar
 @onready var ui_wrapper: Control = %Wrapper
 
@@ -53,6 +54,7 @@ func _on_updated_mission_level(_value: int) -> void:
 		var _md = Global.player_data.get_mission_data(_value)
 		goal_widget.label_value = str("$", _md.goal.money)
 		level_widget.label_value = _md.message
+		mission_widget.notify(_md.message)
 
 func _on_updated_depth(_value: int) -> void:
 	depth_gauge.value = _value
