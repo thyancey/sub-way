@@ -8,6 +8,7 @@ extends Node2D
 @export var darkness_depth_range := Vector2(50.0, 300.0)
 
 @onready var darkness: CanvasModulate = %Darkness
+@onready var darkness_cover: ColorRect = %Darkness_Bg
 @onready var blur_effect: ColorRect = %BlurEffect
 
 var blur_material: ShaderMaterial
@@ -25,10 +26,12 @@ func _on_updated_depth(_depth: float) -> void:
 		#ideally lights are off while within this depth
 		var _surface_percent = 1 - (darkness_depth_range.x - _depth) / darkness_depth_range.x
 		darkness.color = lerp(surface_darkness, min_darkness, _surface_percent)
+		darkness_cover.modulate.a = lerp(0.0, 0.1, _surface_percent)
 		_update_blur(0)
 	else:
 		var _darkness_percent = calc_darkness(_depth)
 		darkness.color = lerp(min_darkness, max_darkness, _darkness_percent)
+		darkness_cover.modulate.a = lerp(0.1, 1.0, _darkness_percent)
 		_update_blur(_darkness_percent)
 
 func _update_blur(_blur_percent: float) -> void:

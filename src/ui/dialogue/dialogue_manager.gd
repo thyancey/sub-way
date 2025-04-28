@@ -7,9 +7,6 @@ func _ready() -> void:
 	Global.connect("dialogue_event_sent", _on_dialogue_event_sent)
 	Global.connect("dialogue_requested", _on_dialogue_requested)
 
-	await get_tree().create_timer(1).timeout
-	_show_dialogue("intro")
-
 func _on_dialogue_event_sent(arg1: Variant, arg2: Variant) -> void:
 	print("_on_dialogue_event_sent:", arg1, arg2)
 	if arg1 == "show_current_mission":

@@ -7,8 +7,18 @@
 script = ExtResource("1_8bxpc")
 min_darkness = Color(0.362829, 0.362829, 0.362829, 1)
 
+[node name="Darkness_Bg" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -1900.0
+offset_top = 4.0
+offset_right = 1900.0
+offset_bottom = 3804.0
+color = Color(0.0862745, 0.34902, 0.333333, 1)
+
 [node name="Darkness" type="CanvasModulate" parent="."]
 unique_name_in_owner = true
+z_index = 1
+color = Color(0, 0, 0, 0.490196)
 
 [node name="BlurLayer" type="CanvasLayer" parent="."]
 
