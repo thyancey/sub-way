@@ -52,12 +52,12 @@ func _on_salvaged(_salvaged_body: Node2D) -> void:
 	_salvage_complete(_salvaged_body)
 
 func _salvage_complete(_salvaged_body: Node2D) -> void:
-	print("_salvage_complete")
+	# print("_salvage_complete")
 	if !salvage_bodies.has(_salvaged_body):
 		push_error("salvage_bodies doesnt contain the junk that was salvaged!")
 	else:
 		# score it, make it go away for real
-		print("salvaged: ", _salvaged_body.junk_data.name)
+		# print("salvaged: ", _salvaged_body.junk_data.name)
 		junk_salvaged.emit(_salvaged_body.global_position, _salvaged_body.junk_data)
 		salvage_bodies.erase(_salvaged_body)
 		_salvaged_body.destroy()
@@ -67,7 +67,7 @@ func _salvage_complete(_salvaged_body: Node2D) -> void:
 		for _junk in _frozen_junk:
 			_try_to_shred_this(_junk)
 
-	print(">> COMPLETE, should I keep shreddin? ", salvage_bodies.size())
+	# print(">> COMPLETE, should I keep shreddin? ", salvage_bodies.size())
 	if salvage_bodies.size() == 0:
 		main_sprite.play("idle")
 

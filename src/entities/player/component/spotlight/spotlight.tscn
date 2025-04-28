@@ -23,7 +23,7 @@ texture = ExtResource("6_3fvsi")
 [node name="Spotlight" type="PointLight2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1, 0)
-color = Color(0.973333, 1, 0.6, 1)
+color = Color(0.37, 1, 0.916, 1)
 texture = ExtResource("5_ahvle")
 offset = Vector2(100, 0)
 
@@ -38,7 +38,7 @@ offset = Vector2(4, 0)
 
 [node name="LightSprite" type="AnimatedSprite2D" parent="Graphic"]
 unique_name_in_owner = true
-self_modulate = Color(1, 0.977, 0.54, 0.396078)
+self_modulate = Color(0.996, 1, 0.76, 0.392157)
 sprite_frames = ExtResource("4_ahvle")
 animation = &"idle"
 autoplay = "idle"

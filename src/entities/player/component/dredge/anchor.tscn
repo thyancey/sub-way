@@ -52,8 +52,7 @@ polygon = PackedVector2Array(2, 3, 5, 3, 7, 5, 0, 4, -7, 5, -5, 3, -2, 3, 0, -2)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 6)
-color = Color(0, 0.966667, 1, 1)
-energy = 0.5
+color = Color(1, 0, 0, 1)
 texture = SubResource("GradientTexture2D_s3t3w")
 texture_scale = 2.0
 
