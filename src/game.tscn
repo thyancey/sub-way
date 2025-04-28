@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ce5xykcagcasc" path="res://src/entities/oxygen/oxygen.tscn" id="14_xm868"]
 [ext_resource type="PackedScene" uid="uid://j1m3y4fxeg4n" path="res://src/entities/surface.tscn" id="15_3onxw"]
 [ext_resource type="TileSet" uid="uid://dfb3yr0q4835u" path="res://src/tilemap/tileset_abyss.tres" id="16_ou5k8"]
-[ext_resource type="Shader" uid="uid://ci0eb2kix4uds" path="res://src/scripts/colorize.gdshader" id="17_4lake"]
+[ext_resource type="Shader" uid="uid://ci0eb2kix4uds" path="res://src/shaders/colorize.gdshader" id="17_4lake"]
 [ext_resource type="TileSet" uid="uid://dighybshiyhup" path="res://src/tilemap/props/tm_seaweed_pink.tres" id="18_noxbr"]
 [ext_resource type="PackedScene" uid="uid://dxqh6ub2bdvs" path="res://src/ui/ui.tscn" id="19_8q7bk"]
 [ext_resource type="PackedScene" uid="uid://yjr2nvpmrt8x" path="res://src/entities/terminal/terminal.tscn" id="20_lslma"]

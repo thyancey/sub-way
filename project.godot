@@ -21,6 +21,7 @@ import/import_plugin/default_automatic_importer="SpriteFrames"
 
 [autoload]
 
+EditorWindowPlacement="*res://src/scripts/utility/editor_window_placement.gd"
 Enums="*res://src/scripts/enums.gd"
 GameData="*res://src/scripts/game_data.gd"
 Global="*res://src/scripts/global.gd"

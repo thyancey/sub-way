@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_lcagu"]
 [ext_resource type="PackedScene" uid="uid://ck8rcf8hiqc0" path="res://src/entities/projectiles/flare.tscn" id="2_lcagu"]
-[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_17or4"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/resources/curves/ease_in.tres" id="3_17or4"]
 [ext_resource type="SpriteFrames" uid="uid://cik7ssdn0yco2" path="res://src/entities/player/component/flare/rear_hatch.aseprite" id="5_iojp4"]
 
 [node name="C_FlareLauncher" type="Node2D" groups=["Component"]]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhk1olvtqt3ua" path="res://src/entities/player/component/weapon_charged.gd" id="1_tmmod"]
 [ext_resource type="PackedScene" uid="uid://bwxf3q0yhfldu" path="res://src/entities/projectiles/torpedo_snub.tscn" id="2_tmmod"]
-[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/scripts/ease_in.tres" id="3_y56bg"]
+[ext_resource type="Curve" uid="uid://cy0ms76ctul11" path="res://src/resources/curves/ease_in.tres" id="3_y56bg"]
 [ext_resource type="SpriteFrames" uid="uid://b8e4wuyyy6gf0" path="res://src/entities/player/component/missile_bay.aseprite" id="4_tmmod"]
 
 [node name="C_MissileBay" type="Node2D" groups=["Component"]]
