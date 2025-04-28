@@ -187,7 +187,7 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("8_2gais")]
 unique_name_in_owner = true
-position = Vector2(363, 61)
+position = Vector2(254, 73)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
@@ -240,7 +240,7 @@ position = Vector2(-222, 364)
 position = Vector2(-588, 93)
 
 [node name="Surface" parent="Stuff" instance=ExtResource("15_3onxw")]
-position = Vector2(0, -80)
+position = Vector2(0, -95)
 scale = Vector2(20, 1)
 
 [node name="Level_FG" type="Node2D" parent="."]

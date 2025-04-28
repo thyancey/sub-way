@@ -15,6 +15,6 @@ unique_name_in_owner = true
 [node name="BlurEffect" type="ColorRect" parent="BlurLayer"]
 unique_name_in_owner = true
 material = ExtResource("2_0w47y")
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 384.0
+offset_bottom = 216.0
 mouse_filter = 2

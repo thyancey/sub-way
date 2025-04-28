@@ -5,8 +5,8 @@
 [node name="Menu_Pause" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_right = 384.0
+offset_bottom = 216.0
 script = ExtResource("1_fhrm0")
 metadata/_custom_type_script = "uid://cu6okrt2q3dry"
 

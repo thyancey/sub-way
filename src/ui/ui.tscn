@@ -73,9 +73,9 @@ label_value = "Old Boot"
 [node name="OxygenGauge" parent="Wrapper" instance=ExtResource("2_jlntk")]
 unique_name_in_owner = true
 offset_left = -10.0
-offset_top = 145.0
+offset_top = 178.0
 offset_right = 46.0
-offset_bottom = 201.0
+offset_bottom = 234.0
 decimals = 1
 rotation_min = -110.0
 
@@ -105,10 +105,18 @@ height = 180
 
 [node name="Radar" parent="Wrapper" instance=ExtResource("6_7abqo")]
 unique_name_in_owner = true
-offset_left = 287.0
-offset_top = 148.0
-offset_right = 347.0
-offset_bottom = 208.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Gauge_Vertical_R" parent="Wrapper" instance=ExtResource("7_gucsq")]
 unique_name_in_owner = true
