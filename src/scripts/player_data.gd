@@ -35,8 +35,6 @@ var money := 0:
 		if money != value:
 			money = value
 			updated_money.emit(money)
-			if _check_against_quota():
-				mission_level += 1
 
 var depth := 0:
 	get:
@@ -88,9 +86,11 @@ func get_mission_data(_mission_idx: int = -1) -> Dictionary:
 		push_error("no goal for mission idx: ", _mission_idx)
 		return {}
 
+func get_goal_money() -> int:
+	return get_mission_data(mission_level).goal.money
 	
-func _check_against_quota() -> bool:
-	if money > get_mission_data(mission_level).goal.money:
+func check_against_quota() -> bool:
+	if money > get_goal_money():
 		return true
 	else:
 		return false

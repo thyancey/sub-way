@@ -245,7 +245,7 @@ func set_surfaced() -> void:
 func trigger_splash() -> void:
 	print('splash')
 
-func _input(_delta) -> void:
+func _input(_event) -> void:
 	if Input.is_action_just_pressed("COMPONENT_SWAP"):
 		swap_component()
 
@@ -259,3 +259,4 @@ func swap_component(_force_idx := -1):
 		active_component_idx = (active_component_idx + 1) % components.size()
 		components[active_component_idx].is_active = true
 	Global.player_data.active_component_name = components[active_component_idx].display_name
+

@@ -120,7 +120,7 @@ tile_set = ExtResource("3_sv437")
 [node name="ParallaxBackground" parent="." instance=ExtResource("5_6fytc")]
 layer = 0
 
-[node name="Oxygen" parent="." instance=ExtResource("20_lslma")]
+[node name="Terminal" parent="." instance=ExtResource("20_lslma")]
 position = Vector2(429, 57)
 
 [node name="Stuff" type="Node2D" parent="."]
@@ -231,7 +231,7 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("8_2gais")]
 unique_name_in_owner = true
-position = Vector2(-86, 347)
+position = Vector2(297, 65)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
@@ -252,15 +252,13 @@ position = Vector2(272, 182)
 position = Vector2(405, 74)
 
 [node name="Junk_Amethyst10" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
-position = Vector2(430, 71)
-scale = Vector2(2, 2)
-
-[node name="Junk_Amethyst11" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
-position = Vector2(445, 90)
+position = Vector2(502, 73)
 
 [node name="Junk_Amethyst12" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
-position = Vector2(417, 108)
-scale = Vector2(2, 2)
+position = Vector2(502, 73)
+
+[node name="Junk_Amethyst11" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
+position = Vector2(467, 88)
 
 [node name="Junk_Boot4" parent="Stuff/Group_Junk" instance=ExtResource("11_rbnx6")]
 position = Vector2(351, 84)
@@ -270,6 +268,9 @@ position = Vector2(182, 750)
 
 [node name="Junk_Amethyst2" parent="Stuff/Group_Junk" instance=ExtResource("12_au4ic")]
 position = Vector2(-456, 134)
+
+[node name="Junk_Amethyst3" parent="Stuff/Group_Junk" instance=ExtResource("12_au4ic")]
+position = Vector2(479, 97)
 
 [node name="Jelly2" parent="Stuff" instance=ExtResource("13_2m2ji")]
 position = Vector2(107, 645)

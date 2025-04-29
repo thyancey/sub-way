@@ -31,6 +31,18 @@ player: ...
 player: I think I better just get to work. I gotta find [color=green]3,000 SCRIP[/color] worth of [color=#ff74b0]gems.[/color]
 => END
 
+~ mission_eval
+terminal: EVALUATING MISSION #{{Global.player_data.mission_level + 1}}
+if Global.player_data.check_against_quota()
+	terminal: PAYMENT COMPLETE: {{Global.player_data.get_goal_money()}}
+	player: alright, what's next?
+	do Global.dialogue_event("next_mission", null)
+	terminal: MISSION #{{Global.player_data.mission_level + 1}}: {{Global.player_data.get_mission_data().message}}
+	=> END
+else
+	terminal: PAYMENT INCOMPLETE: [color=red]{{Global.player_data.money}}[/color] / {{Global.player_data.get_goal_money()}}
+	terminal: RESUME MISSION: {{Global.player_data.get_mission_data().message}}
+	=> END
 
 ~ tutorial_searchlight_1
 player: Would be a little easier if I could see..
@@ -42,13 +54,5 @@ do Global.dialogue_event("example", "example arg")
 terminal: HOLD LMB TO ENABLE LIGHT, LOOK AROUND WITH MOUSE
 do Global.dialogue_event("example", "example arg")
 => END
-
-
-~ terminal_touch
-terminal: MISSION #{{Global.player_data.mission_level + 1}}: {{Global.player_data.get_mission_data().message}}
-do Global.dialogue_event("show_current_mission", null)
-=> END
-
-
-  
-  
+	
+	

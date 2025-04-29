@@ -11,6 +11,8 @@ func _on_dialogue_event_sent(arg1: Variant, arg2: Variant) -> void:
 	print("_on_dialogue_event_sent:", arg1, arg2)
 	if arg1 == "show_current_mission":
 		Global.notify("MISSION", Global.player_data.get_mission_data())
+	if arg1 == "next_mission":
+		Global.player_data.mission_level += 1
 
 func _on_dialogue_requested(id: String, dialogue_id: String) -> void:
 	print("_on_dialogue_requested: ", id, " (", dialogue_id, ")")
