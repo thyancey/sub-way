@@ -77,7 +77,8 @@ func _ready() -> void:
 
 	for child in get_children():
 		if child.is_in_group("Component"):
-			components.append(child)
+			if !child.hardwired:
+				components.append(child)
 	swap_component(active_component_idx)
 
 func _physics_process(delta: float) -> void:

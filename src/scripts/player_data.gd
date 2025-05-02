@@ -10,7 +10,7 @@ signal updated_mission_level(val: int)
 
 var max_oxygen := 100.0
 var rope_range := Vector2(1.0, 200.0)
-var ping_range := 200.0
+var ping_range := 300.0
 
 var mission_level := -1:
 	get:

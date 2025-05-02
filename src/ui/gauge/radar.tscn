@@ -1,21 +1,93 @@
-[gd_scene load_steps=4 format=3 uid="uid://wyaggvb52mrq"]
+[gd_scene load_steps=10 format=3 uid="uid://wyaggvb52mrq"]
 
 [ext_resource type="SpriteFrames" uid="uid://djpfjx0jmqgbf" path="res://src/ui/gauge/radar.aseprite" id="1_532p4"]
 [ext_resource type="Script" uid="uid://j6cp35tst10t" path="res://src/ui/gauge/radar.gd" id="1_it1k6"]
+[ext_resource type="Script" uid="uid://osfe6flg8mgj" path="res://src/ui/gauge/sweep_arm.gd" id="3_l8n8a"]
 
 [sub_resource type="Curve" id="Curve_it1k6"]
 _data = [Vector2(0, 0), 0.0, 0.504506, 0, 0, Vector2(0.997845, 1), 1.63336, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_it1k6"]
+resource_name = "flash"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l8n8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gjfk6"]
+_data = {
+&"RESET": SubResource("Animation_l8n8a"),
+&"flash": SubResource("Animation_it1k6")
+}
+
+[sub_resource type="Gradient" id="Gradient_it1k6"]
+offsets = PackedFloat32Array(0.517647, 0.534118)
+colors = PackedColorArray(0.360784, 0.898039, 0.898039, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l8n8a"]
+gradient = SubResource("Gradient_it1k6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Radar" type="Control"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 60.0
-offset_bottom = 60.0
-pivot_offset = Vector2(30, 30)
 script = ExtResource("1_it1k6")
 distance_curve = SubResource("Curve_it1k6")
+color_junk = Color(0, 0.966667, 1, 0.898039)
+color_enemy = Color(1, 1, 0, 0.898039)
+sweep_speed = 2.0
 
-[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+[node name="Gauge" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="Gauge"]
 sprite_frames = ExtResource("1_532p4")
+
+[node name="Pings" type="Node2D" parent="Gauge"]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_gjfk6")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 1, 1, 0)
+energy = 8.0
+texture = SubResource("GradientTexture2D_l8n8a")
+
+[node name="sweep_arm" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_l8n8a")
+sweep_color = Color(0.36, 0.9, 0.9, 0.247059)
+sweep_thickness = 0.5

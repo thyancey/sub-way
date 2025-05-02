@@ -12,6 +12,7 @@ mouse_aim = true
 display_name = "Spotlight"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(-7, 4)
 sprite_frames = ExtResource("3_ahvle")
 animation = &"mount"

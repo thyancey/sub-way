@@ -13,10 +13,13 @@ extends CanvasLayer
 @onready var radar: Control = %Radar
 @onready var ui_wrapper: Control = %Wrapper
 
-@export var hud_transparency := 0.8
+@export var hud_transparency := 1.0
+@export var hud_color: Color = Color.WHITE
 
 func _ready() -> void:
-	_set_hud_transparency(hud_transparency)
+	# _set_hud_transparency(hud_transparency)
+	ui_wrapper.modulate = hud_color
+	ui_wrapper.modulate.a = hud_transparency
 
 	junk_widget.hide()
 	Global.connect("notified", _on_global_notified)

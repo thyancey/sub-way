@@ -43,8 +43,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Use WSAD to move  the sub around
 Use your equipment to see in the dark!
-- click the mouse to toggle equipment
+- hold right mouse to use the flood light
 - spacebar to change equipment
+- left mouse to toggle equipment
 Gather rare minerals off the sea floor, and salvage them in the shredder!"
 
 [node name="Button_Start" type="Button" parent="Panel/VBoxContainer"]

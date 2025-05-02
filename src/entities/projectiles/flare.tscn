@@ -15,8 +15,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_51mv6"]
-offsets = PackedFloat32Array(0.188372, 0.346512, 0.488372)
-colors = PackedColorArray(1, 1, 1, 1, 0.05, 0.05, 0.05, 0, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.103529, 0.818824)
+colors = PackedColorArray(1, 1, 1, 1, 0.05, 0.05, 0.05, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_238wo"]
 gradient = SubResource("Gradient_51mv6")
@@ -42,7 +42,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [10.0]
+"values": [3.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -72,7 +72,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
-"values": [5.0, 3.0, 5.0]
+"values": [3.0, 2.0, 3.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -128,8 +128,8 @@ sprite_frames = ExtResource("1_51mv6")
 animation = &"charge"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.2305, 1, 0.19, 1)
-energy = 10.0
+color = Color(0.124, 0.31, 0.31, 1)
+energy = 3.0
 texture = SubResource("GradientTexture2D_238wo")
 texture_scale = 4.0
 

@@ -5,6 +5,7 @@ class_name Ship_Component
 @onready var graphic: Node2D = %Graphic
 @export var display_name := "???"
 @export var hide_on_disable := false
+@export var hardwired := false # a dumb flag to say dont put it in the queue
 @export var is_active := false:
 	get:
 		return is_active

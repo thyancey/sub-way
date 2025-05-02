@@ -18,7 +18,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_dptfr"]
 offsets = PackedFloat32Array(0, 0.15814)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_glgch"]
 gradient = SubResource("Gradient_dptfr")
@@ -74,8 +74,8 @@ scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_k0axj")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, 6)
-color = Color(0.116667, 1, 0, 1)
+position = Vector2(1, 0)
+color = Color(0.360784, 0.898039, 0.898039, 1)
 texture = SubResource("GradientTexture2D_glgch")
 texture_scale = 2.0
 

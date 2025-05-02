@@ -231,7 +231,7 @@ position = Vector2(427, 147)
 
 [node name="Player" parent="Stuff" instance=ExtResource("8_2gais")]
 unique_name_in_owner = true
-position = Vector2(297, 65)
+position = Vector2(163, 158)
 
 [node name="Group_Junk" type="Node2D" parent="Stuff"]
 position = Vector2(0, 24)
@@ -247,6 +247,9 @@ position = Vector2(372, 96)
 
 [node name="Junk_Amethyst8" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
 position = Vector2(272, 182)
+
+[node name="Junk_Amethyst13" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
+position = Vector2(112, 189)
 
 [node name="Junk_Amethyst9" parent="Stuff/Group_Junk" instance=ExtResource("9_4j03v")]
 position = Vector2(405, 74)
